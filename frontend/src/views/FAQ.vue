@@ -136,7 +136,14 @@ const faqs = ref([
 }
 
 .dark .faq-item {
-  box-shadow: 0 2px 8px rgba(255, 255, 255, 0.05);
+  background-color: #2a2a2c;
+  border-color: #3a3a3c;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.dark .faq-item:hover {
+  background-color: #333335;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
 }
 
 .faq-item:hover {
@@ -161,6 +168,11 @@ const faqs = ref([
   font-weight: 500;
   color: var(--text-color);
   transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.dark .faq-question {
+  color: #ffffff;
+  font-weight: 600;
 }
 
 .faq-question:hover {
@@ -200,6 +212,14 @@ const faqs = ref([
   animation: slideDown 0.3s ease;
 }
 
+.dark .faq-answer {
+  color: #d1d1d6;
+}
+
+.dark .faq-answer p {
+  color: #d1d1d6;
+}
+
 @keyframes slideDown {
   from {
     opacity: 0;
@@ -221,6 +241,11 @@ const faqs = ref([
   border: 1px solid var(--border-color);
 }
 
+.dark .faq-cta {
+  background-color: #2a2a2c;
+  border-color: #3a3a3c;
+}
+
 .faq-cta h2 {
   font-size: 36px;
   font-weight: 600;
@@ -229,10 +254,19 @@ const faqs = ref([
   color: var(--text-color);
 }
 
+.dark .faq-cta h2 {
+  color: #ffffff;
+  font-weight: 700;
+}
+
 .faq-cta p {
   font-size: 19px;
   color: var(--text-secondary);
   margin-bottom: 30px;
+}
+
+.dark .faq-cta p {
+  color: #d1d1d6;
 }
 
 .faq-buttons {

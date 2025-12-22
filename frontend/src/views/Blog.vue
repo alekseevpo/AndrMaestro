@@ -311,6 +311,11 @@ const goToPost = (slug) => {
   color: var(--text-color);
 }
 
+.dark .blog-title {
+  color: #ffffff;
+  font-weight: 700;
+}
+
 .blog-excerpt {
   font-size: 16px;
   color: var(--text-secondary);

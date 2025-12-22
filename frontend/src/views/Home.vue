@@ -107,6 +107,12 @@ const { elementRef: homeRef, isVisible } = useScrollReveal({ threshold: 0.05 })
   margin-bottom: 20px;
   letter-spacing: -1px;
   line-height: 1.1;
+  color: var(--text-color);
+}
+
+.dark .hero-title {
+  color: #ffffff;
+  font-weight: 700;
 }
 
 .hero-subtitle {
@@ -212,6 +218,12 @@ const { elementRef: homeRef, isVisible } = useScrollReveal({ threshold: 0.05 })
   font-weight: 600;
   margin-bottom: 20px;
   letter-spacing: -0.5px;
+  color: var(--text-color);
+}
+
+.dark .cta-content h2 {
+  color: #ffffff;
+  font-weight: 700;
 }
 
 .cta-content p {

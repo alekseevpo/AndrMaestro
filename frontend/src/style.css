@@ -20,17 +20,31 @@
   --primary-color: #f5f5f7;
   --secondary-color: #a1a1a6;
   --accent-color: #0a84ff;
-  --bg-color: #000000;
-  --text-color: #f5f5f7;
-  --text-secondary: #a1a1a6;
-  --border-color: #424245;
-  --hover-bg: #1d1d1f;
+  --bg-color: #1a1a1a;
+  --text-color: #ffffff;
+  --text-secondary: #d1d1d6;
+  --border-color: #3a3a3c;
+  --hover-bg: #2a2a2c;
 }
 
 /* Улучшение контрастности для темной темы */
+.dark .section-title {
+  color: #ffffff;
+  font-weight: 700;
+}
+
 .dark .section-subtitle,
 .dark .text-secondary {
-  color: #c7c7cc;
+  color: #d1d1d6;
+}
+
+.dark h1,
+.dark h2,
+.dark h3,
+.dark h4,
+.dark h5,
+.dark h6 {
+  color: #ffffff;
 }
 
 html {

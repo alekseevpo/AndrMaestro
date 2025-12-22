@@ -206,6 +206,12 @@ const processSteps = ref([
   font-weight: 600;
   margin-bottom: 20px;
   letter-spacing: -0.5px;
+  color: var(--text-color);
+}
+
+.dark .service-item h2 {
+  color: #ffffff;
+  font-weight: 700;
 }
 
 .service-item > .service-content > p {
@@ -305,6 +311,12 @@ const processSteps = ref([
   font-size: 24px;
   font-weight: 600;
   margin-bottom: 15px;
+  color: var(--text-color);
+}
+
+.dark .step h3 {
+  color: #ffffff;
+  font-weight: 700;
 }
 
 .step-light h3 {

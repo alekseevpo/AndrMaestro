@@ -258,6 +258,12 @@ const submitForm = async () => {
   font-weight: 600;
   margin-bottom: 20px;
   letter-spacing: -0.5px;
+  color: var(--text-color);
+}
+
+.dark .contact-info h2 {
+  color: #ffffff;
+  font-weight: 700;
 }
 
 .info-description {
@@ -303,6 +309,12 @@ const submitForm = async () => {
   font-weight: 600;
   margin-bottom: 30px;
   letter-spacing: -0.5px;
+  color: var(--text-color);
+}
+
+.dark .contact-form h2 {
+  color: #ffffff;
+  font-weight: 700;
 }
 
 .form-group {
