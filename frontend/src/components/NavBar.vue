@@ -187,7 +187,11 @@ onUnmounted(() => {
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
   z-index: 999;
   padding: 15px 0;
-  transition: background-color 0.3s ease, backdrop-filter 0.3s ease;
+  transition: background-color 0.4s cubic-bezier(0.4, 0, 0.2, 1), 
+              backdrop-filter 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+              -webkit-backdrop-filter 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+              border-color 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: background-color, backdrop-filter;
 }
 
 @media (max-width: 768px) {
@@ -201,6 +205,10 @@ onUnmounted(() => {
   backdrop-filter: saturate(180%) blur(20px);
   -webkit-backdrop-filter: saturate(180%) blur(20px);
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  transition: background-color 0.4s cubic-bezier(0.4, 0, 0.2, 1), 
+              backdrop-filter 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+              -webkit-backdrop-filter 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+              border-color 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .nav-content {
@@ -359,6 +367,11 @@ onUnmounted(() => {
   overflow: hidden;
   pointer-events: auto;
   position: relative;
+  transition: background-color 0.4s cubic-bezier(0.4, 0, 0.2, 1), 
+              backdrop-filter 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+              -webkit-backdrop-filter 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+              border-color 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: background-color, backdrop-filter;
 }
 
 .dark .popup-menu {
@@ -367,6 +380,10 @@ onUnmounted(() => {
   -webkit-backdrop-filter: saturate(180%) blur(20px);
   border: 1px solid rgba(255, 255, 255, 0.1);
   box-shadow: 0 24px 48px rgba(0, 0, 0, 0.6);
+  transition: background-color 0.4s cubic-bezier(0.4, 0, 0.2, 1), 
+              backdrop-filter 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+              -webkit-backdrop-filter 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+              border-color 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .popup-enter-active {
