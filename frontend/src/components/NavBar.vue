@@ -33,12 +33,6 @@
               <div class="popup-menu">
                 <div class="popup-menu-header">
                   <h2 class="popup-menu-title">Menú</h2>
-                  <button class="popup-menu-close" @click="closeMenu" aria-label="Close menu">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                      <line x1="18" y1="6" x2="6" y2="18"></line>
-                      <line x1="6" y1="6" x2="18" y2="18"></line>
-                    </svg>
-                  </button>
                 </div>
                 <div class="popup-menu-content">
                   <router-link to="/" @click="closeMenu" class="popup-menu-item">
@@ -380,10 +374,14 @@ onUnmounted(() => {
   opacity: 0;
 }
 
+.popup-menu {
+  position: relative;
+}
+
 .popup-menu-header {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   padding: 24px 24px 20px;
   border-bottom: 1px solid var(--border-color);
   flex-shrink: 0;
@@ -396,47 +394,7 @@ onUnmounted(() => {
   color: var(--text-color) !important;
   margin: 0;
   letter-spacing: -0.3px;
-}
-
-.popup-menu-close {
-  width: 48px;
-  height: 48px;
-  display: flex !important;
-  align-items: center;
-  justify-content: center;
-  background: var(--hover-bg) !important;
-  border: 2px solid var(--border-color) !important;
-  border-radius: 12px;
-  cursor: pointer;
-  color: var(--text-color) !important;
-  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-  flex-shrink: 0;
-  opacity: 1 !important;
-  visibility: visible !important;
-  position: relative;
-  z-index: 10;
-}
-
-.popup-menu-close svg {
-  width: 26px !important;
-  height: 26px !important;
-  stroke: var(--text-color) !important;
-  stroke-width: 2.5 !important;
-  display: block !important;
-  opacity: 1 !important;
-  visibility: visible !important;
-  pointer-events: none;
-}
-
-.popup-menu-close:hover {
-  background: var(--accent-color) !important;
-  color: white !important;
-  border-color: var(--accent-color) !important;
-  transform: rotate(90deg) scale(1.05);
-}
-
-.popup-menu-close:hover svg {
-  stroke: white !important;
+  text-align: center;
 }
 
 .popup-menu-content {
