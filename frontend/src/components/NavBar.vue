@@ -181,11 +181,13 @@ onUnmounted(() => {
 .navbar {
   position: sticky;
   top: 0;
-  background-color: rgba(255, 255, 255, 0.8);
+  background-color: rgba(255, 255, 255, 0.5);
   backdrop-filter: saturate(180%) blur(20px);
-  border-bottom: 1px solid var(--border-color);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
   z-index: 999;
   padding: 15px 0;
+  transition: background-color 0.3s ease, backdrop-filter 0.3s ease;
 }
 
 @media (max-width: 768px) {
@@ -195,8 +197,10 @@ onUnmounted(() => {
 }
 
 .dark .navbar {
-  background-color: rgba(26, 26, 26, 0.9);
+  background-color: rgba(0, 0, 0, 0.4);
   backdrop-filter: saturate(180%) blur(20px);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .nav-content {
