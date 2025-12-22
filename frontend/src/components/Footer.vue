@@ -19,7 +19,7 @@
         <div class="footer-section">
           <h4>Contacto</h4>
           <p>Email: info@andrmaestro.com</p>
-          <p>Teléfono: +34 XXX XXX XXX</p>
+          <p>Teléfono: +34 633 34 34 68</p>
         </div>
       </div>
       

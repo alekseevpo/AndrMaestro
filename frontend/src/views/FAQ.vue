@@ -39,7 +39,7 @@
               Contactar Ahora
             </router-link>
             <a 
-              href="https://wa.me/34600000000?text=Hola,%20tengo%20una%20pregunta" 
+              href="https://wa.me/34633343468?text=Hola,%20tengo%20una%20pregunta" 
               target="_blank" 
               rel="noopener noreferrer"
               class="btn btn-whatsapp"

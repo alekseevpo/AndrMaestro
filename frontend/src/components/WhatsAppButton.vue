@@ -19,7 +19,7 @@ import { computed } from 'vue'
 const props = defineProps({
   phone: {
     type: String,
-    default: '+34600000000' // Замените на реальный номер
+    default: '+34633343468'
   },
   message: {
     type: String,

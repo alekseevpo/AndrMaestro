@@ -31,7 +31,7 @@
               <div class="contact-icon">📱</div>
               <div>
                 <h3>Teléfono</h3>
-                <p>+34 XXX XXX XXX</p>
+                <p>+34 633 34 34 68</p>
               </div>
             </div>
             
@@ -40,7 +40,7 @@
               <div>
                 <h3>WhatsApp</h3>
                 <a 
-                  href="https://wa.me/34600000000?text=Hola,%20me%20gustaría%20obtener%20más%20información%20sobre%20sus%20servicios." 
+                  href="https://wa.me/34633343468?text=Hola,%20me%20gustaría%20obtener%20más%20información%20sobre%20sus%20servicios." 
                   target="_blank" 
                   rel="noopener noreferrer"
                   class="whatsapp-link"
@@ -99,7 +99,7 @@
                   type="tel" 
                   id="phone" 
                   v-model="form.phone" 
-                  placeholder="+34 XXX XXX XXX"
+                  placeholder="+34 633 34 34 68"
                 />
               </div>
               
