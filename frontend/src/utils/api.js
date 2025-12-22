@@ -90,3 +90,41 @@ export const getProject = async (projectId) => {
   }
 }
 
+/**
+ * Get blog posts
+ */
+export const getBlogPosts = async (category = null) => {
+  try {
+    const url = category 
+      ? `${config.apiUrl}/api/blog/posts?category=${encodeURIComponent(category)}`
+      : `${config.apiUrl}/api/blog/posts`
+    const response = await fetchWithRetry(url)
+    const data = await response.json()
+    return { success: true, data: data.posts || [] }
+  } catch (error) {
+    console.error('Error fetching blog posts:', error)
+    return {
+      success: false,
+      error: 'Error al cargar los artículos del blog.',
+      data: []
+    }
+  }
+}
+
+/**
+ * Get single blog post by slug
+ */
+export const getBlogPost = async (slug) => {
+  try {
+    const response = await fetchWithRetry(`${config.apiUrl}/api/blog/posts/${slug}`)
+    const data = await response.json()
+    return { success: true, data }
+  } catch (error) {
+    console.error('Error fetching blog post:', error)
+    return {
+      success: false,
+      error: 'Error al cargar el artículo.'
+    }
+  }
+}
+

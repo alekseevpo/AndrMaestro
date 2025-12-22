@@ -51,7 +51,7 @@ const updateTwitterTag = (name, content) => {
 }
 
 export const generateStructuredData = (type, data) => {
-  const baseUrl = import.meta.env.VITE_BASE_URL || (typeof window !== 'undefined' ? window.location.origin : 'https://andrmaestro.vercel.app')
+  const baseUrl = import.meta.env.VITE_BASE_URL || (typeof window !== 'undefined' ? window.location.href.split('/').slice(0, 3).join('/') : 'https://andrmaestro.vercel.app')
   
   const schemas = {
     organization: {
@@ -85,6 +85,26 @@ export const generateStructuredData = (type, data) => {
       areaServed: {
         '@type': 'Country',
         name: 'España'
+      }
+    },
+    article: {
+      '@context': 'https://schema.org',
+      '@type': 'BlogPosting',
+      headline: data.title || 'Artículo del Blog',
+      description: data.excerpt || '',
+      image: data.image || '',
+      datePublished: data.datePublished || new Date().toISOString(),
+      author: {
+        '@type': 'Organization',
+        name: 'AndrMaestro'
+      },
+      publisher: {
+        '@type': 'Organization',
+        name: 'AndrMaestro',
+        logo: {
+          '@type': 'ImageObject',
+          url: `${baseUrl}/logo.png`
+        }
       }
     }
   }

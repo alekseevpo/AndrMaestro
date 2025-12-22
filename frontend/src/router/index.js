@@ -6,6 +6,8 @@ const Services = () => import('../views/Services.vue')
 const Portfolio = () => import('../views/Portfolio.vue')
 const Contact = () => import('../views/Contact.vue')
 const FAQ = () => import('../views/FAQ.vue')
+const Blog = () => import('../views/Blog.vue')
+const BlogPost = () => import('../views/BlogPost.vue')
 
 const routes = [
   {
@@ -22,6 +24,16 @@ const routes = [
     path: '/portafolio',
     name: 'Portfolio',
     component: Portfolio
+  },
+  {
+    path: '/blog',
+    name: 'Blog',
+    component: Blog
+  },
+  {
+    path: '/blog/:slug',
+    name: 'BlogPost',
+    component: BlogPost
   },
   {
     path: '/preguntas-frecuentes',

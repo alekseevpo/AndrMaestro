@@ -4,6 +4,12 @@ from pydantic import BaseModel, EmailStr
 from typing import Optional
 import uvicorn
 
+try:
+    from api import blog
+except ImportError:
+    # Если модуль не найден, создаем заглушку
+    blog = None
+
 app = FastAPI(
     title="AndrMaestro API",
     description="API para el sitio web de maestro de acabados interiores",
@@ -88,6 +94,10 @@ async def get_project(project_id: int):
     if not project:
         raise HTTPException(status_code=404, detail="Proyecto no encontrado")
     return project
+
+# Include blog router
+if blog:
+    app.include_router(blog.router)
 
 if __name__ == "__main__":
     uvicorn.run(app, host="0.0.0.0", port=8000)

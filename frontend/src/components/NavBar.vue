@@ -10,6 +10,7 @@
           <router-link to="/" @click="closeMenu">Inicio</router-link>
           <router-link to="/servicios" @click="closeMenu">Servicios</router-link>
           <router-link to="/portafolio" @click="closeMenu">Portafolio</router-link>
+          <router-link to="/blog" @click="closeMenu">Blog</router-link>
           <router-link to="/preguntas-frecuentes" @click="closeMenu">FAQ</router-link>
           <router-link to="/contacto" @click="closeMenu">Contacto</router-link>
           <ThemeToggle />
