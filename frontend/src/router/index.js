@@ -3,6 +3,7 @@ import Home from '../views/Home.vue'
 import Services from '../views/Services.vue'
 import Portfolio from '../views/Portfolio.vue'
 import Contact from '../views/Contact.vue'
+import FAQ from '../views/FAQ.vue'
 
 const routes = [
   {
@@ -19,6 +20,11 @@ const routes = [
     path: '/portafolio',
     name: 'Portfolio',
     component: Portfolio
+  },
+  {
+    path: '/preguntas-frecuentes',
+    name: 'FAQ',
+    component: FAQ
   },
   {
     path: '/contacto',

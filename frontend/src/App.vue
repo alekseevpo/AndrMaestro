@@ -3,12 +3,14 @@
     <NavBar />
     <router-view />
     <Footer />
+    <WhatsAppButton />
   </div>
 </template>
 
 <script setup>
 import NavBar from './components/NavBar.vue'
 import Footer from './components/Footer.vue'
+import WhatsAppButton from './components/WhatsAppButton.vue'
 </script>
 
 <style scoped>

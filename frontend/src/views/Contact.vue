@@ -36,6 +36,21 @@
             </div>
             
             <div class="contact-item">
+              <div class="contact-icon">💬</div>
+              <div>
+                <h3>WhatsApp</h3>
+                <a 
+                  href="https://wa.me/34600000000?text=Hola,%20me%20gustaría%20obtener%20más%20información%20sobre%20sus%20servicios." 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  class="whatsapp-link"
+                >
+                  Escribir por WhatsApp
+                </a>
+              </div>
+            </div>
+            
+            <div class="contact-item">
               <div class="contact-icon">📍</div>
               <div>
                 <h3>Ubicación</h3>
@@ -294,6 +309,18 @@ const submitForm = async () => {
   background-color: #f8d7da;
   color: #721c24;
   border: 1px solid #f5c6cb;
+}
+
+.whatsapp-link {
+  color: #25D366;
+  font-weight: 500;
+  text-decoration: none;
+  transition: opacity 0.3s ease;
+}
+
+.whatsapp-link:hover {
+  opacity: 0.8;
+  text-decoration: underline;
 }
 
 @media (max-width: 968px) {
