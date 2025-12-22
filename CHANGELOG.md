@@ -2,6 +2,21 @@
 
 Este archivo documenta todos los cambios importantes realizados en el proyecto.
 
+## [1.3.3] - 2024-01-XX
+
+### Corregido
+- **Tema Oscuro - Mejoras Críticas de Contraste**: Mejoras significativas en la legibilidad del tema oscuro
+  - Cambiado fondo de tema oscuro de negro puro (#000000) a gris oscuro (#1a1a1a) para mejor legibilidad
+  - Mejorado color de texto a blanco puro (#ffffff) para máximo contraste
+  - Mejorado color text-secondary a #d1d1d6 para mejor visibilidad
+  - Todos los encabezados (h1-h6) ahora son blancos y más gruesos en tema oscuro
+  - Mejorados elementos FAQ con fondo más oscuro (#2a2a2c) y mejores bordes
+  - Mejorado texto de preguntas FAQ con color blanco y peso más grueso
+  - Mejorado contraste del texto de respuestas FAQ
+  - Mejor visibilidad de sección CTA en tema oscuro
+  - Todos los encabezados de página ahora tienen contraste adecuado (Home, Services, Contact, Blog, FAQ)
+  - Mejor jerarquía visual con pesos de fuente mejorados
+
 ## [1.3.2] - 2024-01-XX
 
 ### Mejorado
