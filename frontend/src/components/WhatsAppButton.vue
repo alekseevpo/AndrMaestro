@@ -15,11 +15,12 @@
 
 <script setup>
 import { computed } from 'vue'
+import { config } from '../config'
 
 const props = defineProps({
   phone: {
     type: String,
-    default: '+34633343468'
+    default: config.whatsappPhone
   },
   message: {
     type: String,

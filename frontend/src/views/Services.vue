@@ -41,6 +41,15 @@
 
 <script setup>
 import { ref } from 'vue'
+import { useSEO } from '../composables/useSEO'
+
+// SEO
+useSEO(
+  'Servicios - AndrMaestro',
+  'Servicios profesionales de acabados interiores: carpintería, pintura, revestimientos, reformas integrales y más.',
+  null,
+  'service'
+)
 
 const services = ref([
   {

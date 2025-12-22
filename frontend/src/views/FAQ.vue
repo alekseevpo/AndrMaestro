@@ -55,6 +55,15 @@
 
 <script setup>
 import { ref } from 'vue'
+import { useSEO } from '../composables/useSEO'
+
+// SEO
+useSEO(
+  'Preguntas Frecuentes - AndrMaestro',
+  'Resolvemos las dudas más comunes sobre nuestros servicios de acabados interiores, presupuestos, garantías y más.',
+  null,
+  'website'
+)
 
 const activeIndex = ref(null)
 

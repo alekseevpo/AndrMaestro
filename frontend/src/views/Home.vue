@@ -66,6 +66,15 @@
 </template>
 
 <script setup>
+import { useSEO } from '../composables/useSEO'
+
+// SEO
+useSEO(
+  'AndrMaestro - Maestro de Acabados Interiores',
+  'Transformamos tus espacios con servicios profesionales de acabados interiores, carpintería, pintura y reformas integrales.',
+  null,
+  'organization'
+)
 </script>
 
 <style scoped>

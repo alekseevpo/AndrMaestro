@@ -12,14 +12,16 @@
     <section class="portfolio-grid section">
       <div class="container">
         <div class="filter-buttons">
-          <button 
-            v-for="category in categories" 
-            :key="category"
-            @click="activeCategory = category"
-            :class="['filter-btn', { active: activeCategory === category }]"
-          >
-            {{ category }}
-          </button>
+        <button 
+          v-for="category in categories" 
+          :key="category"
+          @click="activeCategory = category"
+          :class="['filter-btn', { active: activeCategory === category }]"
+          :aria-pressed="activeCategory === category"
+          aria-label={`Filtrar por ${category}`}
+        >
+          {{ category }}
+        </button>
         </div>
 
         <div class="projects-grid">
@@ -28,6 +30,11 @@
             :key="project.id"
             class="project-card"
             @click="openModal(project)"
+            role="button"
+            tabindex="0"
+            :aria-label="`Ver detalles de ${project.title}`"
+            @keydown.enter="openModal(project)"
+            @keydown.space.prevent="openModal(project)"
           >
             <div class="project-image">
               <div class="placeholder-image">{{ project.icon }}</div>
@@ -43,7 +50,13 @@
 
     <div v-if="selectedProject" class="modal" @click="closeModal">
       <div class="modal-content" @click.stop>
-        <button class="modal-close" @click="closeModal">&times;</button>
+        <button 
+          class="modal-close" 
+          @click="closeModal"
+          aria-label="Cerrar modal"
+        >
+          &times;
+        </button>
         <div class="modal-image">
           <div class="placeholder-image large">{{ selectedProject.icon }}</div>
         </div>
@@ -66,7 +79,17 @@
 </template>
 
 <script setup>
-import { ref, computed } from 'vue'
+import { ref, computed, watch } from 'vue'
+import { useSEO } from '../composables/useSEO'
+import { useEscapeKey } from '../composables/useKeyboard'
+
+// SEO
+useSEO(
+  'Portafolio - AndrMaestro',
+  'Descubre nuestros proyectos más destacados de acabados interiores, carpintería, pintura y reformas integrales.',
+  null,
+  'service'
+)
 
 const categories = ref(['Todos', 'Carpintería', 'Pintura', 'Revestimientos', 'Reformas'])
 
@@ -165,6 +188,13 @@ const closeModal = () => {
   selectedProject.value = null
   document.body.style.overflow = ''
 }
+
+// Close modal on ESC key
+useEscapeKey(() => {
+  if (selectedProject.value) {
+    closeModal()
+  }
+})
 </script>
 
 <style scoped>

@@ -79,7 +79,10 @@
                   v-model="form.name" 
                   required
                   placeholder="Tu nombre"
+                  :class="{ 'error': errors.name }"
+                  aria-describedby="name-error"
                 />
+                <span v-if="errors.name" id="name-error" class="error-message-field">{{ errors.name }}</span>
               </div>
               
               <div class="form-group">
@@ -90,7 +93,10 @@
                   v-model="form.email" 
                   required
                   placeholder="tu@email.com"
+                  :class="{ 'error': errors.email }"
+                  aria-describedby="email-error"
                 />
+                <span v-if="errors.email" id="email-error" class="error-message-field">{{ errors.email }}</span>
               </div>
               
               <div class="form-group">
@@ -100,7 +106,10 @@
                   id="phone" 
                   v-model="form.phone" 
                   placeholder="+34 633 34 34 68"
+                  :class="{ 'error': errors.phone }"
+                  aria-describedby="phone-error"
                 />
+                <span v-if="errors.phone" id="phone-error" class="error-message-field">{{ errors.phone }}</span>
               </div>
               
               <div class="form-group">
@@ -111,7 +120,10 @@
                   v-model="form.subject" 
                   required
                   placeholder="¿En qué podemos ayudarte?"
+                  :class="{ 'error': errors.subject }"
+                  aria-describedby="subject-error"
                 />
+                <span v-if="errors.subject" id="subject-error" class="error-message-field">{{ errors.subject }}</span>
               </div>
               
               <div class="form-group">
@@ -122,7 +134,10 @@
                   required
                   rows="6"
                   placeholder="Cuéntanos más sobre tu proyecto..."
+                  :class="{ 'error': errors.message }"
+                  aria-describedby="message-error"
                 ></textarea>
+                <span v-if="errors.message" id="message-error" class="error-message-field">{{ errors.message }}</span>
               </div>
               
               <button type="submit" class="btn btn-primary btn-large" :disabled="submitting">
@@ -145,7 +160,17 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, reactive } from 'vue'
+import { useSEO } from '../composables/useSEO'
+import { validateContactForm } from '../utils/validation'
+
+// SEO
+useSEO(
+  'Contacto - AndrMaestro',
+  'Contacta con AndrMaestro para solicitar presupuesto gratuito. Estamos aquí para ayudarte a hacer realidad tus proyectos.',
+  null,
+  'organization'
+)
 
 const form = ref({
   name: '',
@@ -155,21 +180,47 @@ const form = ref({
   message: ''
 })
 
+const errors = reactive({})
 const submitting = ref(false)
 const submitSuccess = ref(false)
 const submitError = ref(false)
 
+const validateForm = () => {
+  // Clear previous errors
+  Object.keys(errors).forEach(key => delete errors[key])
+  
+  // Validate form
+  const validationErrors = validateContactForm(form.value)
+  Object.assign(errors, validationErrors)
+  
+  return Object.keys(validationErrors).length === 0
+}
+
 const submitForm = async () => {
+  // Validate form before submission
+  if (!validateForm()) {
+    return
+  }
+
   submitting.value = true
   submitSuccess.value = false
   submitError.value = false
 
   try {
-    // Aquí se haría la llamada a la API
-    // const response = await fetch('/api/contact', { ... })
-    
-    // Simulación de envío
-    await new Promise(resolve => setTimeout(resolve, 1000))
+    const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:8000'
+    const response = await fetch(`${apiUrl}/api/contact`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(form.value)
+    })
+
+    if (!response.ok) {
+      throw new Error('Error al enviar el mensaje')
+    }
+
+    const data = await response.json()
     
     submitSuccess.value = true
     form.value = {
@@ -179,8 +230,12 @@ const submitForm = async () => {
       subject: '',
       message: ''
     }
+    
+    // Clear errors on success
+    Object.keys(errors).forEach(key => delete errors[key])
   } catch (error) {
     submitError.value = true
+    console.error('Error submitting form:', error)
   } finally {
     submitting.value = false
   }
@@ -279,6 +334,18 @@ const submitForm = async () => {
 .form-group textarea:focus {
   outline: none;
   border-color: var(--accent-color);
+}
+
+.form-group input.error,
+.form-group textarea.error {
+  border-color: #d32f2f;
+}
+
+.error-message-field {
+  display: block;
+  color: #d32f2f;
+  font-size: 14px;
+  margin-top: 5px;
 }
 
 .form-group textarea {
