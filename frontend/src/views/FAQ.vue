@@ -1,5 +1,5 @@
 <template>
-  <div class="faq">
+  <div class="faq fade-in">
     <section class="faq-hero section">
       <div class="container">
         <h1 class="section-title">Preguntas Frecuentes</h1>
@@ -258,6 +258,21 @@ const faqs = ref([
 .btn-whatsapp:hover {
   background-color: #20BA5A;
   transform: translateY(-2px);
+}
+
+.fade-in {
+  animation: fadeInUp 0.6s ease-out;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 @media (max-width: 768px) {

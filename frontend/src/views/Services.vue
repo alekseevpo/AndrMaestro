@@ -1,5 +1,5 @@
 <template>
-  <div class="services">
+  <div class="services fade-in">
     <section class="services-hero section">
       <div class="container">
         <h1 class="section-title">Nuestros Servicios</h1>
@@ -337,6 +337,21 @@ const processSteps = ref([
 
 .step:nth-child(odd) {
   margin-top: 0;
+}
+
+.fade-in {
+  animation: fadeInUp 0.6s ease-out;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 @media (max-width: 768px) {

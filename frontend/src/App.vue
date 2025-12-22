@@ -2,6 +2,7 @@
   <div id="app">
     <SkipToContent />
     <NavBar />
+    <Breadcrumbs />
     <main id="main-content" tabindex="-1">
       <router-view />
     </main>
@@ -9,6 +10,7 @@
     <WhatsAppButton />
     <BackToTop />
     <Toast />
+    <PageLoader />
   </div>
 </template>
 
@@ -20,6 +22,8 @@ import WhatsAppButton from './components/WhatsAppButton.vue'
 import BackToTop from './components/BackToTop.vue'
 import Toast from './components/Toast.vue'
 import SkipToContent from './components/SkipToContent.vue'
+import Breadcrumbs from './components/Breadcrumbs.vue'
+import PageLoader from './components/PageLoader.vue'
 import { useTheme } from './composables/useTheme'
 
 // Initialize theme

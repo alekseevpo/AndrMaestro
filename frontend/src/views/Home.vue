@@ -1,5 +1,5 @@
 <template>
-  <div class="home">
+  <div class="home" ref="homeRef" :class="{ 'fade-in': isVisible }">
     <section class="hero">
       <div class="container">
         <div class="hero-content">
@@ -66,7 +66,9 @@
 </template>
 
 <script setup>
+import { ref } from 'vue'
 import { useSEO } from '../composables/useSEO'
+import { useScrollReveal } from '../composables/useScrollReveal'
 
 // SEO
 useSEO(
@@ -75,6 +77,9 @@ useSEO(
   null,
   'organization'
 )
+
+// Scroll reveal animation
+const { elementRef: homeRef, isVisible } = useScrollReveal({ threshold: 0.05 })
 </script>
 
 <style scoped>
@@ -207,6 +212,21 @@ useSEO(
   font-size: 21px;
   color: #86868b;
   margin-bottom: 40px;
+}
+
+.fade-in {
+  animation: fadeInUp 0.6s ease-out;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 @media (max-width: 768px) {

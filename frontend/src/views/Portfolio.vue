@@ -1,5 +1,5 @@
 <template>
-  <div class="portfolio">
+  <div class="portfolio fade-in">
     <section class="portfolio-hero section">
       <div class="container">
         <h1 class="section-title">Nuestro Portafolio</h1>
@@ -57,6 +57,29 @@
         >
           &times;
         </button>
+        
+        <button 
+          v-if="hasPreviousProject"
+          class="modal-nav modal-nav-prev"
+          @click.stop="navigateProject(-1)"
+          aria-label="Proyecto anterior"
+        >
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M15 18l-6-6 6-6"/>
+          </svg>
+        </button>
+        
+        <button 
+          v-if="hasNextProject"
+          class="modal-nav modal-nav-next"
+          @click.stop="navigateProject(1)"
+          aria-label="Siguiente proyecto"
+        >
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M9 18l6-6-6-6"/>
+          </svg>
+        </button>
+        
         <div class="modal-image">
           <div class="placeholder-image large">{{ selectedProject.icon }}</div>
         </div>
@@ -81,7 +104,7 @@
 <script setup>
 import { ref, computed } from 'vue'
 import { useSEO } from '../composables/useSEO'
-import { useEscapeKey } from '../composables/useKeyboard'
+import { useEscapeKey, useKeyboard } from '../composables/useKeyboard'
 import { useFocusTrap } from '../composables/useFocusTrap'
 
 // SEO
@@ -191,10 +214,43 @@ const closeModal = () => {
   document.body.style.overflow = ''
 }
 
+const currentProjectIndex = computed(() => {
+  if (!selectedProject.value) return -1
+  return projects.value.findIndex(p => p.id === selectedProject.value.id)
+})
+
+const hasPreviousProject = computed(() => {
+  return currentProjectIndex.value > 0
+})
+
+const hasNextProject = computed(() => {
+  return currentProjectIndex.value >= 0 && currentProjectIndex.value < projects.value.length - 1
+})
+
+const navigateProject = (direction) => {
+  const newIndex = currentProjectIndex.value + direction
+  if (newIndex >= 0 && newIndex < projects.value.length) {
+    selectedProject.value = projects.value[newIndex]
+  }
+}
+
 // Close modal on ESC key
 useEscapeKey(() => {
   if (selectedProject.value) {
     closeModal()
+  }
+})
+
+// Keyboard navigation for projects
+useKeyboard('ArrowLeft', () => {
+  if (selectedProject.value && hasPreviousProject.value) {
+    navigateProject(-1)
+  }
+})
+
+useKeyboard('ArrowRight', () => {
+  if (selectedProject.value && hasNextProject.value) {
+    navigateProject(1)
   }
 })
 
@@ -333,6 +389,60 @@ useFocusTrap(modalRef)
   background-color: var(--hover-bg);
 }
 
+.modal-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 50px;
+  height: 50px;
+  background-color: rgba(255, 255, 255, 0.9);
+  border: none;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 10;
+  transition: all 0.3s ease;
+  color: var(--text-color);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.dark .modal-nav {
+  background-color: rgba(29, 29, 31, 0.9);
+  color: var(--text-color);
+}
+
+.modal-nav:hover {
+  background-color: var(--accent-color);
+  color: white;
+  transform: translateY(-50%) scale(1.1);
+  box-shadow: 0 4px 12px rgba(0, 122, 255, 0.4);
+}
+
+.modal-nav-prev {
+  left: 20px;
+}
+
+.modal-nav-next {
+  right: 20px;
+}
+
+@media (max-width: 768px) {
+  .modal-nav {
+    width: 40px;
+    height: 40px;
+  }
+  
+  .modal-nav-prev {
+    left: 10px;
+  }
+  
+  .modal-nav-next {
+    right: 10px;
+  }
+}
+
 .modal-image {
   width: 100%;
   height: 400px;
@@ -404,6 +514,21 @@ useFocusTrap(modalRef)
   
   .modal-info h2 {
     font-size: 28px;
+  }
+}
+
+.fade-in {
+  animation: fadeInUp 0.6s ease-out;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 </style>
