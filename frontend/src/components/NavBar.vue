@@ -44,7 +44,7 @@
                     </span>
                     <span class="menu-item-text">Inicio</span>
                   </router-link>
-                  <router-link to="/servicios" @click="closeMenu" class="popup-menu-item">
+                  <router-link to="/servicios" @click="closeMenu" class="popup-menu-item" style="animation-delay: 0.1s">
                     <span class="menu-item-icon">
                       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>
@@ -52,7 +52,7 @@
                     </span>
                     <span class="menu-item-text">Servicios</span>
                   </router-link>
-                  <router-link to="/portafolio" @click="closeMenu" class="popup-menu-item">
+                  <router-link to="/portafolio" @click="closeMenu" class="popup-menu-item" style="animation-delay: 0.15s">
                     <span class="menu-item-icon">
                       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
@@ -61,7 +61,7 @@
                     </span>
                     <span class="menu-item-text">Portafolio</span>
                   </router-link>
-                  <router-link to="/blog" @click="closeMenu" class="popup-menu-item">
+                  <router-link to="/blog" @click="closeMenu" class="popup-menu-item" style="animation-delay: 0.2s">
                     <span class="menu-item-icon">
                       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <path d="M4 19.5A2.5 2.5 0 0 0 6.5 22H20a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H6.5A2.5 2.5 0 0 0 4 4.5z"/>
@@ -72,7 +72,7 @@
                     </span>
                     <span class="menu-item-text">Blog</span>
                   </router-link>
-                  <router-link to="/preguntas-frecuentes" @click="closeMenu" class="popup-menu-item">
+                  <router-link to="/preguntas-frecuentes" @click="closeMenu" class="popup-menu-item" style="animation-delay: 0.25s">
                     <span class="menu-item-icon">
                       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <circle cx="12" cy="12" r="10"/>
@@ -82,7 +82,7 @@
                     </span>
                     <span class="menu-item-text">FAQ</span>
                   </router-link>
-                  <router-link to="/contacto" @click="closeMenu" class="popup-menu-item">
+                  <router-link to="/contacto" @click="closeMenu" class="popup-menu-item" style="animation-delay: 0.3s">
                     <span class="menu-item-icon">
                       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
@@ -297,9 +297,12 @@ onUnmounted(() => {
   pointer-events: auto !important;
 }
 
-.overlay-enter-active,
+.overlay-enter-active {
+  transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
 .overlay-leave-active {
-  transition: opacity 0.3s ease;
+  transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .overlay-enter-from,
@@ -341,19 +344,19 @@ onUnmounted(() => {
 }
 
 .popup-enter-active {
-  transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .popup-leave-active {
-  transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: opacity 0.35s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .popup-enter-active .popup-menu {
-  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1), filter 0.5s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .popup-leave-active .popup-menu {
-  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.35s cubic-bezier(0.4, 0, 0.2, 1), filter 0.35s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .popup-enter-from {
@@ -361,8 +364,9 @@ onUnmounted(() => {
 }
 
 .popup-enter-from .popup-menu {
-  transform: scale(0.85) translateY(-30px);
+  transform: scale(0.9) translateY(-20px);
   opacity: 0;
+  filter: blur(8px);
 }
 
 .popup-leave-to {
@@ -370,8 +374,9 @@ onUnmounted(() => {
 }
 
 .popup-leave-to .popup-menu {
-  transform: scale(0.95) translateY(20px);
+  transform: scale(0.95) translateY(15px);
   opacity: 0;
+  filter: blur(4px);
 }
 
 .popup-menu {
@@ -439,9 +444,21 @@ onUnmounted(() => {
   font-weight: 500;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
-  opacity: 1 !important;
-  visibility: visible !important;
+  opacity: 0;
+  transform: translateY(10px);
+  animation: menuItemFadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
   min-height: 60px;
+}
+
+@keyframes menuItemFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .popup-menu-item:hover {
