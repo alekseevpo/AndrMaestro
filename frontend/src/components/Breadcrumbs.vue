@@ -37,6 +37,11 @@ const currentPageName = computed(() => routeNames[route.name] || route.name)
   padding: 15px 0;
   border-bottom: 1px solid var(--border-color);
   background-color: var(--bg-color);
+  position: relative;
+  z-index: 10;
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
 }
 
 .breadcrumb-list {
@@ -54,22 +59,39 @@ const currentPageName = computed(() => routeNames[route.name] || route.name)
 }
 
 .breadcrumb-item a {
-  color: var(--text-secondary);
+  color: var(--text-secondary) !important;
+  text-decoration: none;
   transition: color 0.3s ease;
 }
 
 .breadcrumb-item a:hover {
-  color: var(--accent-color);
+  color: var(--accent-color) !important;
 }
 
 .separator {
   margin: 0 10px;
-  color: var(--text-secondary);
+  color: var(--text-secondary) !important;
 }
 
 .current {
-  color: var(--text-color);
+  color: var(--text-color) !important;
   font-weight: 500;
+}
+
+.dark .breadcrumb-item a {
+  color: #d1d1d6 !important;
+}
+
+.dark .breadcrumb-item a:hover {
+  color: var(--accent-color) !important;
+}
+
+.dark .separator {
+  color: #d1d1d6 !important;
+}
+
+.dark .current {
+  color: #ffffff !important;
 }
 
 @media (max-width: 768px) {

@@ -85,6 +85,10 @@
     </section>
 
     <section class="cta-section section">
+      <div class="cta-background">
+        <div class="cta-image"></div>
+        <div class="cta-overlay"></div>
+      </div>
       <div class="container">
         <div class="cta-content">
           <h2>¿Listo para transformar tu espacio?</h2>
@@ -324,18 +328,56 @@ const titleChars = computed(() => titleText.split(''))
 }
 
 .cta-section {
-  background-color: var(--primary-color);
-  color: var(--text-color);
+  position: relative;
+  overflow: hidden;
+  color: #ffffff;
+  padding: 100px 0;
 }
 
-.dark .cta-section {
-  background-color: var(--hover-bg);
+.cta-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.cta-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url('https://images.unsplash.com/photo-1581578731548-adfd7bd6a2d0?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&ixid=M3w1NzU5NTJ8MHwxfHNlYXJjaHwxfHxjb25zdHJ1Y3Rpb24lMjB3b3JrfGVufDB8fHx8MTcxMDc2NTY2NHww&ixlib=rb-4.0.3&q=80&w=1920');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  filter: blur(3px);
+  transform: scale(1.05);
+}
+
+.cta-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(0, 122, 255, 0.75) 0%, rgba(0, 122, 255, 0.65) 100%);
+  z-index: 1;
+}
+
+.dark .cta-overlay {
+  background: linear-gradient(135deg, rgba(0, 0, 0, 0.75) 0%, rgba(0, 122, 255, 0.6) 100%);
 }
 
 .cta-content {
   text-align: center;
   max-width: 600px;
   margin: 0 auto;
+  position: relative;
+  z-index: 2;
 }
 
 .cta-content h2 {
@@ -344,11 +386,13 @@ const titleChars = computed(() => titleText.split(''))
   margin-bottom: 20px;
   letter-spacing: -0.5px;
   color: #ffffff;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5), 0 4px 20px rgba(0, 0, 0, 0.3);
 }
 
 .dark .cta-content h2 {
   color: #ffffff;
   font-weight: 700;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.7), 0 4px 20px rgba(0, 0, 0, 0.5);
 }
 
 .cta-content p {
@@ -429,6 +473,22 @@ const titleChars = computed(() => titleText.split(''))
     max-width: 100%;
   }
   
+  .cta-section {
+    padding: 60px 0;
+  }
+
+  .cta-image {
+    filter: blur(4px);
+  }
+
+  .cta-overlay {
+    background: linear-gradient(135deg, rgba(0, 122, 255, 0.8) 0%, rgba(0, 122, 255, 0.7) 100%);
+  }
+
+  .dark .cta-overlay {
+    background: linear-gradient(135deg, rgba(0, 0, 0, 0.8) 0%, rgba(0, 122, 255, 0.65) 100%);
+  }
+
   .cta-content h2 {
     font-size: 28px;
     margin-bottom: 16px;
@@ -473,6 +533,10 @@ const titleChars = computed(() => titleText.split(''))
 
   .hero-subtitle {
     font-size: 16px;
+  }
+
+  .cta-section {
+    padding: 50px 0;
   }
 
   .cta-content h2 {
