@@ -182,6 +182,7 @@ const titleChars = computed(() => titleText.split(''))
   color: var(--text-color);
   display: inline-block;
   overflow: hidden;
+  white-space: nowrap;
 }
 
 .dark .hero-title {
@@ -195,6 +196,7 @@ const titleChars = computed(() => titleText.split(''))
   opacity: 0;
   transform: translateY(20px);
   animation: smoothReveal 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  white-space: nowrap;
 }
 
 @keyframes smoothReveal {
@@ -338,6 +340,7 @@ const titleChars = computed(() => titleText.split(''))
   .hero-title {
     font-size: 36px;
     margin-bottom: 16px;
+    white-space: normal;
   }
   
   .hero-subtitle {
@@ -395,6 +398,7 @@ const titleChars = computed(() => titleText.split(''))
 
   .hero-title {
     font-size: 28px;
+    white-space: normal;
   }
 
   .hero-subtitle {
