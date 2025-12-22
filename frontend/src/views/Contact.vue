@@ -372,10 +372,22 @@ const submitForm = async () => {
   border: 1px solid #c3e6cb;
 }
 
+.dark .success-message {
+  background-color: rgba(40, 167, 69, 0.2);
+  color: #6cff8f;
+  border: 1px solid rgba(40, 167, 69, 0.4);
+}
+
 .error-message {
   background-color: #f8d7da;
   color: #721c24;
   border: 1px solid #f5c6cb;
+}
+
+.dark .error-message {
+  background-color: rgba(220, 53, 69, 0.2);
+  color: #ff6b7a;
+  border: 1px solid rgba(220, 53, 69, 0.4);
 }
 
 .whatsapp-link {

@@ -171,6 +171,8 @@ const { elementRef: homeRef, isVisible } = useScrollReveal({ threshold: 0.05 })
   padding: 30px;
   border-radius: 18px;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  background-color: var(--bg-color);
+  border: 1px solid var(--border-color);
 }
 
 .feature-card:hover {
