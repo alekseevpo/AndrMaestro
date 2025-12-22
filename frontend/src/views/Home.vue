@@ -122,6 +122,10 @@ const { elementRef: homeRef, isVisible } = useScrollReveal({ threshold: 0.05 })
   line-height: 1.5;
 }
 
+.dark .hero-subtitle {
+  color: #d1d1d6;
+}
+
 .hero-buttons {
   display: flex;
   gap: 20px;

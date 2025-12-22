@@ -98,7 +98,8 @@ onUnmounted(() => {
 }
 
 .dark .navbar {
-  background-color: rgba(0, 0, 0, 0.8);
+  background-color: rgba(26, 26, 26, 0.9);
+  backdrop-filter: saturate(180%) blur(20px);
 }
 
 .nav-content {

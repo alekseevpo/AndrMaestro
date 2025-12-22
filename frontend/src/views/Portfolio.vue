@@ -316,10 +316,14 @@ useFocusTrap(modalRef)
 .project-image {
   width: 100%;
   height: 250px;
-  background: linear-gradient(135deg, #f5f5f7 0%, #e8e8ed 100%);
+  background: var(--hover-bg);
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.dark .project-image {
+  background: linear-gradient(135deg, #2a2a2c 0%, #1d1d1f 100%);
 }
 
 .placeholder-image {
@@ -452,6 +456,10 @@ useFocusTrap(modalRef)
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.dark .modal-image {
+  background: linear-gradient(135deg, #2a2a2c 0%, #1d1d1f 100%);
 }
 
 .modal-info {

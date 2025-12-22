@@ -248,11 +248,11 @@ const goToPost = (slug) => {
   width: 100%;
   height: 250px;
   overflow: hidden;
-  background: linear-gradient(135deg, #f5f5f7 0%, #e8e8ed 100%);
+  background: var(--hover-bg);
 }
 
 .dark .blog-image {
-  background: linear-gradient(135deg, #1d1d1f 0%, #2d2d2f 100%);
+  background: linear-gradient(135deg, #2a2a2c 0%, #1d1d1f 100%);
 }
 
 .blog-image img {
