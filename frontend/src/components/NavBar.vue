@@ -6,7 +6,18 @@
           <span class="logo-text">AndrMaestro</span>
         </router-link>
         
+        <!-- Desktop Navigation -->
+        <nav class="nav-links">
+          <router-link to="/">Inicio</router-link>
+          <router-link to="/servicios">Servicios</router-link>
+          <router-link to="/portafolio">Portafolio</router-link>
+          <router-link to="/blog">Blog</router-link>
+          <router-link to="/preguntas-frecuentes">FAQ</router-link>
+          <router-link to="/contacto">Contacto</router-link>
+        </nav>
+        
         <div class="nav-actions">
+          <ThemeToggle class="desktop-theme-toggle" />
           <ThemeToggle class="mobile-theme-toggle" />
           <button 
             class="menu-toggle" 
@@ -198,6 +209,10 @@ onUnmounted(() => {
   display: flex;
   align-items: center;
   gap: 15px;
+}
+
+.desktop-theme-toggle {
+  display: flex;
 }
 
 .mobile-theme-toggle {
@@ -527,6 +542,10 @@ onUnmounted(() => {
   .nav-actions {
     z-index: 10001;
     position: relative;
+  }
+  
+  .desktop-theme-toggle {
+    display: none !important;
   }
   
   .mobile-theme-toggle {
