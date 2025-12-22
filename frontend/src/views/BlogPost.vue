@@ -83,10 +83,11 @@
 </template>
 
 <script setup>
-import { ref, computed } from 'vue'
+import { ref, computed, onMounted } from 'vue'
 import { useRoute } from 'vue-router'
 import { useSEO } from '../composables/useSEO'
 import { generateStructuredData, addStructuredData } from '../utils/seo'
+import { getBlogPost } from '../utils/api'
 
 const route = useRoute()
 
@@ -192,7 +193,6 @@ const postsData = [
   }
 ]
 
-const route = useRoute()
 const slug = route.params.slug
 const post = ref(postsData.find(p => p.slug === slug))
 
