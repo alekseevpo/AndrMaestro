@@ -135,6 +135,10 @@ const faqs = ref([
   transition: all 0.3s ease;
 }
 
+.dark .faq-item {
+  box-shadow: 0 2px 8px rgba(255, 255, 255, 0.05);
+}
+
 .faq-item:hover {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
 }
@@ -156,7 +160,7 @@ const faqs = ref([
   font-size: 19px;
   font-weight: 500;
   color: var(--text-color);
-  transition: background-color 0.3s ease;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .faq-question:hover {
@@ -175,7 +179,13 @@ const faqs = ref([
   flex-shrink: 0;
   width: 30px;
   text-align: center;
-  transition: transform 0.3s ease;
+  transition: transform 0.3s ease, color 0.3s ease;
+  line-height: 1;
+}
+
+.dark .question-icon {
+  color: #0a84ff;
+  font-weight: 400;
 }
 
 .faq-item.active .question-icon {
@@ -216,6 +226,7 @@ const faqs = ref([
   font-weight: 600;
   margin-bottom: 15px;
   letter-spacing: -0.5px;
+  color: var(--text-color);
 }
 
 .faq-cta p {
