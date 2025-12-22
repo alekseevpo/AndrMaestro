@@ -276,7 +276,9 @@ const submitForm = async () => {
 <style scoped>
 .contact-hero {
   text-align: center;
-  padding-top: 120px;
+  padding-top: 100px;
+  padding-bottom: 40px;
+  background: linear-gradient(180deg, var(--bg-color) 0%, transparent 100%);
 }
 
 .contact-grid {
@@ -286,12 +288,19 @@ const submitForm = async () => {
   align-items: start;
 }
 
+.contact-info {
+  position: sticky;
+  top: 100px;
+  align-self: start;
+}
+
 .contact-info h2 {
-  font-size: 36px;
-  font-weight: 600;
-  margin-bottom: 20px;
+  font-size: 32px;
+  font-weight: 700;
+  margin-bottom: 16px;
   letter-spacing: -0.5px;
   color: var(--text-color);
+  line-height: 1.2;
 }
 
 .dark .contact-info h2 {
@@ -300,46 +309,52 @@ const submitForm = async () => {
 }
 
 .info-description {
-  font-size: 19px;
+  font-size: 17px;
   color: var(--text-secondary);
-  line-height: 1.6;
-  margin-bottom: 40px;
+  line-height: 1.7;
+  margin-bottom: 32px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid var(--border-color);
 }
 
 .contact-item {
   display: flex;
-  gap: 20px;
-  margin-bottom: 30px;
+  gap: 16px;
+  margin-bottom: 20px;
   align-items: flex-start;
-  padding: 20px;
-  border-radius: 16px;
+  padding: 16px;
+  border-radius: 12px;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   cursor: default;
+  background-color: transparent;
+  border: 1px solid transparent;
 }
 
 .contact-item:hover {
   background-color: var(--hover-bg);
+  border-color: var(--border-color);
   transform: translateY(-2px);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
 }
 
 .dark .contact-item:hover {
-  background-color: rgba(255, 255, 255, 0.03);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  background-color: rgba(255, 255, 255, 0.04);
+  border-color: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
 }
 
 .contact-icon {
-  width: 56px;
-  height: 56px;
+  width: 48px;
+  height: 48px;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
   background: linear-gradient(135deg, var(--accent-color) 0%, var(--primary-color) 100%);
-  border-radius: 14px;
+  border-radius: 12px;
   color: white;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow: 0 2px 8px rgba(0, 122, 255, 0.2);
+  box-shadow: 0 2px 8px rgba(0, 122, 255, 0.15);
 }
 
 .contact-icon svg {
@@ -366,9 +381,11 @@ const submitForm = async () => {
 }
 
 .contact-item h3 {
-  font-size: 21px;
+  font-size: 18px;
   font-weight: 600;
-  margin-bottom: 8px;
+  margin-bottom: 6px;
+  color: var(--text-color);
+  line-height: 1.3;
 }
 
 .contact-item p {
@@ -402,34 +419,37 @@ const submitForm = async () => {
 }
 
 .contact-form-wrapper {
-  background: linear-gradient(135deg, var(--hover-bg) 0%, var(--bg-color) 100%);
-  padding: 40px;
-  border-radius: 20px;
+  background: var(--bg-color);
+  padding: 36px;
+  border-radius: 16px;
   border: 1px solid var(--border-color);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
   transition: all 0.3s ease;
 }
 
 .dark .contact-form-wrapper {
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0.01) 100%);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  background: rgba(255, 255, 255, 0.02);
+  border-color: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.4);
 }
 
 .contact-form-wrapper:hover {
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
-  transform: translateY(-2px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  border-color: var(--accent-color);
 }
 
 .dark .contact-form-wrapper:hover {
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+  border-color: rgba(74, 158, 255, 0.3);
 }
 
 .contact-form h2 {
-  font-size: 36px;
-  font-weight: 600;
-  margin-bottom: 30px;
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 24px;
   letter-spacing: -0.5px;
   color: var(--text-color);
+  line-height: 1.2;
 }
 
 .dark .contact-form h2 {
@@ -559,46 +579,66 @@ const submitForm = async () => {
 @media (max-width: 968px) {
   .contact-grid {
     grid-template-columns: 1fr;
-    gap: 40px;
+    gap: 48px;
+  }
+
+  .contact-info {
+    position: static;
   }
   
   .contact-form-wrapper {
     padding: 32px 24px;
   }
 
-  .contact-info h2,
+  .contact-info h2 {
+    font-size: 28px;
+  }
+
   .contact-form h2 {
-    font-size: 32px;
+    font-size: 26px;
   }
 }
 
 @media (max-width: 768px) {
   .contact-hero {
-    padding-top: 100px;
+    padding-top: 80px;
+    padding-bottom: 32px;
   }
 
   .contact-grid {
-    gap: 32px;
+    gap: 40px;
   }
 
   .contact-form-wrapper {
     padding: 28px 20px;
-    border-radius: 18px;
+    border-radius: 16px;
   }
 
-  .contact-info h2,
+  .contact-info h2 {
+    font-size: 26px;
+    margin-bottom: 12px;
+  }
+
   .contact-form h2 {
-    font-size: 28px;
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+
+  .info-description {
+    font-size: 16px;
+    margin-bottom: 24px;
+    padding-bottom: 20px;
   }
 
   .contact-item {
     padding: 16px;
-    margin-bottom: 24px;
+    margin-bottom: 16px;
+    gap: 14px;
   }
 
   .contact-icon {
-    width: 48px;
-    height: 48px;
+    width: 44px;
+    height: 44px;
   }
 
   .contact-icon svg {
@@ -607,12 +647,13 @@ const submitForm = async () => {
   }
 
   .contact-item h3 {
-    font-size: 19px;
+    font-size: 17px;
+    margin-bottom: 4px;
   }
 
   .contact-item p,
   .contact-link {
-    font-size: 16px;
+    font-size: 15px;
   }
 
   .form-group {
@@ -639,29 +680,56 @@ const submitForm = async () => {
 
 @media (max-width: 480px) {
   .contact-hero {
-    padding-top: 80px;
+    padding-top: 70px;
+    padding-bottom: 24px;
+  }
+
+  .contact-grid {
+    gap: 32px;
   }
 
   .contact-form-wrapper {
     padding: 24px 16px;
-    border-radius: 16px;
+    border-radius: 14px;
   }
 
-  .contact-info h2,
-  .contact-form h2 {
+  .contact-info h2 {
     font-size: 24px;
   }
 
-  .contact-item {
-    padding: 12px;
+  .contact-form h2 {
+    font-size: 22px;
+  }
+
+  .info-description {
+    font-size: 15px;
     margin-bottom: 20px;
-    flex-direction: column;
-    text-align: center;
+    padding-bottom: 16px;
+  }
+
+  .contact-item {
+    padding: 14px;
+    margin-bottom: 12px;
     gap: 12px;
   }
 
   .contact-icon {
-    margin: 0 auto;
+    width: 40px;
+    height: 40px;
+  }
+
+  .contact-icon svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  .contact-item h3 {
+    font-size: 16px;
+  }
+
+  .contact-item p,
+  .contact-link {
+    font-size: 14px;
   }
 }
 </style>
