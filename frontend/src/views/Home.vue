@@ -452,9 +452,11 @@ const titleChars = computed(() => titleText.split(''))
   }
 
   .hero-title {
-    font-size: 36px;
+    font-size: 32px;
     margin-bottom: 16px;
-    white-space: normal;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
   
   .hero-subtitle {
@@ -527,8 +529,10 @@ const titleChars = computed(() => titleText.split(''))
   }
 
   .hero-title {
-    font-size: 28px;
-    white-space: normal;
+    font-size: 26px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   .hero-subtitle {
