@@ -207,8 +207,12 @@ const { elementRef: homeRef, isVisible } = useScrollReveal({ threshold: 0.05 })
 }
 
 .cta-section {
-  background-color: var(--primary-color);
+  background-color: var(--hover-bg);
   color: var(--text-color);
+}
+
+.dark .cta-section {
+  background-color: var(--hover-bg);
 }
 
 .cta-content {
@@ -234,6 +238,10 @@ const { elementRef: homeRef, isVisible } = useScrollReveal({ threshold: 0.05 })
   font-size: 21px;
   color: var(--text-secondary);
   margin-bottom: 40px;
+}
+
+.dark .cta-content p {
+  color: #d1d1d6;
 }
 
 .fade-in {
