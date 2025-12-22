@@ -28,7 +28,13 @@
       <div class="container">
         <h2 class="section-title">Nuestro Proceso</h2>
         <div class="process-steps">
-          <div class="step" v-for="(step, index) in processSteps" :key="index">
+          <div 
+            class="step" 
+            :class="{ 'step-dark': index % 2 === 0, 'step-light': index % 2 === 1 }"
+            v-for="(step, index) in processSteps" 
+            :key="index"
+            :style="{ animationDelay: `${index * 0.1}s` }"
+          >
             <div class="step-number">{{ index + 1 }}</div>
             <h3>{{ step.title }}</h3>
             <p>{{ step.description }}</p>
@@ -228,28 +234,64 @@ const processSteps = ref([
 
 .process-steps {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 40px;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 30px;
   margin-top: 60px;
+  max-width: 1000px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .step {
   text-align: center;
-  padding: 30px;
+  padding: 40px 30px;
+  border-radius: 18px;
+  position: relative;
+  animation: float 3s ease-in-out infinite;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: default;
+}
+
+.step-light {
+  background-color: #ffffff;
+  color: var(--text-color);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.step-dark {
+  background-color: var(--primary-color);
+  color: #f5f5f7;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.step:hover {
+  transform: translateY(-10px) scale(1.02);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+}
+
+.step-dark:hover {
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
 }
 
 .step-number {
-  width: 60px;
-  height: 60px;
+  width: 70px;
+  height: 70px;
   border-radius: 50%;
   background-color: var(--accent-color);
   color: white;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 24px;
+  font-size: 28px;
   font-weight: 600;
-  margin: 0 auto 20px;
+  margin: 0 auto 25px;
+  box-shadow: 0 4px 12px rgba(0, 122, 255, 0.3);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.step:hover .step-number {
+  transform: scale(1.1);
+  box-shadow: 0 6px 16px rgba(0, 122, 255, 0.4);
 }
 
 .step h3 {
@@ -258,9 +300,43 @@ const processSteps = ref([
   margin-bottom: 15px;
 }
 
+.step-light h3 {
+  color: var(--text-color);
+}
+
+.step-dark h3 {
+  color: #f5f5f7;
+}
+
 .step p {
+  line-height: 1.7;
+  font-size: 16px;
+}
+
+.step-light p {
   color: var(--text-secondary);
-  line-height: 1.6;
+}
+
+.step-dark p {
+  color: #86868b;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-15px);
+  }
+}
+
+/* Шахматный порядок - смещение для четных элементов */
+.step:nth-child(even) {
+  margin-top: 40px;
+}
+
+.step:nth-child(odd) {
+  margin-top: 0;
 }
 
 @media (max-width: 768px) {
@@ -278,6 +354,16 @@ const processSteps = ref([
   
   .process-steps {
     grid-template-columns: 1fr;
+    gap: 25px;
+  }
+  
+  .step {
+    padding: 30px 20px;
+    margin-top: 0 !important;
+  }
+  
+  .step:nth-child(even) {
+    margin-top: 0 !important;
   }
 }
 </style>
