@@ -2,6 +2,21 @@
 
 Este archivo documenta todos los cambios importantes realizados en el proyecto.
 
+## [1.3.2] - 2024-01-XX
+
+### Mejorado
+- **Menú Móvil**: Mejorado significativamente el menú móvil con animaciones suaves
+  - Añadido overlay con efecto blur de fondo
+  - Animación suave de deslizamiento desde la izquierda
+  - Animación escalonada (stagger) para los elementos del menú
+  - Mejorada animación del icono hamburguesa con cubic-bezier easing
+  - Cierre del menú con tecla Escape
+  - Cierre automático al cambiar tamaño de ventana (al pasar a desktop)
+  - Bloqueo del scroll del body cuando el menú está abierto
+  - Efectos hover mejorados para elementos del menú
+  - Mejor feedback visual con resaltados de fondo
+  - Transiciones suaves con funciones de tiempo cubic-bezier
+
 ## [1.3.1] - 2024-01-XX
 
 ### Corregido
