@@ -12,7 +12,7 @@
           <router-link to="/">Inicio</router-link>
           <router-link to="/servicios">Servicios</router-link>
           <router-link to="/portafolio">Portafolio</router-link>
-          <router-link to="/blog">Blog</router-link>
+          <router-link to="/blog">Artículos</router-link>
           <router-link to="/preguntas-frecuentes">Preguntas Frecuentes</router-link>
           <router-link to="/contacto">Contacto</router-link>
         </div>

@@ -11,8 +11,8 @@
           <router-link to="/">Inicio</router-link>
           <router-link to="/servicios">Servicios</router-link>
           <router-link to="/portafolio">Portafolio</router-link>
-          <router-link to="/blog">Blog</router-link>
-          <router-link to="/preguntas-frecuentes">FAQ</router-link>
+          <router-link to="/blog">Artículos</router-link>
+          <router-link to="/preguntas-frecuentes">Preguntas Frecuentes</router-link>
           <router-link to="/contacto">Contacto</router-link>
         </nav>
         
@@ -81,7 +81,7 @@
                         <line x1="8" y1="15" x2="12" y2="15"/>
                       </svg>
                     </span>
-                    <span class="menu-item-text">Blog</span>
+                    <span class="menu-item-text">Artículos</span>
                   </router-link>
                   <router-link to="/preguntas-frecuentes" @click="closeMenu" class="popup-menu-item" style="animation-delay: 0.25s">
                     <span class="menu-item-icon">
@@ -91,7 +91,7 @@
                         <line x1="12" y1="17" x2="12.01" y2="17"/>
                       </svg>
                     </span>
-                    <span class="menu-item-text">FAQ</span>
+                    <span class="menu-item-text">Preguntas Frecuentes</span>
                   </router-link>
                   <router-link to="/contacto" @click="closeMenu" class="popup-menu-item" style="animation-delay: 0.3s">
                     <span class="menu-item-icon">

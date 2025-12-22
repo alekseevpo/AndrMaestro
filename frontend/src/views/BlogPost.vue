@@ -9,7 +9,7 @@
       <div class="post-header">
         <div class="container">
           <nav class="post-breadcrumb">
-            <router-link to="/blog">Blog</router-link>
+            <router-link to="/blog">Artículos</router-link>
             <span class="separator">/</span>
             <span>{{ post.category }}</span>
           </nav>
@@ -96,7 +96,7 @@
       <div class="container">
         <h1>Artículo no encontrado</h1>
         <p>El artículo que buscas no existe o ha sido eliminado.</p>
-        <router-link to="/blog" class="btn btn-primary">Volver al Blog</router-link>
+        <router-link to="/blog" class="btn btn-primary">Volver a Artículos</router-link>
       </div>
     </div>
   </div>
@@ -176,7 +176,7 @@ onMounted(async () => {
   // SEO para artículo
   if (post.value) {
     useSEO(
-      `${post.value.title} - AndrMaestro Blog`,
+      `${post.value.title} - AndrMaestro Artículos`,
       post.value.excerpt,
       post.value.image,
       'article'
@@ -192,7 +192,7 @@ onMounted(async () => {
     addStructuredData(articleData)
   } else {
     useSEO(
-      'Artículo no encontrado - AndrMaestro Blog',
+      'Artículo no encontrado - AndrMaestro Artículos',
       'El artículo que buscas no existe.',
       null,
       'website'

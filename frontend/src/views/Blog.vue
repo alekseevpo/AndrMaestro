@@ -2,7 +2,7 @@
   <div class="blog fade-in">
     <section class="blog-hero section">
       <div class="container">
-        <h1 class="section-title">Blog</h1>
+        <h1 class="section-title">Artículos</h1>
         <p class="section-subtitle">
           Consejos, tendencias y proyectos de acabados interiores
         </p>
@@ -84,7 +84,7 @@ import { blogPostsData } from '../data/blogPosts'
 
 // SEO
 useSEO(
-  'Blog - AndrMaestro',
+  'Artículos - AndrMaestro',
   'Consejos, tendencias y proyectos de acabados interiores. Aprende sobre diseño, materiales y técnicas profesionales.',
   null,
   'website'
