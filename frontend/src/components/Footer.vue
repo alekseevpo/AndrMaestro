@@ -40,7 +40,7 @@ const currentYear = computed(() => new Date().getFullYear())
 <style scoped>
 .footer {
   background-color: var(--primary-color);
-  color: #f5f5f7;
+  color: var(--text-color);
   padding: 60px 0 30px;
   margin-top: auto;
 }
@@ -65,27 +65,27 @@ const currentYear = computed(() => new Date().getFullYear())
 }
 
 .footer-section p {
-  color: #86868b;
+  color: var(--text-secondary);
   line-height: 1.6;
   margin-bottom: 10px;
 }
 
 .footer-section a {
   display: block;
-  color: #86868b;
+  color: var(--text-secondary);
   margin-bottom: 10px;
   transition: color 0.3s ease;
 }
 
 .footer-section a:hover {
-  color: #f5f5f7;
+  color: var(--text-color);
 }
 
 .footer-bottom {
-  border-top: 1px solid #424245;
+  border-top: 1px solid var(--border-color);
   padding-top: 30px;
   text-align: center;
-  color: #86868b;
+  color: var(--text-secondary);
 }
 
 @media (max-width: 768px) {

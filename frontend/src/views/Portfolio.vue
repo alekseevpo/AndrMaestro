@@ -299,12 +299,13 @@ useFocusTrap(modalRef)
 }
 
 .project-card {
-  background-color: white;
+  background-color: var(--bg-color);
   border-radius: 18px;
   overflow: hidden;
   cursor: pointer;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  border: 1px solid var(--border-color);
 }
 
 .project-card:hover {
@@ -360,13 +361,14 @@ useFocusTrap(modalRef)
 }
 
 .modal-content {
-  background-color: white;
+  background-color: var(--bg-color);
   border-radius: 18px;
   max-width: 800px;
   width: 100%;
   max-height: 90vh;
   overflow-y: auto;
   position: relative;
+  border: 1px solid var(--border-color);
 }
 
 .modal-close {

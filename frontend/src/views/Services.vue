@@ -173,12 +173,13 @@ const processSteps = ref([
 }
 
 .service-item {
-  background-color: white;
+  background-color: var(--bg-color);
   border-radius: 18px;
   padding: 50px;
   margin-bottom: 40px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: 1px solid var(--border-color);
 }
 
 .service-item:hover {
@@ -253,15 +254,17 @@ const processSteps = ref([
 }
 
 .step-light {
-  background-color: #ffffff;
+  background-color: var(--bg-color);
   color: var(--text-color);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  border: 1px solid var(--border-color);
 }
 
 .step-dark {
   background-color: var(--primary-color);
-  color: #f5f5f7;
+  color: var(--text-color);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  border: 1px solid var(--border-color);
 }
 
 .step:hover {
@@ -305,20 +308,13 @@ const processSteps = ref([
 }
 
 .step-dark h3 {
-  color: #f5f5f7;
+  color: var(--text-color);
 }
 
 .step p {
   line-height: 1.7;
   font-size: 16px;
-}
-
-.step-light p {
   color: var(--text-secondary);
-}
-
-.step-dark p {
-  color: #86868b;
 }
 
 @keyframes float {

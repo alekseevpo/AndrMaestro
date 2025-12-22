@@ -90,7 +90,11 @@ const { elementRef: homeRef, isVisible } = useScrollReveal({ threshold: 0.05 })
   justify-content: center;
   text-align: center;
   padding: 100px 0;
-  background: linear-gradient(135deg, #f5f5f7 0%, #ffffff 100%);
+  background: var(--hover-bg);
+}
+
+.dark .hero {
+  background: var(--bg-color);
 }
 
 .hero-content {
@@ -192,7 +196,7 @@ const { elementRef: homeRef, isVisible } = useScrollReveal({ threshold: 0.05 })
 
 .cta-section {
   background-color: var(--primary-color);
-  color: #f5f5f7;
+  color: var(--text-color);
 }
 
 .cta-content {
@@ -210,7 +214,7 @@ const { elementRef: homeRef, isVisible } = useScrollReveal({ threshold: 0.05 })
 
 .cta-content p {
   font-size: 21px;
-  color: #86868b;
+  color: var(--text-secondary);
   margin-bottom: 40px;
 }
 

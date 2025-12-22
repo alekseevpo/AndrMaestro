@@ -247,11 +247,11 @@ const formatDate = (dateString) => {
 
 .post-header {
   padding: 60px 0 40px;
-  background: linear-gradient(135deg, #f5f5f7 0%, #ffffff 100%);
+  background: var(--hover-bg);
 }
 
 .dark .post-header {
-  background: linear-gradient(135deg, #1d1d1f 0%, #000000 100%);
+  background: var(--hover-bg);
 }
 
 .post-breadcrumb {

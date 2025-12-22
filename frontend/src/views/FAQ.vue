@@ -127,7 +127,7 @@ const faqs = ref([
 }
 
 .faq-item {
-  background-color: white;
+  background-color: var(--bg-color);
   border: 1px solid var(--border-color);
   border-radius: 12px;
   margin-bottom: 15px;
@@ -204,10 +204,11 @@ const faqs = ref([
 .faq-cta {
   text-align: center;
   padding: 60px 40px;
-  background: linear-gradient(135deg, #f5f5f7 0%, #ffffff 100%);
+  background: var(--hover-bg);
   border-radius: 18px;
   max-width: 800px;
   margin: 0 auto;
+  border: 1px solid var(--border-color);
 }
 
 .faq-cta h2 {

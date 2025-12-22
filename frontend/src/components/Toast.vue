@@ -88,13 +88,14 @@ defineExpose({
   align-items: center;
   gap: 12px;
   padding: 16px 20px;
-  background: white;
+  background: var(--bg-color);
   border-radius: 12px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
   min-width: 300px;
   max-width: 400px;
   pointer-events: auto;
   animation: slideIn 0.3s ease;
+  border: 1px solid var(--border-color);
 }
 
 .toast-icon {

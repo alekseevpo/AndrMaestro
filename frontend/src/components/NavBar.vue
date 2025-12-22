@@ -55,6 +55,10 @@ const closeMenu = () => {
   padding: 15px 0;
 }
 
+.dark .navbar {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
 .nav-content {
   display: flex;
   justify-content: space-between;

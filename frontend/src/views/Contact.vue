@@ -292,9 +292,10 @@ const submitForm = async () => {
 }
 
 .contact-form-wrapper {
-  background-color: #f5f5f7;
+  background-color: var(--hover-bg);
   padding: 40px;
   border-radius: 18px;
+  border: 1px solid var(--border-color);
 }
 
 .contact-form h2 {
@@ -324,7 +325,8 @@ const submitForm = async () => {
   border-radius: 8px;
   font-size: 17px;
   font-family: inherit;
-  background-color: white;
+  background-color: var(--bg-color);
+  color: var(--text-color);
   transition: border-color 0.3s ease;
 }
 
