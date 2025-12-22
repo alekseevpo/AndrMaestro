@@ -192,7 +192,7 @@ const titleChars = computed(() => titleText.split(''))
 }
 
 .hero-title {
-  font-size: 64px;
+  font-size: 56px;
   font-weight: 600;
   margin-bottom: 20px;
   letter-spacing: -1px;
