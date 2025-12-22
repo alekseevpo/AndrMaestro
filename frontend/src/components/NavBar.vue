@@ -12,13 +12,17 @@
           <router-link to="/portafolio" @click="closeMenu">Portafolio</router-link>
           <router-link to="/preguntas-frecuentes" @click="closeMenu">FAQ</router-link>
           <router-link to="/contacto" @click="closeMenu">Contacto</router-link>
+          <ThemeToggle />
         </div>
         
-        <button class="menu-toggle" @click="toggleMenu" aria-label="Toggle menu">
+        <div class="nav-actions">
+          <ThemeToggle class="mobile-theme-toggle" />
+          <button class="menu-toggle" @click="toggleMenu" aria-label="Toggle menu">
           <span></span>
           <span></span>
           <span></span>
-        </button>
+          </button>
+        </div>
       </div>
     </div>
   </nav>
@@ -26,6 +30,7 @@
 
 <script setup>
 import { ref } from 'vue'
+import ThemeToggle from './ThemeToggle.vue'
 
 const menuOpen = ref(false)
 
@@ -53,6 +58,16 @@ const closeMenu = () => {
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.mobile-theme-toggle {
+  display: none;
 }
 
 .logo {
@@ -117,6 +132,14 @@ const closeMenu = () => {
 @media (max-width: 768px) {
   .menu-toggle {
     display: flex;
+  }
+  
+  .mobile-theme-toggle {
+    display: flex !important;
+  }
+  
+  .nav-links .theme-toggle {
+    display: none;
   }
   
   .nav-links {

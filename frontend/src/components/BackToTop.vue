@@ -44,7 +44,7 @@ onUnmounted(() => {
 .back-to-top {
   position: fixed;
   bottom: 90px;
-  right: 20px;
+  left: 20px;
   width: 50px;
   height: 50px;
   background-color: var(--accent-color);
@@ -80,7 +80,7 @@ onUnmounted(() => {
 @media (max-width: 768px) {
   .back-to-top {
     bottom: 80px;
-    right: 15px;
+    left: 15px;
     width: 45px;
     height: 45px;
   }

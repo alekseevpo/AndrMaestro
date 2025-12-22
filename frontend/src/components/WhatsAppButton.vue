@@ -73,7 +73,11 @@ const whatsappUrl = computed(() => {
   .whatsapp-button {
     bottom: 15px;
     right: 15px;
-    padding: 12px 16px;
+    width: 56px;
+    height: 56px;
+    padding: 0;
+    border-radius: 50%;
+    justify-content: center;
     font-size: 14px;
   }
   
@@ -81,17 +85,18 @@ const whatsappUrl = computed(() => {
     display: none;
   }
   
-  .whatsapp-button {
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    justify-content: center;
-    padding: 0;
-  }
-  
   .whatsapp-button svg {
     width: 28px;
     height: 28px;
+  }
+}
+
+/* Улучшение видимости на мобильных */
+@media (max-width: 480px) {
+  .whatsapp-button {
+    width: 60px;
+    height: 60px;
+    box-shadow: 0 6px 20px rgba(37, 211, 102, 0.5);
   }
 }
 </style>
