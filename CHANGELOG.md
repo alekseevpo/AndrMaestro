@@ -2,6 +2,22 @@
 
 Este archivo documenta todos los cambios importantes realizados en el proyecto.
 
+## [1.3.1] - 2024-01-XX
+
+### Corregido
+- **Tema Oscuro - Contraste y Legibilidad**: Mejorada significativamente la legibilidad y el contraste en el tema oscuro
+  - Reemplazados colores fijos por variables CSS en todos los componentes
+  - Mejorado el contraste del texto secundario en tema oscuro (#a1a1a6 en lugar de #86868b)
+  - Actualizado NavBar para usar fondo oscuro semitransparente en tema oscuro
+  - Corregidos colores del Footer para usar variables CSS en lugar de valores fijos
+  - Actualizado componente Toast para tema oscuro con bordes
+  - Corregidos fondos de tarjetas de Portfolio y Services para usar variables CSS
+  - Mejorados mensajes de éxito/error para tema oscuro con mejor contraste
+  - Corregidos fondos de imágenes en Portfolio para tema oscuro
+  - Actualizadas tarjetas de características en Home con bordes y fondos adaptativos
+  - Corregido fondo de sección de servicios para tema oscuro
+  - Todos los componentes ahora soportan correctamente el tema oscuro con buen contraste
+
 ## [1.3.0] - 2024-01-XX
 
 ### Añadido
