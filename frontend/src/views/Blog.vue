@@ -80,6 +80,7 @@ import { ref, computed, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
 import { useSEO } from '../composables/useSEO'
 import { getBlogPosts } from '../utils/api'
+import { blogPostsData } from '../data/blogPosts'
 
 // SEO
 useSEO(
@@ -91,129 +92,8 @@ useSEO(
 
 const router = useRouter()
 
-// Mock data - fallback если API не работает (обновлено с новыми статьями)
-const mockPosts = [
-  {
-    id: 1,
-    title: 'Guía Completa para Renovar tu Baño: Paso a Paso',
-    slug: 'guia-renovar-bano-paso-paso',
-    excerpt: 'Descubre cómo transformar tu baño en un espacio moderno y funcional con esta guía completa paso a paso.',
-    content: 'Contenido completo del artículo...',
-    category: 'Guías',
-    date: '2024-12-20',
-    readTime: 12,
-    image: null,
-    tags: ['baño', 'renovación', 'guía', 'fontanería']
-  },
-  {
-    id: 2,
-    title: 'Cómo Elegir los Mejores Materiales para tu Cocina',
-    slug: 'mejores-materiales-cocina',
-    excerpt: 'Una guía detallada sobre los materiales más duraderos y estéticos para encimeras, muebles y suelos de cocina.',
-    content: 'Contenido completo del artículo...',
-    category: 'Materiales',
-    date: '2024-12-18',
-    readTime: 10,
-    image: null,
-    tags: ['cocina', 'materiales', 'encimeras', 'muebles']
-  },
-  {
-    id: 3,
-    title: 'Técnicas Profesionales de Pintura: Consejos de un Maestro',
-    slug: 'tecnicas-profesionales-pintura',
-    excerpt: 'Aprende las técnicas profesionales que los maestros pintores usan para lograr acabados perfectos y duraderos.',
-    content: 'Contenido completo del artículo...',
-    category: 'Técnicas',
-    date: '2024-12-15',
-    readTime: 8,
-    image: null,
-    tags: ['pintura', 'técnicas', 'consejos', 'acabados']
-  },
-  {
-    id: 4,
-    title: 'Reformas Integrales: Cómo Planificar tu Proyecto',
-    slug: 'reformas-integrales-planificacion',
-    excerpt: 'Todo lo que necesitas saber para planificar y ejecutar una reforma integral de tu hogar sin sorpresas.',
-    content: 'Contenido completo del artículo...',
-    category: 'Proyectos',
-    date: '2024-12-12',
-    readTime: 11,
-    image: null,
-    tags: ['reformas', 'planificación', 'proyectos', 'gestión']
-  },
-  {
-    id: 5,
-    title: 'Aislamiento Térmico y Acústico: Guía Completa',
-    slug: 'aislamiento-termico-acustico-guia',
-    excerpt: 'Mejora el confort de tu hogar y reduce las facturas energéticas con un aislamiento adecuado.',
-    content: 'Contenido completo del artículo...',
-    category: 'Consejos',
-    date: '2024-12-10',
-    readTime: 9,
-    image: null,
-    tags: ['aislamiento', 'energía', 'confort', 'eficiencia']
-  },
-  {
-    id: 6,
-    title: 'Carpintería a Medida: Ventajas y Consideraciones',
-    slug: 'carpinteria-medida-ventajas',
-    excerpt: 'Descubre por qué la carpintería a medida puede ser la mejor inversión para tu hogar.',
-    content: 'Contenido completo del artículo...',
-    category: 'Carpintería',
-    date: '2024-12-08',
-    readTime: 7,
-    image: null,
-    tags: ['carpintería', 'muebles', 'personalización', 'almacenamiento']
-  },
-  {
-    id: 7,
-    title: 'Suelos de Madera: Tipos, Ventajas y Mantenimiento',
-    slug: 'suelos-madera-tipos-mantenimiento',
-    excerpt: 'Todo lo que necesitas saber sobre suelos de madera para elegir el mejor para tu hogar.',
-    content: 'Contenido completo del artículo...',
-    category: 'Materiales',
-    date: '2024-12-05',
-    readTime: 10,
-    image: null,
-    tags: ['suelos', 'madera', 'parquet', 'mantenimiento']
-  },
-  {
-    id: 8,
-    title: 'Iluminación en el Hogar: Diseño y Técnicas',
-    slug: 'iluminacion-hogar-diseno-tecnicas',
-    excerpt: 'Crea ambientes perfectos con una iluminación bien planificada que combine funcionalidad y estética.',
-    content: 'Contenido completo del artículo...',
-    category: 'Diseño',
-    date: '2024-12-03',
-    readTime: 9,
-    image: null,
-    tags: ['iluminación', 'diseño', 'LED', 'ambientes']
-  },
-  {
-    id: 9,
-    title: 'Azulejos y Revestimientos: Guía de Selección',
-    slug: 'azulejos-revestimientos-guia-seleccion',
-    excerpt: 'Aprende a elegir los azulejos y revestimientos perfectos para cada espacio de tu hogar.',
-    content: 'Contenido completo del artículo...',
-    category: 'Materiales',
-    date: '2024-12-01',
-    readTime: 8,
-    image: null,
-    tags: ['azulejos', 'revestimientos', 'baño', 'cocina']
-  },
-  {
-    id: 10,
-    title: 'Mantenimiento del Hogar: Tareas Esenciales por Temporada',
-    slug: 'mantenimiento-hogar-tareas-temporada',
-    excerpt: 'Mantén tu hogar en perfecto estado con esta guía de mantenimiento estacional.',
-    content: 'Contenido completo del artículo...',
-    category: 'Mantenimiento',
-    date: '2024-11-28',
-    readTime: 11,
-    image: null,
-    tags: ['mantenimiento', 'hogar', 'temporadas', 'prevención']
-  }
-]
+// Mock data - fallback si API no funciona (importado desde blogPosts.js)
+const mockPosts = blogPostsData
 
 const posts = ref(mockPosts)
 const loading = ref(false)
