@@ -2,6 +2,18 @@
 
 Este archivo documenta todos los cambios importantes realizados en el proyecto.
 
+## [1.3.4] - 2024-01-XX
+
+### Corregido
+- **Tema Oscuro - Adaptación Completa**: Adaptación completa de todos los elementos a la tema oscuro
+  - Corregidos fondos de imágenes de Portfolio para tema oscuro
+  - Corregidos fondos de imágenes de Blog para tema oscuro
+  - Mejorado fondo de NavBar en tema oscuro (más consistente)
+  - Añadido color de fondo al componente App
+  - Mejorado contraste del subtítulo hero en tema oscuro
+  - Todos los gradientes ahora se adaptan correctamente a tema oscuro
+  - Estilo consistente de tema oscuro en todos los componentes
+
 ## [1.3.3] - 2024-01-XX
 
 ### Corregido
