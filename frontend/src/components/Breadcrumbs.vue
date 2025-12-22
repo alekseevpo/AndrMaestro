@@ -24,6 +24,8 @@ const routeNames = {
   'Home': 'Inicio',
   'Services': 'Servicios',
   'Portfolio': 'Portafolio',
+  'Blog': 'Artículos',
+  'BlogPost': 'Artículo',
   'FAQ': 'Preguntas Frecuentes',
   'Contact': 'Contacto'
 }

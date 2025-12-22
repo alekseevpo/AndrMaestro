@@ -90,7 +90,7 @@ export const generateStructuredData = (type, data) => {
     article: {
       '@context': 'https://schema.org',
       '@type': 'BlogPosting',
-      headline: data.title || 'Artículo del Blog',
+      headline: data.title || 'Artículo',
       description: data.excerpt || '',
       image: data.image || '',
       datePublished: data.datePublished || new Date().toISOString(),
