@@ -39,10 +39,11 @@ const currentYear = computed(() => new Date().getFullYear())
 
 <style scoped>
 .footer {
-  background-color: var(--primary-color);
+  background-color: var(--hover-bg);
   color: var(--text-color);
   padding: 60px 0 30px;
   margin-top: auto;
+  border-top: 1px solid var(--border-color);
 }
 
 .footer-content {
@@ -56,12 +57,14 @@ const currentYear = computed(() => new Date().getFullYear())
   font-size: 24px;
   margin-bottom: 15px;
   font-weight: 600;
+  color: var(--text-color);
 }
 
 .footer-section h4 {
   font-size: 17px;
   margin-bottom: 15px;
   font-weight: 600;
+  color: var(--text-color);
 }
 
 .footer-section p {
@@ -75,10 +78,11 @@ const currentYear = computed(() => new Date().getFullYear())
   color: var(--text-secondary);
   margin-bottom: 10px;
   transition: color 0.3s ease;
+  text-decoration: none;
 }
 
 .footer-section a:hover {
-  color: var(--text-color);
+  color: var(--accent-color);
 }
 
 .footer-bottom {
@@ -86,6 +90,7 @@ const currentYear = computed(() => new Date().getFullYear())
   padding-top: 30px;
   text-align: center;
   color: var(--text-secondary);
+  font-size: 14px;
 }
 
 @media (max-width: 768px) {
