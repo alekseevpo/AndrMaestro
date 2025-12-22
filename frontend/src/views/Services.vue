@@ -303,10 +303,10 @@ const processSteps = ref([
 
 .process-steps {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: 1fr;
   gap: 30px;
   margin-top: 60px;
-  max-width: 1000px;
+  max-width: 800px;
   margin-left: auto;
   margin-right: auto;
 }
