@@ -345,8 +345,11 @@ onUnmounted(() => {
 }
 
 .popup-menu {
-  background-color: var(--bg-color) !important;
+  background-color: rgba(255, 255, 255, 0.5) !important;
+  backdrop-filter: saturate(180%) blur(20px);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
   border-radius: 24px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
   box-shadow: 0 24px 48px rgba(0, 0, 0, 0.25);
   width: 100%;
   max-width: 420px;
@@ -359,6 +362,10 @@ onUnmounted(() => {
 }
 
 .dark .popup-menu {
+  background-color: rgba(0, 0, 0, 0.4) !important;
+  backdrop-filter: saturate(180%) blur(20px);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   box-shadow: 0 24px 48px rgba(0, 0, 0, 0.6);
 }
 
@@ -407,9 +414,13 @@ onUnmounted(() => {
   align-items: center;
   justify-content: center;
   padding: 24px 24px 20px;
-  border-bottom: 1px solid var(--border-color);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
   flex-shrink: 0;
-  background-color: var(--bg-color);
+  background-color: transparent;
+}
+
+.dark .popup-menu-header {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .popup-menu-title {
@@ -530,11 +541,15 @@ onUnmounted(() => {
 
 .popup-menu-footer {
   padding: 20px 24px 24px;
-  border-top: 1px solid var(--border-color);
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
   display: flex;
   justify-content: center;
   flex-shrink: 0;
-  background-color: var(--bg-color);
+  background-color: transparent;
+}
+
+.dark .popup-menu-footer {
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 @media (max-width: 768px) {
