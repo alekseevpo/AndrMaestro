@@ -4,6 +4,9 @@ Este archivo documenta todos los cambios importantes realizados en el proyecto.
 
 ## [1.1.0] - 2024-01-XX
 
+### Cambiado
+- Actualizado número de teléfono a +34 633 34 34 68 en todos los componentes
+
 ### Añadido
 - Botón flotante de WhatsApp para contacto rápido desde cualquier página
 - Página de Preguntas Frecuentes (FAQ) con 10 preguntas comunes y respuestas detalladas
