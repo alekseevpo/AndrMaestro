@@ -300,17 +300,33 @@ useFocusTrap(modalRef)
 
 .project-card {
   background-color: var(--bg-color);
-  border-radius: 18px;
+  border-radius: 20px;
   overflow: hidden;
   cursor: pointer;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
   border: 1px solid var(--border-color);
+  animation: fadeInUp 0.6s ease-out backwards;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.project-card:nth-child(1) { animation-delay: 0.1s; }
+.project-card:nth-child(2) { animation-delay: 0.2s; }
+.project-card:nth-child(3) { animation-delay: 0.3s; }
+.project-card:nth-child(4) { animation-delay: 0.4s; }
+.project-card:nth-child(5) { animation-delay: 0.5s; }
+.project-card:nth-child(6) { animation-delay: 0.6s; }
+
+.dark .project-card {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
 
 .project-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+}
+
+.dark .project-card:hover {
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
 }
 
 .project-image {
@@ -435,9 +451,73 @@ useFocusTrap(modalRef)
 }
 
 @media (max-width: 768px) {
+  .portfolio-hero {
+    padding-top: 80px;
+  }
+
+  .filter-buttons {
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 32px;
+  }
+
+  .filter-btn {
+    padding: 10px 18px;
+    font-size: 15px;
+    min-height: 44px;
+  }
+
+  .project-card {
+    margin-bottom: 20px;
+  }
+
+  .project-image {
+    height: 200px;
+  }
+
+  .project-info {
+    padding: 20px;
+  }
+
+  .project-info h3 {
+    font-size: 20px;
+    margin-bottom: 8px;
+  }
+
+  .modal-overlay {
+    padding: 0;
+  }
+
+  .modal-content {
+    width: 100%;
+    height: 100vh;
+    max-height: 100vh;
+    border-radius: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .modal-header {
+    padding: 16px 20px;
+    flex-shrink: 0;
+  }
+
+  .modal-body {
+    flex: 1;
+    overflow-y: auto;
+    padding: 20px;
+  }
+
+  .modal-image {
+    height: 250px;
+    border-radius: 12px;
+    margin-bottom: 20px;
+  }
+
   .modal-nav {
-    width: 40px;
-    height: 40px;
+    width: 44px;
+    height: 44px;
   }
   
   .modal-nav-prev {
@@ -446,6 +526,21 @@ useFocusTrap(modalRef)
   
   .modal-nav-next {
     right: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .filter-btn {
+    padding: 8px 14px;
+    font-size: 14px;
+  }
+
+  .project-image {
+    height: 180px;
+  }
+
+  .modal-image {
+    height: 200px;
   }
 }
 

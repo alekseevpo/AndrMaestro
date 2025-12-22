@@ -1,3 +1,7 @@
+@import './styles/buttons.css';
+@import './styles/animations.css';
+@import './styles/mobile.css';
+
 * {
   margin: 0;
   padding: 0;

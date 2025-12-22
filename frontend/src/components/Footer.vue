@@ -94,9 +94,49 @@ const currentYear = computed(() => new Date().getFullYear())
 }
 
 @media (max-width: 768px) {
+  .footer {
+    padding: 40px 0 24px;
+  }
+
   .footer-content {
     grid-template-columns: 1fr;
-    gap: 30px;
+    gap: 32px;
+    margin-bottom: 32px;
+  }
+
+  .footer-section h3 {
+    font-size: 22px;
+    margin-bottom: 12px;
+  }
+
+  .footer-section h4 {
+    font-size: 16px;
+    margin-bottom: 12px;
+  }
+
+  .footer-section p {
+    font-size: 15px;
+    line-height: 1.6;
+  }
+
+  .footer-section a {
+    font-size: 15px;
+    padding: 8px 0;
+  }
+
+  .footer-bottom {
+    padding-top: 24px;
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 480px) {
+  .footer {
+    padding: 32px 0 20px;
+  }
+
+  .footer-content {
+    gap: 24px;
   }
 }
 </style>

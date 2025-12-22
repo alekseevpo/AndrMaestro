@@ -6,7 +6,7 @@
       @click="scrollToTop"
       aria-label="Volver arriba"
     >
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
         <path d="M18 15l-6-6-6 6"/>
       </svg>
     </button>
@@ -60,6 +60,14 @@ onUnmounted(() => {
   transition: all 0.3s ease;
 }
 
+.back-to-top svg {
+  width: 24px;
+  height: 24px;
+  color: white;
+  stroke: white;
+  flex-shrink: 0;
+}
+
 .back-to-top:hover {
   background-color: #0051d5;
   transform: translateY(-2px);
@@ -79,10 +87,33 @@ onUnmounted(() => {
 
 @media (max-width: 768px) {
   .back-to-top {
+    width: 48px;
+    height: 48px;
     bottom: 80px;
-    left: 15px;
-    width: 45px;
-    height: 45px;
+    left: 16px;
+  }
+
+  .back-to-top svg {
+    width: 22px;
+    height: 22px;
+  }
+
+  .back-to-top:hover {
+    transform: translateY(-2px);
+  }
+}
+
+@media (max-width: 480px) {
+  .back-to-top {
+    width: 44px;
+    height: 44px;
+    bottom: 75px;
+    left: 12px;
+  }
+
+  .back-to-top svg {
+    width: 20px;
+    height: 20px;
   }
 }
 </style>

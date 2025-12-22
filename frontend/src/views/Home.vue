@@ -1,6 +1,9 @@
 <template>
   <div class="home" ref="homeRef" :class="{ 'fade-in': isVisible }">
     <section class="hero">
+      <div class="hero-background">
+        <div class="hero-overlay"></div>
+      </div>
       <div class="container">
         <div class="hero-content">
           <h1 class="hero-title">Transformamos tus Espacios</h1>
@@ -24,26 +27,46 @@
         </p>
         
         <div class="features-grid">
-          <div class="feature-card">
-            <div class="feature-icon">✨</div>
+          <div class="feature-card card-hover shadow-md stagger-item">
+            <div class="feature-icon">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+              </svg>
+            </div>
             <h3>Calidad Superior</h3>
             <p>Materiales de primera calidad y acabados impecables en cada proyecto.</p>
           </div>
           
-          <div class="feature-card">
-            <div class="feature-icon">⏱️</div>
+          <div class="feature-card card-hover shadow-md stagger-item">
+            <div class="feature-icon">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"/>
+                <polyline points="12 6 12 12 16 14"/>
+              </svg>
+            </div>
             <h3>Puntualidad</h3>
             <p>Cumplimos con los plazos acordados sin comprometer la calidad del trabajo.</p>
           </div>
           
-          <div class="feature-card">
-            <div class="feature-icon">💼</div>
+          <div class="feature-card card-hover shadow-md stagger-item">
+            <div class="feature-icon">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+                <polyline points="3.27 6.96 12 12.01 20.73 6.96"/>
+                <line x1="12" y1="22.08" x2="12" y2="12"/>
+              </svg>
+            </div>
             <h3>Experiencia</h3>
             <p>Años de experiencia en el sector con cientos de proyectos completados.</p>
           </div>
           
-          <div class="feature-card">
-            <div class="feature-icon">🎨</div>
+          <div class="feature-card card-hover shadow-md stagger-item">
+            <div class="feature-icon">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/>
+                <circle cx="12" cy="12" r="2"/>
+              </svg>
+            </div>
             <h3>Diseño Personalizado</h3>
             <p>Cada proyecto se adapta a tus necesidades y estilo personal.</p>
           </div>
@@ -90,7 +113,41 @@ const { elementRef: homeRef, isVisible } = useScrollReveal({ threshold: 0.05 })
   justify-content: center;
   text-align: center;
   padding: 100px 0;
-  background: var(--hover-bg);
+  background: var(--bg-color);
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(0, 122, 255, 0.05) 0%, rgba(0, 122, 255, 0.02) 100%);
+  z-index: 0;
+}
+
+.dark .hero-background {
+  background: linear-gradient(135deg, rgba(0, 122, 255, 0.1) 0%, rgba(0, 122, 255, 0.05) 100%);
+}
+
+.hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    radial-gradient(circle at 20% 50%, rgba(0, 122, 255, 0.08) 0%, transparent 50%),
+    radial-gradient(circle at 80% 80%, rgba(0, 122, 255, 0.06) 0%, transparent 50%);
+  animation: float 6s ease-in-out infinite;
+}
+
+.dark .hero-overlay {
+  background-image: 
+    radial-gradient(circle at 20% 50%, rgba(0, 122, 255, 0.15) 0%, transparent 50%),
+    radial-gradient(circle at 80% 80%, rgba(0, 122, 255, 0.1) 0%, transparent 50%);
 }
 
 .dark .hero {
@@ -99,6 +156,8 @@ const { elementRef: homeRef, isVisible } = useScrollReveal({ threshold: 0.05 })
 
 .hero-content {
   max-width: 800px;
+  position: relative;
+  z-index: 1;
 }
 
 .hero-title {
@@ -133,41 +192,7 @@ const { elementRef: homeRef, isVisible } = useScrollReveal({ threshold: 0.05 })
   flex-wrap: wrap;
 }
 
-.btn {
-  padding: 12px 30px;
-  border-radius: 980px;
-  font-size: 17px;
-  font-weight: 400;
-  transition: all 0.3s ease;
-  display: inline-block;
-}
-
-.btn-primary {
-  background-color: var(--accent-color);
-  color: white;
-}
-
-.btn-primary:hover {
-  background-color: #0051d5;
-  opacity: 1;
-  transform: translateY(-2px);
-}
-
-.btn-secondary {
-  background-color: transparent;
-  color: var(--accent-color);
-  border: 1px solid var(--accent-color);
-}
-
-.btn-secondary:hover {
-  background-color: var(--hover-bg);
-  opacity: 1;
-}
-
-.btn-large {
-  padding: 15px 40px;
-  font-size: 19px;
-}
+/* Button styles are now in styles/buttons.css */
 
 .features-grid {
   display: grid;
@@ -178,21 +203,32 @@ const { elementRef: homeRef, isVisible } = useScrollReveal({ threshold: 0.05 })
 
 .feature-card {
   text-align: center;
-  padding: 30px;
-  border-radius: 18px;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  padding: 40px 30px;
+  border-radius: 20px;
   background-color: var(--bg-color);
   border: 1px solid var(--border-color);
 }
 
-.feature-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+.feature-icon {
+  width: 64px;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+  color: var(--accent-color);
+  transition: transform 0.3s ease, color 0.3s ease;
 }
 
-.feature-icon {
-  font-size: 48px;
-  margin-bottom: 20px;
+.feature-icon svg {
+  width: 48px;
+  height: 48px;
+  stroke: currentColor;
+}
+
+.feature-card:hover .feature-icon {
+  transform: scale(1.1);
+  color: var(--primary-color);
 }
 
 .feature-card h3 {
@@ -207,7 +243,7 @@ const { elementRef: homeRef, isVisible } = useScrollReveal({ threshold: 0.05 })
 }
 
 .cta-section {
-  background-color: var(--hover-bg);
+  background-color: var(--primary-color);
   color: var(--text-color);
 }
 
@@ -226,7 +262,7 @@ const { elementRef: homeRef, isVisible } = useScrollReveal({ threshold: 0.05 })
   font-weight: 600;
   margin-bottom: 20px;
   letter-spacing: -0.5px;
-  color: var(--text-color);
+  color: #ffffff;
 }
 
 .dark .cta-content h2 {
@@ -236,7 +272,7 @@ const { elementRef: homeRef, isVisible } = useScrollReveal({ threshold: 0.05 })
 
 .cta-content p {
   font-size: 21px;
-  color: var(--text-secondary);
+  color: rgba(255, 255, 255, 0.9);
   margin-bottom: 40px;
 }
 
@@ -260,30 +296,83 @@ const { elementRef: homeRef, isVisible } = useScrollReveal({ threshold: 0.05 })
 }
 
 @media (max-width: 768px) {
+  .hero {
+    min-height: 70vh;
+    padding: 60px 0;
+  }
+
   .hero-title {
-    font-size: 40px;
+    font-size: 36px;
+    margin-bottom: 16px;
   }
   
   .hero-subtitle {
-    font-size: 20px;
+    font-size: 18px;
+    margin-bottom: 32px;
   }
   
   .hero-buttons {
     flex-direction: column;
-    align-items: center;
+    align-items: stretch;
+    gap: 12px;
   }
   
-  .btn {
+  .hero-buttons .btn {
     width: 100%;
-    max-width: 300px;
+    max-width: 100%;
   }
   
   .cta-content h2 {
-    font-size: 32px;
+    font-size: 28px;
+    margin-bottom: 16px;
   }
-  
-  .features-grid {
-    grid-template-columns: 1fr;
+
+  .cta-content p {
+    font-size: 18px;
+    margin-bottom: 32px;
+  }
+
+  .feature-card {
+    padding: 32px 24px;
+  }
+
+  .feature-icon {
+    width: 56px;
+    height: 56px;
+    margin-bottom: 16px;
+  }
+
+  .feature-icon svg {
+    width: 40px;
+    height: 40px;
+  }
+
+  .feature-card h3 {
+    font-size: 20px;
+    margin-bottom: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero {
+    min-height: 60vh;
+    padding: 40px 0;
+  }
+
+  .hero-title {
+    font-size: 28px;
+  }
+
+  .hero-subtitle {
+    font-size: 16px;
+  }
+
+  .cta-content h2 {
+    font-size: 24px;
+  }
+
+  .feature-card {
+    padding: 24px 20px;
   }
 }
 </style>

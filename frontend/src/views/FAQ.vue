@@ -129,25 +129,35 @@ const faqs = ref([
 .faq-item {
   background-color: var(--bg-color);
   border: 1px solid var(--border-color);
-  border-radius: 12px;
-  margin-bottom: 15px;
+  border-radius: 20px;
+  margin-bottom: 20px;
   overflow: hidden;
-  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  animation: fadeInUp 0.6s ease-out backwards;
 }
 
+.faq-item:nth-child(1) { animation-delay: 0.1s; }
+.faq-item:nth-child(2) { animation-delay: 0.2s; }
+.faq-item:nth-child(3) { animation-delay: 0.3s; }
+.faq-item:nth-child(4) { animation-delay: 0.4s; }
+.faq-item:nth-child(5) { animation-delay: 0.5s; }
+.faq-item:nth-child(6) { animation-delay: 0.6s; }
+
 .dark .faq-item {
-  background-color: #2a2a2c;
-  border-color: #3a3a3c;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  background-color: var(--bg-color);
+  border-color: var(--border-color);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
 
 .dark .faq-item:hover {
-  background-color: #333335;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+  background-color: var(--hover-bg);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
 }
 
 .faq-item:hover {
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+  transform: translateY(-2px);
 }
 
 .faq-item.active {
@@ -276,35 +286,7 @@ const faqs = ref([
   flex-wrap: wrap;
 }
 
-.btn {
-  padding: 12px 30px;
-  border-radius: 980px;
-  font-size: 17px;
-  font-weight: 400;
-  transition: all 0.3s ease;
-  display: inline-block;
-  text-decoration: none;
-}
-
-.btn-primary {
-  background-color: var(--accent-color);
-  color: white;
-}
-
-.btn-primary:hover {
-  background-color: #0051d5;
-  transform: translateY(-2px);
-}
-
-.btn-whatsapp {
-  background-color: #25D366;
-  color: white;
-}
-
-.btn-whatsapp:hover {
-  background-color: #20BA5A;
-  transform: translateY(-2px);
-}
+/* Button styles are now in styles/buttons.css */
 
 .fade-in {
   animation: fadeInUp 0.6s ease-out;
@@ -322,30 +304,76 @@ const faqs = ref([
 }
 
 @media (max-width: 768px) {
+  .faq-hero {
+    padding-top: 80px;
+  }
+
+  .faq-list {
+    margin-bottom: 40px;
+  }
+
+  .faq-item {
+    margin-bottom: 16px;
+    border-radius: 16px;
+  }
+
   .faq-question {
-    padding: 20px;
-    font-size: 17px;
+    padding: 18px 20px;
+    font-size: 16px;
+    min-height: 56px;
   }
   
   .faq-answer {
-    padding: 0 20px 20px;
-    font-size: 16px;
+    padding: 0 20px 18px;
+    font-size: 15px;
+    line-height: 1.6;
+  }
+
+  .faq-icon {
+    width: 24px;
+    height: 24px;
+    font-size: 14px;
   }
   
   .faq-cta {
-    padding: 40px 20px;
+    padding: 32px 20px;
+    border-radius: 20px;
   }
   
   .faq-cta h2 {
-    font-size: 28px;
+    font-size: 24px;
+    margin-bottom: 16px;
+  }
+
+  .faq-cta p {
+    font-size: 17px;
+    margin-bottom: 24px;
   }
   
   .faq-buttons {
     flex-direction: column;
+    gap: 12px;
   }
   
-  .btn {
+  .faq-buttons .btn {
     width: 100%;
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .faq-question {
+    padding: 16px 18px;
+    font-size: 15px;
+  }
+
+  .faq-answer {
+    padding: 0 18px 16px;
+    font-size: 14px;
+  }
+
+  .faq-cta h2 {
+    font-size: 22px;
   }
 }
 </style>

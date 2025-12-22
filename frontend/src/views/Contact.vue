@@ -432,11 +432,49 @@ const submitForm = async () => {
 @media (max-width: 968px) {
   .contact-grid {
     grid-template-columns: 1fr;
-    gap: 40px;
+    gap: 32px;
   }
   
   .contact-form-wrapper {
-    padding: 30px 20px;
+    padding: 24px 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .contact-grid {
+    gap: 24px;
+  }
+
+  .contact-form-wrapper {
+    padding: 20px 16px;
+    border-radius: 20px;
+  }
+
+  .form-group {
+    margin-bottom: 20px;
+  }
+
+  .form-group label {
+    font-size: 15px;
+    margin-bottom: 8px;
+  }
+
+  input,
+  textarea {
+    font-size: 16px;
+    padding: 14px 16px;
+  }
+
+  .btn-large {
+    width: 100%;
+    padding: 16px 24px;
+    font-size: 17px;
+  }
+}
+
+@media (max-width: 480px) {
+  .contact-form-wrapper {
+    padding: 16px 12px;
   }
 }
 </style>

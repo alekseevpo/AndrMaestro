@@ -2,6 +2,9 @@
   <div class="services fade-in">
     <section class="services-hero section">
       <div class="container">
+        <div class="hero-image-wrapper">
+          <PlaceholderImage icon="🔨" size="large" />
+        </div>
         <h1 class="section-title">Nuestros Servicios</h1>
         <p class="section-subtitle">
           Soluciones completas para la transformación de tus espacios interiores
@@ -13,7 +16,7 @@
       <div class="container">
         <div class="service-item" v-for="service in services" :key="service.id">
           <div class="service-content">
-            <div class="service-icon">{{ service.icon }}</div>
+            <div class="service-icon" v-html="service.iconSvg"></div>
             <h2>{{ service.title }}</h2>
             <p>{{ service.description }}</p>
             <ul class="service-features">
@@ -48,6 +51,7 @@
 <script setup>
 import { ref } from 'vue'
 import { useSEO } from '../composables/useSEO'
+import PlaceholderImage from '../components/PlaceholderImage.vue'
 
 // SEO
 useSEO(
@@ -61,6 +65,7 @@ const services = ref([
   {
     id: 1,
     icon: '🪚',
+    iconSvg: '<svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>',
     title: 'Carpintería y Ebanistería',
     description: 'Fabricación e instalación de muebles a medida, estanterías, armarios y elementos de carpintería personalizados.',
     features: [
@@ -74,6 +79,7 @@ const services = ref([
   {
     id: 2,
     icon: '🎨',
+    iconSvg: '<svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/><circle cx="12" cy="12" r="2"/></svg>',
     title: 'Pintura y Acabados',
     description: 'Aplicación de pintura de alta calidad, técnicas especiales y acabados decorativos para dar vida a tus paredes.',
     features: [
@@ -87,6 +93,7 @@ const services = ref([
   {
     id: 3,
     icon: '🧱',
+    iconSvg: '<svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>',
     title: 'Revestimientos',
     description: 'Instalación de azulejos, cerámica, piedra natural y otros materiales para crear espacios únicos.',
     features: [
@@ -100,6 +107,7 @@ const services = ref([
   {
     id: 4,
     icon: '🔧',
+    iconSvg: '<svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>',
     title: 'Reformas Integrales',
     description: 'Gestión completa de proyectos de reforma desde el diseño hasta la ejecución final.',
     features: [
@@ -113,6 +121,7 @@ const services = ref([
   {
     id: 5,
     icon: '💡',
+    iconSvg: '<svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="9" y1="18" x2="15" y2="18"/><line x1="10" y1="22" x2="14" y2="22"/><path d="M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 18 8 6 6 0 0 0 6 8c0 1 .23 2.23 1.5 3.5A4.61 4.61 0 0 1 8.91 14"/></svg>',
     title: 'Iluminación',
     description: 'Instalación y diseño de sistemas de iluminación para crear ambientes acogedores y funcionales.',
     features: [
@@ -126,6 +135,7 @@ const services = ref([
   {
     id: 6,
     icon: '🏠',
+    iconSvg: '<svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>',
     title: 'Rehabilitación',
     description: 'Restauración y rehabilitación de espacios manteniendo el carácter original con mejoras modernas.',
     features: [
@@ -166,6 +176,20 @@ const processSteps = ref([
 .services-hero {
   text-align: center;
   padding-top: 120px;
+  position: relative;
+}
+
+.hero-image-wrapper {
+  max-width: 600px;
+  height: 300px;
+  margin: 0 auto 40px;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+}
+
+.dark .hero-image-wrapper {
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
 }
 
 .services-list {
@@ -178,17 +202,34 @@ const processSteps = ref([
 
 .service-item {
   background-color: var(--bg-color);
-  border-radius: 18px;
+  border-radius: 20px;
   padding: 50px;
   margin-bottom: 40px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
   border: 1px solid var(--border-color);
+  animation: fadeInUp 0.6s ease-out backwards;
+}
+
+.service-item:nth-child(1) { animation-delay: 0.1s; }
+.service-item:nth-child(2) { animation-delay: 0.2s; }
+.service-item:nth-child(3) { animation-delay: 0.3s; }
+.service-item:nth-child(4) { animation-delay: 0.4s; }
+
+.service-item {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .service-item:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  transform: translateY(-8px) scale(1.01);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+}
+
+.dark .service-item {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.dark .service-item:hover {
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
 }
 
 .service-content {
@@ -197,8 +238,25 @@ const processSteps = ref([
 }
 
 .service-icon {
-  font-size: 64px;
+  width: 80px;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   margin-bottom: 20px;
+  color: var(--accent-color);
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.service-icon svg {
+  width: 64px;
+  height: 64px;
+  stroke: currentColor;
+}
+
+.service-item:hover .service-icon {
+  transform: scale(1.1);
+  color: var(--primary-color);
 }
 
 .service-item h2 {
@@ -367,30 +425,77 @@ const processSteps = ref([
 }
 
 @media (max-width: 768px) {
-  .service-item {
-    padding: 30px 20px;
+  .services-hero {
+    padding-top: 80px;
   }
-  
+
+  .hero-image-wrapper {
+    height: 200px;
+    margin-bottom: 32px;
+  }
+
+  .service-item {
+    padding: 32px 24px;
+    margin-bottom: 24px;
+  }
+
+  .service-icon {
+    width: 64px;
+    height: 64px;
+    margin-bottom: 16px;
+  }
+
+  .service-icon svg {
+    width: 48px;
+    height: 48px;
+  }
+
   .service-item h2 {
     font-size: 28px;
+    margin-bottom: 16px;
   }
-  
+
+  .service-item > .service-content > p {
+    font-size: 18px;
+    margin-bottom: 24px;
+  }
+
   .service-features {
     grid-template-columns: 1fr;
+    gap: 12px;
   }
-  
+
   .process-steps {
-    grid-template-columns: 1fr;
-    gap: 25px;
+    gap: 24px;
   }
-  
+
   .step {
-    padding: 30px 20px;
-    margin-top: 0 !important;
+    padding: 24px 20px;
   }
-  
-  .step:nth-child(even) {
-    margin-top: 0 !important;
+
+  .step-number {
+    width: 40px;
+    height: 40px;
+    font-size: 20px;
+  }
+
+  .step h3 {
+    font-size: 20px;
+    margin-bottom: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-image-wrapper {
+    height: 150px;
+  }
+
+  .service-item {
+    padding: 24px 20px;
+  }
+
+  .service-item h2 {
+    font-size: 24px;
   }
 }
 </style>

@@ -6,20 +6,6 @@
           <span class="logo-text">AndrMaestro</span>
         </router-link>
         
-        <Transition name="menu-overlay">
-          <div v-if="menuOpen" class="menu-overlay" @click="closeMenu"></div>
-        </Transition>
-        
-        <div class="nav-links" :class="{ active: menuOpen }">
-          <router-link to="/" @click="closeMenu" class="nav-link-item">Inicio</router-link>
-          <router-link to="/servicios" @click="closeMenu" class="nav-link-item">Servicios</router-link>
-          <router-link to="/portafolio" @click="closeMenu" class="nav-link-item">Portafolio</router-link>
-          <router-link to="/blog" @click="closeMenu" class="nav-link-item">Blog</router-link>
-          <router-link to="/preguntas-frecuentes" @click="closeMenu" class="nav-link-item">FAQ</router-link>
-          <router-link to="/contacto" @click="closeMenu" class="nav-link-item">Contacto</router-link>
-          <ThemeToggle class="mobile-menu-theme" />
-        </div>
-        
         <div class="nav-actions">
           <ThemeToggle class="mobile-theme-toggle" />
           <button 
@@ -36,6 +22,89 @@
         </div>
       </div>
     </div>
+    
+        <Teleport to="body">
+          <Transition name="overlay">
+            <div v-if="menuOpen" class="menu-overlay" @click="closeMenu"></div>
+          </Transition>
+          
+          <Transition name="popup">
+            <div v-if="menuOpen" class="popup-menu-wrapper" @click.self="closeMenu">
+              <div class="popup-menu">
+                <div class="popup-menu-header">
+                  <h2 class="popup-menu-title">Menú</h2>
+                  <button class="popup-menu-close" @click="closeMenu" aria-label="Close menu">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <line x1="18" y1="6" x2="6" y2="18"></line>
+                      <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                  </button>
+                </div>
+                <div class="popup-menu-content">
+                  <router-link to="/" @click="closeMenu" class="popup-menu-item">
+                    <span class="menu-item-icon">
+                      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+                        <polyline points="9 22 9 12 15 12 15 22"/>
+                      </svg>
+                    </span>
+                    <span class="menu-item-text">Inicio</span>
+                  </router-link>
+                  <router-link to="/servicios" @click="closeMenu" class="popup-menu-item">
+                    <span class="menu-item-icon">
+                      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>
+                      </svg>
+                    </span>
+                    <span class="menu-item-text">Servicios</span>
+                  </router-link>
+                  <router-link to="/portafolio" @click="closeMenu" class="popup-menu-item">
+                    <span class="menu-item-icon">
+                      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
+                        <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+                      </svg>
+                    </span>
+                    <span class="menu-item-text">Portafolio</span>
+                  </router-link>
+                  <router-link to="/blog" @click="closeMenu" class="popup-menu-item">
+                    <span class="menu-item-icon">
+                      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M4 19.5A2.5 2.5 0 0 0 6.5 22H20a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H6.5A2.5 2.5 0 0 0 4 4.5z"/>
+                        <line x1="8" y1="7" x2="16" y2="7"/>
+                        <line x1="8" y1="11" x2="16" y2="11"/>
+                        <line x1="8" y1="15" x2="12" y2="15"/>
+                      </svg>
+                    </span>
+                    <span class="menu-item-text">Blog</span>
+                  </router-link>
+                  <router-link to="/preguntas-frecuentes" @click="closeMenu" class="popup-menu-item">
+                    <span class="menu-item-icon">
+                      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="10"/>
+                        <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/>
+                        <line x1="12" y1="17" x2="12.01" y2="17"/>
+                      </svg>
+                    </span>
+                    <span class="menu-item-text">FAQ</span>
+                  </router-link>
+                  <router-link to="/contacto" @click="closeMenu" class="popup-menu-item">
+                    <span class="menu-item-icon">
+                      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                        <polyline points="22,6 12,13 2,6"/>
+                      </svg>
+                    </span>
+                    <span class="menu-item-text">Contacto</span>
+                  </router-link>
+                </div>
+                <div class="popup-menu-footer">
+                  <ThemeToggle />
+                </div>
+              </div>
+            </div>
+          </Transition>
+        </Teleport>
   </nav>
 </template>
 
@@ -47,17 +116,10 @@ const menuOpen = ref(false)
 
 const toggleMenu = () => {
   menuOpen.value = !menuOpen.value
-  // Блокируем скролл когда меню открыто
-  if (menuOpen.value) {
-    document.body.style.overflow = 'hidden'
-  } else {
-    document.body.style.overflow = ''
-  }
 }
 
 const closeMenu = () => {
   menuOpen.value = false
-  document.body.style.overflow = ''
 }
 
 // Закрываем меню при изменении размера окна (если перешли на десктоп)
@@ -74,6 +136,28 @@ const handleEscape = (e) => {
   }
 }
 
+// Отслеживаем изменения menuOpen для блокировки скролла
+watch(menuOpen, (isOpen) => {
+  if (isOpen) {
+    // Сохраняем текущую позицию скролла
+    const scrollY = window.scrollY
+    document.body.style.overflow = 'hidden'
+    document.body.style.position = 'fixed'
+    document.body.style.top = `-${scrollY}px`
+    document.body.style.width = '100%'
+  } else {
+    // Восстанавливаем позицию скролла
+    const scrollY = document.body.style.top
+    document.body.style.overflow = ''
+    document.body.style.position = ''
+    document.body.style.top = ''
+    document.body.style.width = ''
+    if (scrollY) {
+      window.scrollTo(0, parseInt(scrollY || '0') * -1)
+    }
+  }
+})
+
 onMounted(() => {
   window.addEventListener('resize', handleResize)
   window.addEventListener('keydown', handleEscape)
@@ -83,6 +167,8 @@ onUnmounted(() => {
   window.removeEventListener('resize', handleResize)
   window.removeEventListener('keydown', handleEscape)
   document.body.style.overflow = ''
+  document.body.style.position = ''
+  document.body.style.width = ''
 })
 </script>
 
@@ -93,8 +179,14 @@ onUnmounted(() => {
   background-color: rgba(255, 255, 255, 0.8);
   backdrop-filter: saturate(180%) blur(20px);
   border-bottom: 1px solid var(--border-color);
-  z-index: 1000;
+  z-index: 999;
   padding: 15px 0;
+}
+
+@media (max-width: 768px) {
+  .navbar {
+    z-index: 1002;
+  }
 }
 
 .dark .navbar {
@@ -168,6 +260,12 @@ onUnmounted(() => {
   width: 30px;
   height: 30px;
   justify-content: center;
+  z-index: 1003;
+  position: relative;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 5px;
 }
 
 .menu-toggle span {
@@ -191,141 +289,276 @@ onUnmounted(() => {
   transform: rotate(-45deg) translate(7px, -7px);
 }
 
+/* Overlay для затемнения фона */
 .menu-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
   background-color: rgba(0, 0, 0, 0.5);
   backdrop-filter: blur(4px);
-  z-index: 999;
+  z-index: 999998 !important;
+  isolation: isolate !important;
+  pointer-events: auto !important;
 }
 
-.menu-overlay-enter-active,
-.menu-overlay-leave-active {
-  transition: opacity 0.3s ease, backdrop-filter 0.3s ease;
+.overlay-enter-active,
+.overlay-leave-active {
+  transition: opacity 0.3s ease;
 }
 
-.menu-overlay-enter-from,
-.menu-overlay-leave-to {
+.overlay-enter-from,
+.overlay-leave-to {
   opacity: 0;
-  backdrop-filter: blur(0px);
+}
+
+/* Всплывающее меню (popup) */
+.popup-menu-wrapper {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999999 !important;
+  padding: 20px;
+  pointer-events: none;
+}
+
+.popup-menu {
+  background-color: var(--bg-color) !important;
+  border-radius: 24px;
+  box-shadow: 0 24px 48px rgba(0, 0, 0, 0.25);
+  width: 100%;
+  max-width: 420px;
+  max-height: 85vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  pointer-events: auto;
+  position: relative;
+}
+
+.dark .popup-menu {
+  box-shadow: 0 24px 48px rgba(0, 0, 0, 0.6);
+}
+
+.popup-enter-active {
+  transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.popup-leave-active {
+  transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.popup-enter-active .popup-menu {
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.popup-leave-active .popup-menu {
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.popup-enter-from {
+  opacity: 0;
+}
+
+.popup-enter-from .popup-menu {
+  transform: scale(0.85) translateY(-30px);
+  opacity: 0;
+}
+
+.popup-leave-to {
+  opacity: 0;
+}
+
+.popup-leave-to .popup-menu {
+  transform: scale(0.95) translateY(20px);
+  opacity: 0;
+}
+
+.popup-menu-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 24px 24px 20px;
+  border-bottom: 1px solid var(--border-color);
+  flex-shrink: 0;
+  background-color: var(--bg-color);
+}
+
+.popup-menu-title {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--text-color) !important;
+  margin: 0;
+  letter-spacing: -0.3px;
+}
+
+.popup-menu-close {
+  width: 48px;
+  height: 48px;
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  background: var(--hover-bg) !important;
+  border: 2px solid var(--border-color) !important;
+  border-radius: 12px;
+  cursor: pointer;
+  color: var(--text-color) !important;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  flex-shrink: 0;
+  opacity: 1 !important;
+  visibility: visible !important;
+  position: relative;
+  z-index: 10;
+}
+
+.popup-menu-close svg {
+  width: 26px !important;
+  height: 26px !important;
+  stroke: var(--text-color) !important;
+  stroke-width: 2.5 !important;
+  display: block !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  pointer-events: none;
+}
+
+.popup-menu-close:hover {
+  background: var(--accent-color) !important;
+  color: white !important;
+  border-color: var(--accent-color) !important;
+  transform: rotate(90deg) scale(1.05);
+}
+
+.popup-menu-close:hover svg {
+  stroke: white !important;
+}
+
+.popup-menu-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 16px 20px;
+  gap: 8px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+  scrollbar-color: var(--border-color) transparent;
+}
+
+.popup-menu-content::-webkit-scrollbar {
+  width: 6px;
+}
+
+.popup-menu-content::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.popup-menu-content::-webkit-scrollbar-thumb {
+  background-color: var(--border-color);
+  border-radius: 3px;
+}
+
+.popup-menu-content::-webkit-scrollbar-thumb:hover {
+  background-color: var(--accent-color);
+}
+
+.popup-menu-item {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 18px 20px;
+  border-radius: 16px;
+  text-decoration: none;
+  color: var(--text-color) !important;
+  font-size: 17px;
+  font-weight: 500;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  opacity: 1 !important;
+  visibility: visible !important;
+  min-height: 60px;
+}
+
+.popup-menu-item:hover {
+  background-color: var(--hover-bg);
+  transform: translateX(4px);
+}
+
+.popup-menu-item.router-link-active {
+  background: linear-gradient(135deg, var(--accent-color), var(--primary-color));
+  color: white !important;
+  font-weight: 600;
+  box-shadow: 0 6px 16px rgba(0, 122, 255, 0.3);
+  transform: translateX(4px);
+}
+
+.popup-menu-item .menu-item-icon {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  color: var(--text-color);
+  background: var(--hover-bg);
+  border-radius: 10px;
+}
+
+.popup-menu-item .menu-item-icon svg {
+  width: 22px;
+  height: 22px;
+  stroke: currentColor;
+  transition: all 0.3s ease;
+}
+
+.popup-menu-item:hover .menu-item-icon {
+  transform: scale(1.1);
+  color: var(--accent-color);
+  background: rgba(0, 122, 255, 0.1);
+}
+
+.popup-menu-item.router-link-active .menu-item-icon {
+  color: white;
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.popup-menu-item.router-link-active .menu-item-icon svg {
+  stroke: white;
+}
+
+.popup-menu-footer {
+  padding: 20px 24px 24px;
+  border-top: 1px solid var(--border-color);
+  display: flex;
+  justify-content: center;
+  flex-shrink: 0;
+  background-color: var(--bg-color);
 }
 
 @media (max-width: 768px) {
   .menu-toggle {
     display: flex;
+    z-index: 10001;
+  }
+  
+  .nav-actions {
+    z-index: 10001;
+    position: relative;
   }
   
   .mobile-theme-toggle {
     display: flex !important;
   }
   
-  .nav-links .theme-toggle {
-    display: none;
-  }
-  
-  .mobile-menu-theme {
-    margin-top: 10px;
-    padding-top: 20px;
-    border-top: 1px solid var(--border-color);
-  }
-  
   .nav-links {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: var(--bg-color);
-    flex-direction: column;
-    padding: 80px 30px 30px;
-    gap: 0;
-    z-index: 1000;
-    overflow-y: auto;
-    transform: translateX(-100%);
-    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    box-shadow: 2px 0 20px rgba(0, 0, 0, 0.1);
-  }
-  
-  .dark .nav-links {
-    box-shadow: 2px 0 20px rgba(0, 0, 0, 0.5);
-  }
-  
-  .nav-links.active {
-    transform: translateX(0);
-  }
-  
-  .nav-link-item {
-    padding: 18px 20px;
-    font-size: 18px;
-    font-weight: 500;
-    border-radius: 12px;
-    transition: all 0.3s ease;
-    opacity: 0;
-    transform: translateX(-20px);
-    position: relative;
-    overflow: hidden;
-  }
-  
-  .nav-links.active .nav-link-item {
-    opacity: 1;
-    transform: translateX(0);
-  }
-  
-  .nav-links.active .nav-link-item:nth-child(1) {
-    transition-delay: 0.05s;
-  }
-  
-  .nav-links.active .nav-link-item:nth-child(2) {
-    transition-delay: 0.1s;
-  }
-  
-  .nav-links.active .nav-link-item:nth-child(3) {
-    transition-delay: 0.15s;
-  }
-  
-  .nav-links.active .nav-link-item:nth-child(4) {
-    transition-delay: 0.2s;
-  }
-  
-  .nav-links.active .nav-link-item:nth-child(5) {
-    transition-delay: 0.25s;
-  }
-  
-  .nav-links.active .nav-link-item:nth-child(6) {
-    transition-delay: 0.3s;
-  }
-  
-  .nav-link-item::before {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 0;
-    bottom: 0;
-    width: 0;
-    background-color: var(--accent-color);
-    opacity: 0.1;
-    transition: width 0.3s ease;
-  }
-  
-  .nav-link-item:hover::before,
-  .nav-link-item.router-link-active::before {
-    width: 100%;
-  }
-  
-  .nav-link-item:hover {
-    background-color: var(--hover-bg);
-    transform: translateX(5px);
-  }
-  
-  .nav-link-item.router-link-active {
-    color: var(--accent-color);
-    background-color: var(--hover-bg);
-  }
-  
-  .nav-link-item::after {
     display: none;
   }
 }
