@@ -11,6 +11,8 @@
     <BackToTop />
     <Toast />
     <PageLoader />
+    <CookieConsent />
+    <PrivacyModal />
   </div>
 </template>
 
@@ -18,6 +20,8 @@
 import { onMounted, defineAsyncComponent } from 'vue'
 import NavBar from './components/NavBar.vue'
 import Footer from './components/Footer.vue'
+import CookieConsent from './components/CookieConsent.vue'
+import PrivacyModal from './components/PrivacyModal.vue'
 import { useTheme } from './composables/useTheme'
 
 // Lazy load non-critical components
