@@ -28,7 +28,7 @@
               </div>
               <div>
                 <h3>Email</h3>
-                <p>info@andrmaestro.com</p>
+                <a href="mailto:info@andrmaestro.com" class="contact-link">info@andrmaestro.com</a>
               </div>
             </div>
             
@@ -40,7 +40,7 @@
               </div>
               <div>
                 <h3>Teléfono</h3>
-                <p>+34 633 34 34 68</p>
+                <a href="tel:+34633343468" class="contact-link">+34 633 34 34 68</a>
               </div>
             </div>
             
@@ -99,8 +99,10 @@
                 <input 
                   type="text" 
                   id="name" 
+                  name="name"
                   v-model="form.name" 
                   required
+                  autocomplete="name"
                   placeholder="Tu nombre"
                   :class="{ 'error': errors.name }"
                   aria-describedby="name-error"
@@ -113,8 +115,10 @@
                 <input 
                   type="email" 
                   id="email" 
+                  name="email"
                   v-model="form.email" 
                   required
+                  autocomplete="email"
                   placeholder="tu@email.com"
                   :class="{ 'error': errors.email }"
                   aria-describedby="email-error"
@@ -127,7 +131,9 @@
                 <input 
                   type="tel" 
                   id="phone" 
+                  name="phone"
                   v-model="form.phone" 
+                  autocomplete="tel"
                   placeholder="+34 633 34 34 68"
                   :class="{ 'error': errors.phone }"
                   aria-describedby="phone-error"
@@ -140,8 +146,10 @@
                 <input 
                   type="text" 
                   id="subject" 
+                  name="subject"
                   v-model="form.subject" 
                   required
+                  autocomplete="off"
                   placeholder="¿En qué podemos ayudarte?"
                   :class="{ 'error': errors.subject }"
                   aria-describedby="subject-error"
@@ -153,8 +161,10 @@
                 <label for="message">Mensaje *</label>
                 <textarea 
                   id="message" 
+                  name="message"
                   v-model="form.message" 
                   required
+                  autocomplete="off"
                   rows="6"
                   placeholder="Cuéntanos más sobre tu proyecto..."
                   :class="{ 'error': errors.message }"
@@ -301,6 +311,21 @@ const submitForm = async () => {
   gap: 20px;
   margin-bottom: 30px;
   align-items: flex-start;
+  padding: 20px;
+  border-radius: 16px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: default;
+}
+
+.contact-item:hover {
+  background-color: var(--hover-bg);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+.dark .contact-item:hover {
+  background-color: rgba(255, 255, 255, 0.03);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
 }
 
 .contact-icon {
@@ -310,10 +335,11 @@ const submitForm = async () => {
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-  background-color: var(--hover-bg);
+  background: linear-gradient(135deg, var(--accent-color) 0%, var(--primary-color) 100%);
   border-radius: 14px;
-  color: var(--accent-color);
+  color: white;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 2px 8px rgba(0, 122, 255, 0.2);
 }
 
 .contact-icon svg {
@@ -324,14 +350,13 @@ const submitForm = async () => {
 }
 
 .contact-item:hover .contact-icon {
-  background-color: var(--accent-color);
-  color: white;
-  transform: scale(1.05);
-  box-shadow: 0 4px 12px rgba(0, 122, 255, 0.3);
+  transform: scale(1.1) rotate(5deg);
+  box-shadow: 0 6px 20px rgba(0, 122, 255, 0.4);
 }
 
 .contact-item:hover .contact-icon svg {
   stroke: white;
+  transform: scale(1.1);
 }
 
 /* WhatsApp icon uses fill instead of stroke */
@@ -350,13 +375,53 @@ const submitForm = async () => {
   font-size: 17px;
   color: var(--text-secondary);
   line-height: 1.6;
+  margin: 0;
+}
+
+.contact-link {
+  font-size: 17px;
+  color: var(--accent-color);
+  text-decoration: none;
+  transition: all 0.3s ease;
+  display: inline-block;
+  font-weight: 500;
+}
+
+.contact-link:hover {
+  color: var(--primary-color);
+  text-decoration: underline;
+  transform: translateX(4px);
+}
+
+.dark .contact-link {
+  color: #4a9eff;
+}
+
+.dark .contact-link:hover {
+  color: #6bb0ff;
 }
 
 .contact-form-wrapper {
-  background-color: var(--hover-bg);
+  background: linear-gradient(135deg, var(--hover-bg) 0%, var(--bg-color) 100%);
   padding: 40px;
-  border-radius: 18px;
+  border-radius: 20px;
   border: 1px solid var(--border-color);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+}
+
+.dark .contact-form-wrapper {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0.01) 100%);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+.contact-form-wrapper:hover {
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
+  transform: translateY(-2px);
+}
+
+.dark .contact-form-wrapper:hover {
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
 }
 
 .contact-form h2 {
@@ -401,6 +466,13 @@ const submitForm = async () => {
 .form-group textarea:focus {
   outline: none;
   border-color: var(--accent-color);
+  box-shadow: 0 0 0 3px rgba(0, 122, 255, 0.1);
+  transform: translateY(-1px);
+}
+
+.dark .form-group input:focus,
+.dark .form-group textarea:focus {
+  box-shadow: 0 0 0 3px rgba(74, 158, 255, 0.2);
 }
 
 .form-group input.error,
@@ -487,22 +559,60 @@ const submitForm = async () => {
 @media (max-width: 968px) {
   .contact-grid {
     grid-template-columns: 1fr;
-    gap: 32px;
+    gap: 40px;
   }
   
   .contact-form-wrapper {
-    padding: 24px 20px;
+    padding: 32px 24px;
+  }
+
+  .contact-info h2,
+  .contact-form h2 {
+    font-size: 32px;
   }
 }
 
 @media (max-width: 768px) {
+  .contact-hero {
+    padding-top: 100px;
+  }
+
   .contact-grid {
-    gap: 24px;
+    gap: 32px;
   }
 
   .contact-form-wrapper {
-    padding: 20px 16px;
-    border-radius: 20px;
+    padding: 28px 20px;
+    border-radius: 18px;
+  }
+
+  .contact-info h2,
+  .contact-form h2 {
+    font-size: 28px;
+  }
+
+  .contact-item {
+    padding: 16px;
+    margin-bottom: 24px;
+  }
+
+  .contact-icon {
+    width: 48px;
+    height: 48px;
+  }
+
+  .contact-icon svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  .contact-item h3 {
+    font-size: 19px;
+  }
+
+  .contact-item p,
+  .contact-link {
+    font-size: 16px;
   }
 
   .form-group {
@@ -528,8 +638,30 @@ const submitForm = async () => {
 }
 
 @media (max-width: 480px) {
+  .contact-hero {
+    padding-top: 80px;
+  }
+
   .contact-form-wrapper {
-    padding: 16px 12px;
+    padding: 24px 16px;
+    border-radius: 16px;
+  }
+
+  .contact-info h2,
+  .contact-form h2 {
+    font-size: 24px;
+  }
+
+  .contact-item {
+    padding: 12px;
+    margin-bottom: 20px;
+    flex-direction: column;
+    text-align: center;
+    gap: 12px;
+  }
+
+  .contact-icon {
+    margin: 0 auto;
   }
 }
 </style>
