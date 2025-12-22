@@ -448,7 +448,7 @@ useFocusTrap(modalRef)
 .modal-image {
   width: 100%;
   height: 400px;
-  background: linear-gradient(135deg, #f5f5f7 0%, #e8e8ed 100%);
+  background: var(--hover-bg);
   display: flex;
   align-items: center;
   justify-content: center;

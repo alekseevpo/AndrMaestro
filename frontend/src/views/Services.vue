@@ -169,7 +169,11 @@ const processSteps = ref([
 }
 
 .services-list {
-  background-color: #f5f5f7;
+  background-color: var(--hover-bg);
+}
+
+.dark .services-list {
+  background-color: var(--bg-color);
 }
 
 .service-item {
