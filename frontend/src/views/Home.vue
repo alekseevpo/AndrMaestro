@@ -11,7 +11,7 @@
               v-for="(char, index) in titleChars" 
               :key="index"
               class="hero-char"
-              :style="{ animationDelay: `${index * 0.05}s` }"
+              :style="{ animationDelay: `${index * 0.03}s` }"
             >
               {{ char === ' ' ? '\u00A0' : char }}
             </span>
@@ -189,75 +189,22 @@ const titleChars = computed(() => titleText.split(''))
   font-weight: 700;
 }
 
-/* Анимация в стиле табло аэропорта / Vercel */
+/* Плавная анимация появления букв */
 .hero-char {
   display: inline-block;
   opacity: 0;
-  transform: translateY(30px) scale(0.9);
-  animation: airportDisplay 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
-  text-shadow: 0 0 10px rgba(0, 122, 255, 0);
-  filter: brightness(0.5) blur(2px);
+  transform: translateY(20px);
+  animation: smoothReveal 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
-@keyframes airportDisplay {
+@keyframes smoothReveal {
   0% {
     opacity: 0;
-    transform: translateY(30px) scale(0.9);
-    text-shadow: 0 0 20px rgba(0, 122, 255, 0.5);
-    filter: brightness(0.5) blur(2px);
-  }
-  30% {
-    opacity: 0.3;
-    transform: translateY(15px) scale(0.95);
-    text-shadow: 0 0 15px rgba(0, 122, 255, 0.7);
-    filter: brightness(0.7) blur(1px);
-  }
-  60% {
-    opacity: 0.7;
-    transform: translateY(5px) scale(1);
-    text-shadow: 0 0 10px rgba(0, 122, 255, 0.4);
-    filter: brightness(0.9) blur(0.5px);
+    transform: translateY(20px);
   }
   100% {
     opacity: 1;
-    transform: translateY(0) scale(1);
-    text-shadow: 0 0 0 rgba(0, 122, 255, 0);
-    filter: brightness(1) blur(0);
-  }
-}
-
-.dark .hero-char {
-  filter: brightness(0.5) blur(2px);
-}
-
-.dark .hero-char {
-  animation: airportDisplayDark 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
-}
-
-@keyframes airportDisplayDark {
-  0% {
-    opacity: 0;
-    transform: translateY(30px) scale(0.9);
-    text-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
-    filter: brightness(0.5) blur(2px);
-  }
-  30% {
-    opacity: 0.3;
-    transform: translateY(15px) scale(0.95);
-    text-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
-    filter: brightness(0.7) blur(1px);
-  }
-  60% {
-    opacity: 0.7;
-    transform: translateY(5px) scale(1);
-    text-shadow: 0 0 8px rgba(255, 255, 255, 0.2);
-    filter: brightness(0.9) blur(0.5px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-    text-shadow: 0 0 0 rgba(255, 255, 255, 0);
-    filter: brightness(1) blur(0);
+    transform: translateY(0);
   }
 }
 
