@@ -192,34 +192,43 @@ const postsData = [
   }
 ]
 
+const route = useRoute()
 const slug = route.params.slug
 const post = ref(postsData.find(p => p.slug === slug))
 
-// SEO для статьи
-if (post.value) {
-  useSEO(
-    `${post.value.title} - AndrMaestro Blog`,
-    post.value.excerpt,
-    post.value.image,
-    'article'
-  )
+// Загрузить пост из API
+onMounted(async () => {
+  const result = await getBlogPost(slug)
+  if (result.success) {
+    post.value = result.data
+  }
   
-  // Добавить структурированные данные для статьи
-  const articleData = generateStructuredData('article', {
-    title: post.value.title,
-    excerpt: post.value.excerpt,
-    image: post.value.image,
-    datePublished: post.value.date
-  })
-  addStructuredData(articleData)
-} else {
-  useSEO(
-    'Artículo no encontrado - AndrMaestro Blog',
-    'El artículo que buscas no existe.',
-    null,
-    'website'
-  )
-}
+  // SEO для статьи
+  if (post.value) {
+    useSEO(
+      `${post.value.title} - AndrMaestro Blog`,
+      post.value.excerpt,
+      post.value.image,
+      'article'
+    )
+    
+    // Добавить структурированные данные для статьи
+    const articleData = generateStructuredData('article', {
+      title: post.value.title,
+      excerpt: post.value.excerpt,
+      image: post.value.image,
+      datePublished: post.value.date
+    })
+    addStructuredData(articleData)
+  } else {
+    useSEO(
+      'Artículo no encontrado - AndrMaestro Blog',
+      'El artículo que buscas no existe.',
+      null,
+      'website'
+    )
+  }
+})
 
 const formatDate = (dateString) => {
   const date = new Date(dateString)

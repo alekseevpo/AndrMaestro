@@ -87,18 +87,6 @@ useSEO(
 
 const router = useRouter()
 
-const posts = ref([])
-const loading = ref(true)
-
-// Загрузить посты из API
-onMounted(async () => {
-  const result = await getBlogPosts()
-  if (result.success) {
-    posts.value = result.data
-  }
-  loading.value = false
-})
-
 // Mock data - fallback если API не работает
 const mockPosts = [
   {
@@ -151,10 +139,18 @@ const mockPosts = [
   }
 ]
 
-// Использовать mock данные если API не загрузил
-if (posts.value.length === 0 && !loading.value) {
-  posts.value = mockPosts
-}
+const posts = ref(mockPosts)
+const loading = ref(false)
+
+// Загрузить посты из API
+onMounted(async () => {
+  loading.value = true
+  const result = await getBlogPosts()
+  if (result.success && result.data.length > 0) {
+    posts.value = result.data
+  }
+  loading.value = false
+})
 
 const categories = computed(() => {
   const cats = ['Todos', ...new Set(posts.value.map(p => p.category))]
