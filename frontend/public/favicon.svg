@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <!-- Background circle with brand color -->
+  <circle cx="50" cy="50" r="48" fill="#007aff"/>
+  
+  <!-- Construction helmet - simplified for small size -->
+  <path d="M20 55 Q20 30 50 30 Q80 30 80 55 L80 65 Q80 75 70 75 L30 75 Q20 75 20 65 Z" 
+        fill="#ffd700" stroke="#ffffff" stroke-width="2.5"/>
+  
+  <!-- Helmet front band -->
+  <path d="M25 50 Q50 45 75 50" stroke="#ffffff" stroke-width="3" fill="none" stroke-linecap="round"/>
+  
+  <!-- Helmet top highlight -->
+  <ellipse cx="50" cy="35" rx="22" ry="10" fill="#ffed4e" opacity="0.8"/>
+  
+  <!-- Simple tool icon (hammer) -->
+  <path d="M40 50 L60 50 M50 45 L50 55" stroke="#ffffff" stroke-width="3" stroke-linecap="round"/>
+  <circle cx="50" cy="50" r="4" fill="#ffffff"/>
+</svg>
