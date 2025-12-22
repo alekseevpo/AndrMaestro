@@ -163,6 +163,7 @@
 import { ref, reactive } from 'vue'
 import { useSEO } from '../composables/useSEO'
 import { validateContactForm } from '../utils/validation'
+import { submitContactForm } from '../utils/api'
 
 // SEO
 useSEO(
@@ -206,23 +207,16 @@ const submitForm = async () => {
   submitSuccess.value = false
   submitError.value = false
 
-  try {
-    const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:8000'
-    const response = await fetch(`${apiUrl}/api/contact`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(form.value)
-    })
+  const result = await submitContactForm(form.value)
 
-    if (!response.ok) {
-      throw new Error('Error al enviar el mensaje')
-    }
-
-    const data = await response.json()
-    
+  if (result.success) {
     submitSuccess.value = true
+    
+    // Show success toast
+    if (window.showToast) {
+      window.showToast('Mensaje enviado correctamente. Te contactaremos pronto.', 'success')
+    }
+    
     form.value = {
       name: '',
       email: '',
@@ -233,12 +227,16 @@ const submitForm = async () => {
     
     // Clear errors on success
     Object.keys(errors).forEach(key => delete errors[key])
-  } catch (error) {
+  } else {
     submitError.value = true
-    console.error('Error submitting form:', error)
-  } finally {
-    submitting.value = false
+    
+    // Show error toast
+    if (window.showToast) {
+      window.showToast(result.error || 'Error al enviar el mensaje. Por favor, inténtalo de nuevo.', 'error')
+    }
   }
+  
+  submitting.value = false
 }
 </script>
 

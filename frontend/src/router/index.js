@@ -1,9 +1,11 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import Home from '../views/Home.vue'
-import Services from '../views/Services.vue'
-import Portfolio from '../views/Portfolio.vue'
-import Contact from '../views/Contact.vue'
-import FAQ from '../views/FAQ.vue'
+
+// Lazy load routes for code splitting
+const Home = () => import('../views/Home.vue')
+const Services = () => import('../views/Services.vue')
+const Portfolio = () => import('../views/Portfolio.vue')
+const Contact = () => import('../views/Contact.vue')
+const FAQ = () => import('../views/FAQ.vue')
 
 const routes = [
   {

@@ -48,8 +48,8 @@
       </div>
     </section>
 
-    <div v-if="selectedProject" class="modal" @click="closeModal">
-      <div class="modal-content" @click.stop>
+    <div v-if="selectedProject" class="modal" @click="closeModal" role="dialog" aria-modal="true" :aria-labelledby="`modal-title-${selectedProject.id}`">
+      <div class="modal-content" @click.stop ref="modalRef">
         <button 
           class="modal-close" 
           @click="closeModal"
@@ -61,7 +61,7 @@
           <div class="placeholder-image large">{{ selectedProject.icon }}</div>
         </div>
         <div class="modal-info">
-          <h2>{{ selectedProject.title }}</h2>
+          <h2 :id="`modal-title-${selectedProject.id}`">{{ selectedProject.title }}</h2>
           <p class="modal-category">{{ selectedProject.category }}</p>
           <p class="modal-description">{{ selectedProject.description }}</p>
           <div class="modal-details">
@@ -79,9 +79,10 @@
 </template>
 
 <script setup>
-import { ref, computed, watch } from 'vue'
+import { ref, computed } from 'vue'
 import { useSEO } from '../composables/useSEO'
 import { useEscapeKey } from '../composables/useKeyboard'
+import { useFocusTrap } from '../composables/useFocusTrap'
 
 // SEO
 useSEO(
@@ -178,6 +179,7 @@ const filteredProjects = computed(() => {
 })
 
 const selectedProject = ref(null)
+const modalRef = ref(null)
 
 const openModal = (project) => {
   selectedProject.value = project
@@ -195,6 +197,9 @@ useEscapeKey(() => {
     closeModal()
   }
 })
+
+// Focus trap for modal
+useFocusTrap(modalRef)
 </script>
 
 <style scoped>
