@@ -230,42 +230,43 @@ const titleChars = computed(() => titleText.split(''))
   line-height: 1.5;
   position: relative;
   overflow: hidden;
+  color: #888888;
   background: linear-gradient(
     90deg,
-    #c0c0c0 0%,
-    #e0e0e0 25%,
-    #f5f5f5 50%,
+    #888888 0%,
+    #a0a0a0 25%,
+    #b8b8b8 50%,
     #ffffff 52%,
     #ffffff 58%,
-    #f5f5f5 60%,
-    #e0e0e0 75%,
-    #c0c0c0 100%
+    #b8b8b8 60%,
+    #a0a0a0 75%,
+    #888888 100%
   );
   background-size: 200% 100%;
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   animation: shimmer 10s infinite;
-  text-shadow: 0 0 30px rgba(192, 192, 192, 0.3);
+  font-weight: 500;
 }
 
 .dark .hero-subtitle {
+  color: #b0b0b0;
   background: linear-gradient(
     90deg,
-    #a0a0a0 0%,
-    #c0c0c0 25%,
-    #e0e0e0 50%,
+    #808080 0%,
+    #a0a0a0 25%,
+    #c0c0c0 50%,
     #ffffff 52%,
     #ffffff 58%,
-    #e0e0e0 60%,
-    #c0c0c0 75%,
-    #a0a0a0 100%
+    #c0c0c0 60%,
+    #a0a0a0 75%,
+    #808080 100%
   );
   background-size: 200% 100%;
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  text-shadow: 0 0 30px rgba(255, 255, 255, 0.2);
 }
 
 @keyframes shimmer {
@@ -370,42 +371,43 @@ const titleChars = computed(() => titleText.split(''))
   margin-bottom: 40px;
   position: relative;
   overflow: hidden;
+  color: rgba(255, 255, 255, 0.85);
   background: linear-gradient(
     90deg,
-    #c0c0c0 0%,
-    #e0e0e0 25%,
-    #f5f5f5 50%,
-    #ffffff 52%,
-    #ffffff 58%,
-    #f5f5f5 60%,
-    #e0e0e0 75%,
-    #c0c0c0 100%
+    rgba(255, 255, 255, 0.7) 0%,
+    rgba(255, 255, 255, 0.8) 25%,
+    rgba(255, 255, 255, 0.9) 50%,
+    rgba(255, 255, 255, 1) 52%,
+    rgba(255, 255, 255, 1) 58%,
+    rgba(255, 255, 255, 0.9) 60%,
+    rgba(255, 255, 255, 0.8) 75%,
+    rgba(255, 255, 255, 0.7) 100%
   );
   background-size: 200% 100%;
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   animation: shimmer 10s infinite;
-  text-shadow: 0 0 30px rgba(192, 192, 192, 0.3);
+  font-weight: 500;
 }
 
 .dark .cta-content p {
+  color: rgba(255, 255, 255, 0.9);
   background: linear-gradient(
     90deg,
-    #a0a0a0 0%,
-    #c0c0c0 25%,
-    #e0e0e0 50%,
-    #ffffff 52%,
-    #ffffff 58%,
-    #e0e0e0 60%,
-    #c0c0c0 75%,
-    #a0a0a0 100%
+    rgba(255, 255, 255, 0.6) 0%,
+    rgba(255, 255, 255, 0.75) 25%,
+    rgba(255, 255, 255, 0.9) 50%,
+    rgba(255, 255, 255, 1) 52%,
+    rgba(255, 255, 255, 1) 58%,
+    rgba(255, 255, 255, 0.9) 60%,
+    rgba(255, 255, 255, 0.75) 75%,
+    rgba(255, 255, 255, 0.6) 100%
   );
   background-size: 200% 100%;
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  text-shadow: 0 0 30px rgba(255, 255, 255, 0.2);
 }
 
 .fade-in {
