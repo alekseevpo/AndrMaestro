@@ -215,10 +215,50 @@ const titleChars = computed(() => titleText.split(''))
   color: var(--text-secondary);
   margin-bottom: 40px;
   line-height: 1.5;
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(
+    90deg,
+    var(--text-secondary) 0%,
+    var(--text-secondary) 50%,
+    rgba(255, 255, 255, 0.8) 52%,
+    rgba(255, 255, 255, 0.8) 58%,
+    var(--text-secondary) 60%,
+    var(--text-secondary) 100%
+  );
+  background-size: 200% 100%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmer 10s infinite;
 }
 
 .dark .hero-subtitle {
-  color: #d1d1d6;
+  background: linear-gradient(
+    90deg,
+    #d1d1d6 0%,
+    #d1d1d6 50%,
+    rgba(255, 255, 255, 1) 52%,
+    rgba(255, 255, 255, 1) 58%,
+    #d1d1d6 60%,
+    #d1d1d6 100%
+  );
+  background-size: 200% 100%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  2% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
 }
 
 .hero-buttons {
