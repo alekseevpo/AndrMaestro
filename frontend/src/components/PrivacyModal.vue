@@ -214,28 +214,45 @@ onUnmounted(() => {
 }
 
 .modal-close {
-  width: 40px;
-  height: 40px;
+  width: 44px;
+  height: 44px;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 10px;
-  border: none;
-  background-color: var(--hover-bg);
-  color: var(--text-color);
+  border-radius: 50%;
+  border: 2px solid rgba(0, 0, 0, 0.1);
+  background-color: #ffffff !important;
+  color: #1d1d1f !important;
   cursor: pointer;
   transition: all 0.3s ease;
   flex-shrink: 0;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5) !important;
+  z-index: 10001 !important;
+  position: relative;
 }
 
 .modal-close:hover {
-  background-color: var(--border-color);
+  background-color: #f5f5f7 !important;
   transform: rotate(90deg);
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.6) !important;
 }
 
 .modal-close svg {
-  width: 20px;
-  height: 20px;
+  width: 24px;
+  height: 24px;
+  stroke: #1d1d1f !important;
+  stroke-width: 2.5 !important;
+  pointer-events: none;
+}
+
+.dark .modal-close {
+  background-color: #ffffff !important;
+  border-color: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.7) !important;
+}
+
+.dark .modal-close svg {
+  stroke: #1d1d1f !important;
 }
 
 .modal-body {
