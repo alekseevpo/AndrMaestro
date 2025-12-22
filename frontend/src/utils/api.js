@@ -2,10 +2,17 @@
  * API utility functions with error handling and retry logic
  */
 
+// Определяем, находимся ли мы в продакшене
+const isProduction = import.meta.env.PROD
+const isLocalhost = typeof window !== 'undefined' && 
+  (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')
+
 const config = {
   apiUrl: import.meta.env.VITE_API_URL || 'http://localhost:8000',
   retryAttempts: 3,
-  retryDelay: 1000
+  retryDelay: 1000,
+  // В продакшене не делаем запросы к API, если не указан явный URL
+  useApi: !isProduction || isLocalhost || !!import.meta.env.VITE_API_URL
 }
 
 /**
@@ -94,6 +101,15 @@ export const getProject = async (projectId) => {
  * Get blog posts
  */
 export const getBlogPosts = async (category = null) => {
+  // В продакшене без явного API URL сразу возвращаем ошибку (будет использован fallback)
+  if (!config.useApi) {
+    return {
+      success: false,
+      error: 'API no disponible en producción',
+      data: []
+    }
+  }
+
   try {
     const url = category 
       ? `${config.apiUrl}/api/blog/posts?category=${encodeURIComponent(category)}`
@@ -115,12 +131,24 @@ export const getBlogPosts = async (category = null) => {
  * Get single blog post by slug
  */
 export const getBlogPost = async (slug) => {
+  // В продакшене без явного API URL сразу возвращаем ошибку (будет использован fallback)
+  if (!config.useApi) {
+    // Не логируем ошибку в консоль, чтобы не засорять её
+    return {
+      success: false,
+      error: 'API no disponible en producción'
+    }
+  }
+
   try {
     const response = await fetchWithRetry(`${config.apiUrl}/api/blog/posts/${slug}`)
     const data = await response.json()
     return { success: true, data }
   } catch (error) {
-    console.error('Error fetching blog post:', error)
+    // Логируем только если это не CORS ошибка в продакшене
+    if (config.useApi) {
+      console.error('Error fetching blog post:', error)
+    }
     return {
       success: false,
       error: 'Error al cargar el artículo.'

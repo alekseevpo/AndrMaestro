@@ -107,13 +107,11 @@ onMounted(async () => {
       posts.value = result.data
       console.log('Artículos cargados desde API:', result.data.length)
     } else {
-      console.log('API no devolvió artículos, usando mockPosts:', mockPosts.length)
-      // Используем mockPosts если API не вернул данные
+      // Используем mockPosts если API не вернул данные (тихо, без логирования)
       posts.value = mockPosts
     }
   } catch (error) {
-    console.error('Error al cargar artículos:', error)
-    // En caso de error, usar mockPosts
+    // En caso de error, usar mockPosts (тихо, без логирования CORS ошибок)
     posts.value = mockPosts
   } finally {
     loading.value = false

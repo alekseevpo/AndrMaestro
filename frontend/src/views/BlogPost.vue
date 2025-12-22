@@ -152,22 +152,22 @@ onMounted(async () => {
     const result = await getBlogPost(slug)
     if (result.success && result.data) {
       post.value = result.data
-      console.log('Artículo cargado desde API:', result.data.title)
+      // Artículo cargado desde API
     } else {
       // Si no se encontró en API, buscar en postsData local como fallback
       const localPost = postsData.find(p => p.slug === slug)
       if (localPost) {
         post.value = localPost
-        console.log('Artículo cargado desde postsData local:', localPost.title)
+        // Artículo cargado desde postsData local
       }
     }
   } catch (error) {
-    console.error('Error al cargar artículo desde API:', error)
+    // Error al cargar artículo desde API (fallback a postsData local)
     // Si hay error, buscar en postsData local como fallback
     const localPost = postsData.find(p => p.slug === slug)
     if (localPost) {
       post.value = localPost
-      console.log('Artículo cargado desde postsData local (fallback):', localPost.title)
+      // Artículo cargado desde postsData local (fallback)
     }
   } finally {
     loading.value = false
