@@ -73,9 +73,10 @@
 </template>
 
 <script setup>
-import { ref, computed } from 'vue'
+import { ref, computed, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
 import { useSEO } from '../composables/useSEO'
+import { getBlogPosts } from '../utils/api'
 
 // SEO
 useSEO(
