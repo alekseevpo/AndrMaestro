@@ -15,16 +15,18 @@
 </template>
 
 <script setup>
-import { onMounted } from 'vue'
+import { onMounted, defineAsyncComponent } from 'vue'
 import NavBar from './components/NavBar.vue'
 import Footer from './components/Footer.vue'
-import WhatsAppButton from './components/WhatsAppButton.vue'
-import BackToTop from './components/BackToTop.vue'
-import Toast from './components/Toast.vue'
-import SkipToContent from './components/SkipToContent.vue'
-import Breadcrumbs from './components/Breadcrumbs.vue'
-import PageLoader from './components/PageLoader.vue'
 import { useTheme } from './composables/useTheme'
+
+// Lazy load non-critical components
+const WhatsAppButton = defineAsyncComponent(() => import('./components/WhatsAppButton.vue'))
+const BackToTop = defineAsyncComponent(() => import('./components/BackToTop.vue'))
+const Toast = defineAsyncComponent(() => import('./components/Toast.vue'))
+const SkipToContent = defineAsyncComponent(() => import('./components/SkipToContent.vue'))
+const Breadcrumbs = defineAsyncComponent(() => import('./components/Breadcrumbs.vue'))
+const PageLoader = defineAsyncComponent(() => import('./components/PageLoader.vue'))
 
 // Initialize theme
 useTheme()

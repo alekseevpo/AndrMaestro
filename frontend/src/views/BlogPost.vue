@@ -23,7 +23,13 @@
           <h1 class="post-title">{{ post.title }}</h1>
           
           <div v-if="post.image" class="post-featured-image">
-            <img :src="post.image" :alt="post.title" />
+            <img 
+              :src="post.image" 
+              :alt="post.title"
+              loading="eager"
+              decoding="async"
+              fetchpriority="high"
+            />
           </div>
         </div>
       </div>

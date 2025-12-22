@@ -42,6 +42,9 @@
                 :src="post.image" 
                 :alt="post.title"
                 loading="lazy"
+                decoding="async"
+                width="350"
+                height="250"
               />
               <div v-else class="blog-placeholder">
                 <span class="placeholder-icon">📸</span>
