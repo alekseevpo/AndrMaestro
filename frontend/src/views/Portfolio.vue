@@ -18,7 +18,7 @@
           @click="activeCategory = category"
           :class="['filter-btn', { active: activeCategory === category }]"
           :aria-pressed="activeCategory === category"
-          aria-label={`Filtrar por ${category}`}
+          :aria-label="`Filtrar por ${category}`"
         >
           {{ category }}
         </button>
