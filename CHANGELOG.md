@@ -2,6 +2,62 @@
 
 Este archivo documenta todos los cambios importantes realizados en el proyecto.
 
+## [1.3.0] - 2024-01-XX
+
+### Añadido
+- Sistema de notificaciones Toast para feedback del usuario
+- Botón "Volver arriba" (Back to Top) con scroll suave
+- Enlace "Saltar al contenido" para accesibilidad
+- Focus trap en ventanas modales (navegación por teclado mejorada)
+- Lógica de reintento para peticiones API (3 intentos)
+- Utilidades API centralizadas con manejo de errores mejorado
+- Code splitting para rutas (lazy loading)
+- Smooth scroll behavior global
+- Estilos de focus mejorados para accesibilidad
+
+### Mejorado
+- Manejo de errores API con mensajes amigables al usuario
+- Navegación por teclado en modales (Tab/Shift+Tab)
+- Accesibilidad general del sitio
+- Experiencia de usuario con notificaciones visuales
+- Rendimiento con code splitting
+
+### Cambiado
+- Formulario de contacto ahora usa utilidades API centralizadas
+- Rutas cargadas de forma lazy para mejor rendimiento
+- Scroll suave habilitado globalmente
+
+## [1.2.0] - 2024-01-XX
+
+### Añadido
+- Sistema SEO completo con Open Graph y Twitter Card мета-теги
+- Estructurados datos (JSON-LD) para mejor indexación
+- Composable `useSEO` para gestión dinámica de мета-теги
+- Validación de formularios con mensajes de error personalizados
+- Utilidades de validación (`validation.js`) para email, teléfono y campos requeridos
+- Composable `useKeyboard` para manejo de eventos de teclado
+- Cierre de modal con tecla ESC
+- Navegación por teclado mejorada (Enter/Space para abrir proyectos)
+- Aria-labels y atributos de accesibilidad en todos los componentes
+- Configuración centralizada (`config/index.js`)
+- Variables de entorno (.env.example)
+- robots.txt y sitemap.xml para SEO
+- IMPROVEMENTS.md con plan de mejoras futuras
+
+### Mejorado
+- Validación en tiempo real del formulario de contacto
+- Mensajes de error específicos para cada campo
+- Accesibilidad mejorada con aria-labels y roles semánticos
+- SEO optimizado en todas las páginas
+- Manejo de errores mejorado en formularios
+- Estructura de código más organizada con composables y utilidades
+
+### Cambiado
+- Formulario de contacto ahora valida antes de enviar
+- Modal de portafolio se cierra con tecla ESC
+- Proyectos del portafolio son accesibles por teclado
+- Configuración de WhatsApp ahora usa variables de entorno
+
 ## [1.1.0] - 2024-01-XX
 
 ### Cambiado
