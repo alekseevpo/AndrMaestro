@@ -1,0 +1,310 @@
+<template>
+  <div class="contact">
+    <section class="contact-hero section">
+      <div class="container">
+        <h1 class="section-title">Contacto</h1>
+        <p class="section-subtitle">
+          Estamos aquí para ayudarte a hacer realidad tus proyectos
+        </p>
+      </div>
+    </section>
+
+    <section class="contact-content section">
+      <div class="container">
+        <div class="contact-grid">
+          <div class="contact-info">
+            <h2>Información de Contacto</h2>
+            <p class="info-description">
+              Puedes contactarnos a través de cualquiera de estos medios. 
+              Respondemos a todas las consultas en un plazo máximo de 24 horas.
+            </p>
+            
+            <div class="contact-item">
+              <div class="contact-icon">📧</div>
+              <div>
+                <h3>Email</h3>
+                <p>info@andrmaestro.com</p>
+              </div>
+            </div>
+            
+            <div class="contact-item">
+              <div class="contact-icon">📱</div>
+              <div>
+                <h3>Teléfono</h3>
+                <p>+34 XXX XXX XXX</p>
+              </div>
+            </div>
+            
+            <div class="contact-item">
+              <div class="contact-icon">📍</div>
+              <div>
+                <h3>Ubicación</h3>
+                <p>España</p>
+              </div>
+            </div>
+            
+            <div class="contact-item">
+              <div class="contact-icon">🕒</div>
+              <div>
+                <h3>Horario</h3>
+                <p>Lunes - Viernes: 9:00 - 18:00<br>Sábados: 10:00 - 14:00</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="contact-form-wrapper">
+            <form class="contact-form" @submit.prevent="submitForm">
+              <h2>Envíanos un Mensaje</h2>
+              
+              <div class="form-group">
+                <label for="name">Nombre *</label>
+                <input 
+                  type="text" 
+                  id="name" 
+                  v-model="form.name" 
+                  required
+                  placeholder="Tu nombre"
+                />
+              </div>
+              
+              <div class="form-group">
+                <label for="email">Email *</label>
+                <input 
+                  type="email" 
+                  id="email" 
+                  v-model="form.email" 
+                  required
+                  placeholder="tu@email.com"
+                />
+              </div>
+              
+              <div class="form-group">
+                <label for="phone">Teléfono</label>
+                <input 
+                  type="tel" 
+                  id="phone" 
+                  v-model="form.phone" 
+                  placeholder="+34 XXX XXX XXX"
+                />
+              </div>
+              
+              <div class="form-group">
+                <label for="subject">Asunto *</label>
+                <input 
+                  type="text" 
+                  id="subject" 
+                  v-model="form.subject" 
+                  required
+                  placeholder="¿En qué podemos ayudarte?"
+                />
+              </div>
+              
+              <div class="form-group">
+                <label for="message">Mensaje *</label>
+                <textarea 
+                  id="message" 
+                  v-model="form.message" 
+                  required
+                  rows="6"
+                  placeholder="Cuéntanos más sobre tu proyecto..."
+                ></textarea>
+              </div>
+              
+              <button type="submit" class="btn btn-primary btn-large" :disabled="submitting">
+                {{ submitting ? 'Enviando...' : 'Enviar Mensaje' }}
+              </button>
+              
+              <div v-if="submitSuccess" class="success-message">
+                ✓ Mensaje enviado correctamente. Te contactaremos pronto.
+              </div>
+              
+              <div v-if="submitError" class="error-message">
+                ✗ Error al enviar el mensaje. Por favor, inténtalo de nuevo.
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</template>
+
+<script setup>
+import { ref } from 'vue'
+
+const form = ref({
+  name: '',
+  email: '',
+  phone: '',
+  subject: '',
+  message: ''
+})
+
+const submitting = ref(false)
+const submitSuccess = ref(false)
+const submitError = ref(false)
+
+const submitForm = async () => {
+  submitting.value = true
+  submitSuccess.value = false
+  submitError.value = false
+
+  try {
+    // Aquí se haría la llamada a la API
+    // const response = await fetch('/api/contact', { ... })
+    
+    // Simulación de envío
+    await new Promise(resolve => setTimeout(resolve, 1000))
+    
+    submitSuccess.value = true
+    form.value = {
+      name: '',
+      email: '',
+      phone: '',
+      subject: '',
+      message: ''
+    }
+  } catch (error) {
+    submitError.value = true
+  } finally {
+    submitting.value = false
+  }
+}
+</script>
+
+<style scoped>
+.contact-hero {
+  text-align: center;
+  padding-top: 120px;
+}
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.5fr;
+  gap: 60px;
+  align-items: start;
+}
+
+.contact-info h2 {
+  font-size: 36px;
+  font-weight: 600;
+  margin-bottom: 20px;
+  letter-spacing: -0.5px;
+}
+
+.info-description {
+  font-size: 19px;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin-bottom: 40px;
+}
+
+.contact-item {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 30px;
+  align-items: flex-start;
+}
+
+.contact-icon {
+  font-size: 32px;
+  flex-shrink: 0;
+}
+
+.contact-item h3 {
+  font-size: 21px;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.contact-item p {
+  font-size: 17px;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+.contact-form-wrapper {
+  background-color: #f5f5f7;
+  padding: 40px;
+  border-radius: 18px;
+}
+
+.contact-form h2 {
+  font-size: 36px;
+  font-weight: 600;
+  margin-bottom: 30px;
+  letter-spacing: -0.5px;
+}
+
+.form-group {
+  margin-bottom: 25px;
+}
+
+.form-group label {
+  display: block;
+  font-size: 17px;
+  font-weight: 500;
+  margin-bottom: 8px;
+  color: var(--text-color);
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 12px 15px;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  font-size: 17px;
+  font-family: inherit;
+  background-color: white;
+  transition: border-color 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: var(--accent-color);
+}
+
+.form-group textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+.btn {
+  width: 100%;
+  margin-top: 10px;
+}
+
+.success-message,
+.error-message {
+  margin-top: 20px;
+  padding: 15px;
+  border-radius: 8px;
+  font-size: 17px;
+}
+
+.success-message {
+  background-color: #d4edda;
+  color: #155724;
+  border: 1px solid #c3e6cb;
+}
+
+.error-message {
+  background-color: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
+}
+
+@media (max-width: 968px) {
+  .contact-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  
+  .contact-form-wrapper {
+    padding: 30px 20px;
+  }
+}
+</style>
+
