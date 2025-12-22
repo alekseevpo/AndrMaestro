@@ -2,6 +2,7 @@
   <div class="home" ref="homeRef" :class="{ 'fade-in': isVisible }">
     <section class="hero">
       <div class="hero-background">
+        <div class="hero-image"></div>
         <div class="hero-overlay"></div>
       </div>
       <div class="container">
@@ -137,12 +138,29 @@ const titleChars = computed(() => titleText.split(''))
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(135deg, rgba(0, 122, 255, 0.05) 0%, rgba(0, 122, 255, 0.02) 100%);
   z-index: 0;
+  overflow: hidden;
 }
 
-.dark .hero-background {
-  background: linear-gradient(135deg, rgba(0, 122, 255, 0.1) 0%, rgba(0, 122, 255, 0.05) 100%);
+.hero-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url('https://images.unsplash.com/photo-1581578731548-adfd7bd6a2d0?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&ixid=M3w1NzU5NTJ8MHwxfHNlYXJjaHwxfHxjb25zdHJ1Y3Rpb24lMjB3b3JrfGVufDB8fHx8MTcxMDc2NTY2NHww&ixlib=rb-4.0.3&q=80&w=1920');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  filter: blur(8px);
+  transform: scale(1.1);
+  opacity: 0.4;
+  transition: opacity 0.3s ease;
+}
+
+.dark .hero-image {
+  opacity: 0.3;
+  filter: blur(10px);
 }
 
 .hero-overlay {
@@ -151,16 +169,12 @@ const titleChars = computed(() => titleText.split(''))
   left: 0;
   right: 0;
   bottom: 0;
-  background-image: 
-    radial-gradient(circle at 20% 50%, rgba(0, 122, 255, 0.08) 0%, transparent 50%),
-    radial-gradient(circle at 80% 80%, rgba(0, 122, 255, 0.06) 0%, transparent 50%);
-  animation: float 6s ease-in-out infinite;
+  background: linear-gradient(135deg, rgba(0, 122, 255, 0.15) 0%, rgba(0, 122, 255, 0.05) 100%);
+  z-index: 1;
 }
 
 .dark .hero-overlay {
-  background-image: 
-    radial-gradient(circle at 20% 50%, rgba(0, 122, 255, 0.15) 0%, transparent 50%),
-    radial-gradient(circle at 80% 80%, rgba(0, 122, 255, 0.1) 0%, transparent 50%);
+  background: linear-gradient(135deg, rgba(0, 0, 0, 0.6) 0%, rgba(0, 122, 255, 0.2) 100%);
 }
 
 .dark .hero {
@@ -375,6 +389,16 @@ const titleChars = computed(() => titleText.split(''))
   .hero {
     min-height: 70vh;
     padding: 60px 0;
+  }
+
+  .hero-image {
+    filter: blur(6px);
+    opacity: 0.3;
+  }
+
+  .dark .hero-image {
+    filter: blur(8px);
+    opacity: 0.25;
   }
 
   .hero-title {

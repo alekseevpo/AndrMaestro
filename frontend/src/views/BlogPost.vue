@@ -149,9 +149,9 @@ onMounted(async () => {
   
   // Intentar cargar desde API primero
   try {
-    const result = await getBlogPost(slug)
+  const result = await getBlogPost(slug)
     if (result.success && result.data) {
-      post.value = result.data
+    post.value = result.data
       // Artículo cargado desde API
     } else {
       // Si no se encontró en API, buscar en postsData local como fallback
