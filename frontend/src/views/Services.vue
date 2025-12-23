@@ -322,17 +322,29 @@ const processSteps = ref([
 }
 
 .step-light {
-  background-color: var(--bg-color);
-  color: var(--text-color);
+  background-color: #ffffff;
+  color: #1d1d1f;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-  border: 1px solid var(--border-color);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.dark .step-light {
+  background-color: #2a2a2c;
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .step-dark {
-  background-color: var(--primary-color);
-  color: var(--text-color);
+  background-color: #1d1d1f;
+  color: #ffffff;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-  border: 1px solid var(--border-color);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.dark .step-dark {
+  background-color: #3a3a3c;
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.15);
 }
 
 .step:hover {
@@ -369,7 +381,7 @@ const processSteps = ref([
   font-size: 24px;
   font-weight: 600;
   margin-bottom: 15px;
-  color: var(--text-color);
+  color: #1d1d1f;
 }
 
 .dark .step h3 {
@@ -378,17 +390,41 @@ const processSteps = ref([
 }
 
 .step-light h3 {
-  color: var(--text-color);
+  color: #1d1d1f;
+}
+
+.dark .step-light h3 {
+  color: #ffffff;
 }
 
 .step-dark h3 {
-  color: var(--text-color);
+  color: #ffffff;
+}
+
+.dark .step-dark h3 {
+  color: #ffffff;
 }
 
 .step p {
   line-height: 1.7;
   font-size: 16px;
-  color: var(--text-secondary);
+  color: #4a4a4c;
+}
+
+.step-light p {
+  color: #4a4a4c;
+}
+
+.dark .step-light p {
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.step-dark p {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.dark .step-dark p {
+  color: rgba(255, 255, 255, 0.9);
 }
 
 @keyframes float {
