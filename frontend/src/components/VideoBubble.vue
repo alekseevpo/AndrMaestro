@@ -8,17 +8,6 @@
         role="complementary"
         aria-label="Video reel"
       >
-        <button 
-          class="bubble-close" 
-          @click="closeBubble" 
-          aria-label="Cerrar video"
-          title="Cerrar"
-        >
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-            <line x1="18" y1="6" x2="6" y2="18"></line>
-            <line x1="6" y1="6" x2="18" y2="18"></line>
-          </svg>
-        </button>
         <div class="mini-thumb" @click="openExpanded" role="button" aria-label="Reproducir video">
           <iframe
             v-if="videoId"
@@ -65,7 +54,6 @@ import { computed, onMounted, ref } from 'vue'
 
 const DEFAULT_VIDEO_ID = import.meta.env.VITE_VIDEO_REEL_ID || 'oj6S8WFVQjo'
 const DEFAULT_POSTER = import.meta.env.VITE_VIDEO_REEL_POSTER || ''
-const DISMISS_KEY = 'video-bubble-dismissed'
 const videoId = DEFAULT_VIDEO_ID
 const poster = DEFAULT_POSTER
 const visible = ref(false)
@@ -110,26 +98,6 @@ const closeExpanded = () => {
   lockScroll(false)
 }
 
-const closeBubble = () => {
-  visible.value = false
-  expanded.value = false
-  lockScroll(false)
-  // Save dismissal state
-  if (typeof localStorage !== 'undefined') {
-    localStorage.setItem(DISMISS_KEY, 'true')
-  }
-}
-
-const showBubble = () => {
-  // Clear dismissal state
-  if (typeof localStorage !== 'undefined') {
-    localStorage.removeItem(DISMISS_KEY)
-  }
-  // Show bubble
-  visible.value = true
-  expanded.value = false
-}
-
 const lockScroll = (lock) => {
   if (typeof document === 'undefined') return
   if (lock) {
@@ -139,18 +107,9 @@ const lockScroll = (lock) => {
   }
 }
 
-const shouldShow = () => {
-  if (typeof localStorage === 'undefined') return true
-  const dismissed = localStorage.getItem(DISMISS_KEY)
-  return dismissed !== 'true'
-}
+const shouldShow = () => true
 
 onMounted(() => {
-  // Always expose the function, even if video is dismissed
-  if (typeof window !== 'undefined') {
-    window.showVideoBubble = showBubble
-  }
-  
   if (!videoId) return
   if (!shouldShow()) return
   // slight delay to avoid layout shift
@@ -173,50 +132,10 @@ onMounted(() => {
 .video-bubble.mini {
   background: rgba(0, 0, 0, 0.8);
   border-radius: 12px;
-  overflow: visible;
+  overflow: hidden;
   box-shadow: 0 12px 32px rgba(0, 0, 0, 0.35);
   backdrop-filter: blur(6px);
   border: 1px solid rgba(255, 255, 255, 0.08);
-  position: relative;
-}
-
-.bubble-close {
-  position: absolute;
-  top: 4px;
-  right: 4px;
-  width: 20px;
-  height: 20px;
-  background: none;
-  border: none;
-  color: #ffffff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  z-index: 10;
-  transition: opacity 0.2s ease;
-  padding: 0;
-  margin: 0;
-}
-
-.bubble-close:hover {
-  opacity: 0.7;
-}
-
-.bubble-close:active {
-  opacity: 0.5;
-}
-
-.bubble-close svg {
-  width: 14px;
-  height: 14px;
-  display: block;
-  flex-shrink: 0;
-}
-
-.bubble-close svg line {
-  stroke: #ffffff;
-  stroke-width: 2.5;
 }
 
 .mini-thumb {
