@@ -224,11 +224,9 @@ const titleChars = computed(() => titleText.split(''))
   background-clip: text;
   animation: metallic-shine 4s ease-in-out infinite;
   text-shadow: 
-    0 0 10px rgba(255, 255, 255, 0.3),
-    0 0 20px rgba(255, 255, 255, 0.2),
-    0 2px 4px rgba(0, 0, 0, 0.3),
-    0 4px 8px rgba(0, 0, 0, 0.2);
-  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+    0 1px 2px rgba(0, 0, 0, 0.2),
+    0 2px 4px rgba(0, 0, 0, 0.15);
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.2));
 }
 
 .dark .hero-title.glitch-title {
@@ -248,11 +246,10 @@ const titleChars = computed(() => titleText.split(''))
   -webkit-text-fill-color: transparent;
   background-clip: text;
   text-shadow: 
-    0 0 15px rgba(255, 255, 255, 0.4),
-    0 0 30px rgba(255, 255, 255, 0.3),
-    0 2px 6px rgba(0, 0, 0, 0.5),
-    0 4px 12px rgba(0, 0, 0, 0.4);
-  filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.5));
+    0 0 8px rgba(255, 255, 255, 0.2),
+    0 1px 3px rgba(0, 0, 0, 0.4),
+    0 2px 6px rgba(0, 0, 0, 0.3);
+  filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.4));
 }
 
 @keyframes metallic-shine {

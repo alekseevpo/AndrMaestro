@@ -301,37 +301,33 @@
 }
 
 .glitch-title::before {
-  left: 3px;
+  left: 2px;
   text-shadow: 
-    -3px 0 rgba(0, 122, 255, 0.9),
-    -2px 2px rgba(0, 122, 255, 0.7),
-    -4px -2px rgba(0, 122, 255, 0.5),
-    -5px 1px rgba(0, 122, 255, 0.3);
+    -2px 0 rgba(0, 122, 255, 0.8),
+    -1px 1px rgba(0, 122, 255, 0.6);
   animation: glitch 8s infinite linear alternate-reverse;
-  background: linear-gradient(135deg, rgba(0, 122, 255, 0.8), rgba(0, 180, 255, 0.8));
+  background: linear-gradient(135deg, rgba(0, 122, 255, 0.7), rgba(0, 180, 255, 0.7));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  opacity: 0.75;
+  opacity: 0.7;
   mix-blend-mode: screen;
-  filter: blur(0.8px) drop-shadow(0 0 3px rgba(0, 122, 255, 0.5));
+  filter: drop-shadow(0 0 2px rgba(0, 122, 255, 0.4));
 }
 
 .glitch-title::after {
-  left: -3px;
+  left: -2px;
   text-shadow: 
-    3px 0 rgba(255, 0, 193, 0.9),
-    2px -2px rgba(255, 0, 193, 0.7),
-    4px 2px rgba(255, 0, 193, 0.5),
-    5px -1px rgba(255, 0, 193, 0.3);
+    2px 0 rgba(255, 0, 193, 0.8),
+    1px -1px rgba(255, 0, 193, 0.6);
   animation: glitch 6s infinite linear alternate-reverse;
-  background: linear-gradient(135deg, rgba(255, 0, 193, 0.8), rgba(255, 100, 220, 0.8));
+  background: linear-gradient(135deg, rgba(255, 0, 193, 0.7), rgba(255, 100, 220, 0.7));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  opacity: 0.75;
+  opacity: 0.7;
   mix-blend-mode: screen;
-  filter: blur(0.8px) drop-shadow(0 0 3px rgba(255, 0, 193, 0.5));
+  filter: drop-shadow(0 0 2px rgba(255, 0, 193, 0.4));
 }
 
 .glitch-title:hover::before {
