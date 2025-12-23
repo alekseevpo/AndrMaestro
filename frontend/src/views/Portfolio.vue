@@ -206,6 +206,18 @@ const categories = ref(['Todos', 'Carpintería', 'Pintura', 'Revestimientos', 'R
 
 const activeCategory = ref('Todos')
 
+// Helper function to initialize error tracking for project images
+const initializeProjectErrors = (project) => {
+  return {
+    ...project,
+    imageError: false,
+    imageBeforeError: false,
+    imageAfterError: false,
+    imageLoaded: false,
+    imageAfterLoaded: false
+  }
+}
+
 const projects = ref([
   {
     id: 1,
@@ -244,8 +256,8 @@ const projects = ref([
     ],
     duration: '2 semanas',
     type: 'Renovación'
-  })),
-  initializeProjectErrors({
+  },
+  {
     id: 3,
     title: 'Baño de Lujo',
     category: 'Revestimientos',
@@ -263,8 +275,8 @@ const projects = ref([
     ],
     duration: '4 semanas',
     type: 'Reforma Integral'
-  })),
-  initializeProjectErrors({
+  },
+  {
     id: 4,
     title: 'Dormitorio Principal',
     category: 'Carpintería',
@@ -282,8 +294,8 @@ const projects = ref([
     ],
     duration: '2 semanas',
     type: 'Carpintería'
-  })),
-  initializeProjectErrors({
+  },
+  {
     id: 5,
     title: 'Oficina en Casa',
     category: 'Reformas',
@@ -301,8 +313,8 @@ const projects = ref([
     ],
     duration: '3 semanas',
     type: 'Reforma Integral'
-  })),
-  initializeProjectErrors({
+  },
+  {
     id: 6,
     title: 'Revestimiento de Piedra Natural',
     category: 'Revestimientos',
@@ -320,8 +332,8 @@ const projects = ref([
     ],
     duration: '1 semana',
     type: 'Revestimientos'
-  })),
-  initializeProjectErrors({
+  },
+  {
     id: 7,
     title: 'Renovación de Fachada',
     category: 'Pintura',
@@ -339,8 +351,8 @@ const projects = ref([
     ],
     duration: '2 semanas',
     type: 'Pintura Exterior'
-  })),
-  initializeProjectErrors({
+  },
+  {
     id: 8,
     title: 'Estantería Biblioteca',
     category: 'Carpintería',
@@ -358,8 +370,8 @@ const projects = ref([
     ],
     duration: '1 semana',
     type: 'Carpintería'
-  }))
-])
+  }
+].map(initializeProjectErrors))
 
 const filteredProjects = computed(() => {
   if (activeCategory.value === 'Todos') {

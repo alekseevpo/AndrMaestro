@@ -3,6 +3,11 @@
  * Loads reCAPTCHA script only if site key is configured
  */
 export const loadRecaptcha = () => {
+  // Проверка на серверный рендеринг
+  if (typeof window === 'undefined' || typeof document === 'undefined') {
+    return Promise.resolve()
+  }
+
   const siteKey = import.meta.env.VITE_RECAPTCHA_SITE_KEY
 
   if (!siteKey) {
