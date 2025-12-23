@@ -61,7 +61,8 @@
 </template>
 
 <script setup>
-import { computed, onMounted, ref } from 'vue'
+import { computed, onMounted, ref, watch } from 'vue'
+import { useRoute } from 'vue-router'
 
 const DEFAULT_VIDEO_ID = import.meta.env.VITE_VIDEO_REEL_ID || 'oj6S8WFVQjo'
 const DEFAULT_POSTER = import.meta.env.VITE_VIDEO_REEL_POSTER || ''
@@ -70,6 +71,7 @@ const videoId = DEFAULT_VIDEO_ID
 const poster = DEFAULT_POSTER
 const visible = ref(false)
 const expanded = ref(false)
+const route = useRoute()
 
 const embedUrl = computed(() => {
   if (!videoId) return ''
@@ -145,6 +147,23 @@ const shouldShow = () => {
   return dismissed !== 'true'
 }
 
+// Function to check and show video if needed
+const checkAndShowVideo = () => {
+  if (!videoId) return
+  if (!shouldShow()) return
+  if (!visible.value) {
+    // slight delay to avoid layout shift
+    setTimeout(() => {
+      visible.value = true
+    }, 300)
+  }
+}
+
+// Watch route changes to ensure video stays visible
+watch(() => route.path, () => {
+  checkAndShowVideo()
+}, { immediate: false })
+
 // Expose showBubble function globally
 onMounted(() => {
   // Always expose the function, even if video is dismissed
@@ -152,12 +171,7 @@ onMounted(() => {
     window.showVideoBubble = showBubble
   }
   
-  if (!videoId) return
-  if (!shouldShow()) return
-  // slight delay to avoid layout shift
-  setTimeout(() => {
-    visible.value = true
-  }, 600)
+  checkAndShowVideo()
 })
 </script>
 
