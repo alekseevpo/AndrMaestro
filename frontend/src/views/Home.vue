@@ -200,13 +200,19 @@ const titleChars = computed(() => titleText.split(''))
   line-height: 1.1;
   color: var(--text-color);
   display: inline-block;
-  overflow: hidden;
+  overflow: visible;
   white-space: nowrap;
+  position: relative;
+  z-index: 0;
 }
 
 .dark .hero-title {
   color: #ffffff;
   font-weight: 700;
+}
+
+.hero-title.glitch-title {
+  overflow: visible;
 }
 
 /* Плавная анимация появления букв */
