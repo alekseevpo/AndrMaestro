@@ -85,7 +85,7 @@ export const blogPostsData = [
     category: 'Materiales',
     date: '2024-12-18',
     readTime: 10,
-    image: 'https://images.unsplash.com/photo-1556912172-45b7abe8b7e1?w=1200&h=800&fit=crop&auto=format',
+    image: 'https://images.unsplash.com/photo-1556912172-45b7abe8b7e4?w=1200&h=800&fit=crop&auto=format',
     tags: ['cocina', 'materiales', 'encimeras', 'muebles']
   },
   {
