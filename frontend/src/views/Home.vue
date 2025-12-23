@@ -7,7 +7,7 @@
       </div>
       <div class="container">
         <div class="hero-content">
-          <h1 class="hero-title glitch-title" :data-text="titleText">
+          <h1 class="hero-title">
             <span 
               v-for="(char, index) in titleChars" 
               :key="index"
@@ -16,7 +16,6 @@
             >
               {{ char === ' ' ? '\u00A0' : char }}
             </span>
-            <span class="scanline"></span>
           </h1>
           <p class="hero-subtitle">
             Maestro profesional de acabados interiores con años de experiencia 
@@ -198,67 +197,15 @@ const titleChars = computed(() => titleText.split(''))
   margin-bottom: 20px;
   letter-spacing: -1px;
   line-height: 1.1;
+  color: var(--text-color);
   display: inline-block;
-  overflow: visible;
+  overflow: hidden;
   white-space: nowrap;
-  position: relative;
-  z-index: 0;
 }
 
-.hero-title.glitch-title {
-  overflow: visible;
-  background: linear-gradient(
-    135deg,
-    #ffffff 0%,
-    #e8e8e8 15%,
-    #ffffff 30%,
-    #f0f0f0 45%,
-    #ffffff 60%,
-    #e8e8e8 75%,
-    #ffffff 90%,
-    #f5f5f5 100%
-  );
-  background-size: 200% 200%;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  animation: metallic-shine 4s ease-in-out infinite;
-  text-shadow: 
-    0 1px 2px rgba(0, 0, 0, 0.2),
-    0 2px 4px rgba(0, 0, 0, 0.15);
-}
-
-.dark .hero-title.glitch-title {
-  background: linear-gradient(
-    135deg,
-    #ffffff 0%,
-    #d0d0d0 15%,
-    #ffffff 30%,
-    #e0e0e0 45%,
-    #ffffff 60%,
-    #d0d0d0 75%,
-    #ffffff 90%,
-    #e8e8e8 100%
-  );
-  background-size: 200% 200%;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  text-shadow: 
-    0 1px 3px rgba(0, 0, 0, 0.4),
-    0 2px 6px rgba(0, 0, 0, 0.3);
-}
-
-@keyframes metallic-shine {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
+.dark .hero-title {
+  color: #ffffff;
+  font-weight: 700;
 }
 
 /* Плавная анимация появления букв */
