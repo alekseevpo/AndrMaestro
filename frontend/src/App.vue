@@ -11,6 +11,7 @@
     <WhatsAppButton />
     <BackToTop />
     <Toast />
+    <VideoBubble />
     <PageLoader />
     <CookieConsent />
     <PrivacyModal />
@@ -34,6 +35,7 @@ const Toast = defineAsyncComponent(() => import('./components/Toast.vue'))
 const SkipToContent = defineAsyncComponent(() => import('./components/SkipToContent.vue'))
 const Breadcrumbs = defineAsyncComponent(() => import('./components/Breadcrumbs.vue'))
 const PageLoader = defineAsyncComponent(() => import('./components/PageLoader.vue'))
+const VideoBubble = defineAsyncComponent(() => import('./components/VideoBubble.vue'))
 
 // Initialize themes
 useTheme()
