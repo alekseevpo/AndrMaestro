@@ -61,7 +61,7 @@
 </template>
 
 <script setup>
-import { computed, onMounted, ref, watch } from 'vue'
+import { computed, onMounted, onUnmounted, ref, watch } from 'vue'
 import { useRoute } from 'vue-router'
 
 const DEFAULT_VIDEO_ID = import.meta.env.VITE_VIDEO_REEL_ID || 'oj6S8WFVQjo'
@@ -150,7 +150,11 @@ const shouldShow = () => {
 // Function to check and show video if needed
 const checkAndShowVideo = () => {
   if (!videoId) return
-  if (!shouldShow()) return
+  if (!shouldShow()) {
+    visible.value = false
+    return
+  }
+  // Always show if not dismissed
   if (!visible.value) {
     // slight delay to avoid layout shift
     setTimeout(() => {
@@ -172,6 +176,19 @@ onMounted(() => {
   }
   
   checkAndShowVideo()
+  
+  // Ensure video stays visible on scroll
+  const handleScroll = () => {
+    if (shouldShow() && !visible.value) {
+      visible.value = true
+    }
+  }
+  window.addEventListener('scroll', handleScroll, { passive: true })
+  
+  // Cleanup on unmount
+  onUnmounted(() => {
+    window.removeEventListener('scroll', handleScroll)
+  })
 })
 </script>
 
