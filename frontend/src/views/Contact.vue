@@ -182,7 +182,7 @@
                     aria-describedby="policy-error"
                     required
                   />
-                  <span>
+                  <span class="checkbox-text">
                     Acepto la <button type="button" class="link-button" @click="openPrivacy">Política de Privacidad</button> y confirmo la protección con reCAPTCHA.
                   </span>
                 </label>
@@ -570,16 +570,22 @@ const openPrivacy = () => {
 .checkbox-label {
   display: flex;
   align-items: flex-start;
-  gap: 10px;
+  gap: 12px;
   font-size: 14px;
-  line-height: 1.5;
+  line-height: 1.4;
   color: var(--text-secondary);
+  cursor: pointer;
 }
 
 .checkbox-label input[type="checkbox"] {
   width: 18px;
   height: 18px;
-  margin-top: 2px;
+  margin-top: 3px;
+  flex-shrink: 0;
+}
+
+.checkbox-text {
+  display: block;
 }
 
 .link-button {
