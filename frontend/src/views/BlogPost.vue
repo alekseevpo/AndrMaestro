@@ -109,7 +109,7 @@
                 >
                   <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
                     <circle cx="12" cy="12" r="10"/>
-                    <text x="12" y="16.5" font-size="13" font-weight="600" text-anchor="middle" fill="white" font-family="Arial, sans-serif">@</text>
+                    <path d="M12 8.5c-1.93 0-3.5 1.57-3.5 3.5s1.57 3.5 3.5 3.5c.83 0 1.57-.29 2.17-.78l1.33 1.33c-.9.9-2.15 1.45-3.5 1.45-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5v.5h-3.5v1.5h5V12c0-2.76-2.24-5-5-5z" fill="white"/>
                   </svg>
                 </a>
                 <a 
