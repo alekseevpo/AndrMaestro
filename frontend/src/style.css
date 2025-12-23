@@ -158,6 +158,11 @@ button {
   margin-bottom: 20px;
   letter-spacing: -0.5px;
   color: var(--text-color);
+  position: relative;
+}
+
+.section-title.glitch-subtle {
+  animation: glitch-subtle 8s infinite;
 }
 
 .section-subtitle {

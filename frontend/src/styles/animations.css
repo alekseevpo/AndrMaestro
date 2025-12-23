@@ -165,6 +165,137 @@
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+/* Glitch Effect for Titles (Vercel-style) */
+@keyframes glitch {
+  0% {
+    transform: translate(0);
+  }
+  20% {
+    transform: translate(-2px, 2px);
+  }
+  40% {
+    transform: translate(-2px, -2px);
+  }
+  60% {
+    transform: translate(2px, 2px);
+  }
+  80% {
+    transform: translate(2px, -2px);
+  }
+  100% {
+    transform: translate(0);
+  }
+}
+
+@keyframes glitch-scan {
+  0% {
+    transform: translateY(0);
+    opacity: 0.1;
+  }
+  50% {
+    opacity: 0.15;
+  }
+  100% {
+    transform: translateY(100%);
+    opacity: 0.1;
+  }
+}
+
+.glitch-title {
+  position: relative;
+  display: inline-block;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  text-transform: none;
+}
+
+.glitch-title::before,
+.glitch-title::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: transparent;
+}
+
+.glitch-title::before {
+  left: 2px;
+  text-shadow: -2px 0 rgba(0, 122, 255, 0.7);
+  clip: rect(44px, 450px, 56px, 0);
+  animation: glitch 3s infinite linear alternate-reverse;
+  color: rgba(0, 122, 255, 0.7);
+  opacity: 0.6;
+  mix-blend-mode: screen;
+}
+
+.glitch-title::after {
+  left: -2px;
+  text-shadow: 2px 0 rgba(255, 0, 193, 0.7);
+  clip: rect(44px, 450px, 56px, 0);
+  animation: glitch 2s infinite linear alternate-reverse;
+  color: rgba(255, 0, 193, 0.7);
+  opacity: 0.6;
+  mix-blend-mode: screen;
+}
+
+.glitch-title:hover::before {
+  animation: glitch 0.3s infinite linear alternate-reverse;
+}
+
+.glitch-title:hover::after {
+  animation: glitch 0.3s infinite linear alternate-reverse;
+}
+
+/* Subtle glitch for section titles */
+.section-title.glitch-subtle {
+  position: relative;
+  animation: glitch-subtle 8s infinite;
+}
+
+@keyframes glitch-subtle {
+  0%, 94%, 100% {
+    transform: translate(0);
+    text-shadow: 0 0 0 transparent;
+  }
+  95% {
+    transform: translate(-0.5px, 0.5px);
+    text-shadow: -0.5px 0.5px 0 rgba(0, 122, 255, 0.2);
+  }
+  96% {
+    transform: translate(0.5px, -0.5px);
+    text-shadow: 0.5px -0.5px 0 rgba(255, 0, 193, 0.2);
+  }
+  97% {
+    transform: translate(0);
+    text-shadow: 0 0 0 transparent;
+  }
+}
+
+/* Scanline effect overlay - separate element */
+.glitch-title {
+  overflow: hidden;
+}
+
+.glitch-title .scanline {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(
+    to right,
+    transparent 0%,
+    rgba(0, 122, 255, 0.5) 50%,
+    transparent 100%
+  );
+  animation: glitch-scan 3s linear infinite;
+  pointer-events: none;
+  z-index: 10;
+}
+
 /* Reduce Motion for Accessibility */
 @media (prefers-reduced-motion: reduce) {
   *,
@@ -173,6 +304,11 @@
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+  }
+  
+  .glitch-title::before,
+  .glitch-title::after {
+    animation: none !important;
   }
 }
 

@@ -7,7 +7,7 @@
       </div>
       <div class="container">
         <div class="hero-content">
-          <h1 class="hero-title">
+          <h1 class="hero-title glitch-title" :data-text="titleText">
             <span 
               v-for="(char, index) in titleChars" 
               :key="index"
@@ -16,6 +16,7 @@
             >
               {{ char === ' ' ? '\u00A0' : char }}
             </span>
+            <span class="scanline"></span>
           </h1>
           <p class="hero-subtitle">
             Maestro profesional de acabados interiores con años de experiencia 
@@ -31,7 +32,7 @@
 
     <section class="features section">
       <div class="container">
-        <h2 class="section-title">¿Por qué elegirnos?</h2>
+        <h2 class="section-title glitch-subtle">¿Por qué elegirnos?</h2>
         <p class="section-subtitle">
           Comprometidos con la excelencia en cada proyecto
         </p>
@@ -511,11 +512,11 @@ const titleChars = computed(() => titleText.split(''))
   .cta-section {
     padding: 50px 0;
   }
-
+  
   .cta-content h2 {
     font-size: 24px;
   }
-
+  
   .feature-card {
     padding: 24px 20px;
   }
