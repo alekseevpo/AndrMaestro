@@ -5,12 +5,6 @@
         <div class="modal-content">
           <div class="modal-header">
             <h2>Política de Privacidad</h2>
-            <button @click="closeModal" class="modal-close" aria-label="Cerrar">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <line x1="18" y1="6" x2="6" y2="18"/>
-                <line x1="6" y1="6" x2="18" y2="18"/>
-              </svg>
-            </button>
           </div>
           
           <div class="modal-body">
