@@ -85,6 +85,44 @@
                     <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
                   </svg>
                 </a>
+                <a 
+                  :href="instagramShareUrl"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="share-btn instagram"
+                  aria-label="Compartir en Instagram"
+                  title="Compartir en Instagram"
+                >
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+                    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+                    <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+                  </svg>
+                </a>
+                <a 
+                  :href="threadsShareUrl"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="share-btn threads"
+                  aria-label="Compartir en Threads"
+                  title="Compartir en Threads"
+                >
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12.186 8.672L18.74 19H13.6l-1.414-2.5L8.4 19H3.26l6.554-10.328L12.186 0l2.372 8.672zm-1.414 2.5L8.4 16h7.2l-2.372-4.828z"/>
+                  </svg>
+                </a>
+                <a 
+                  :href="linkedinShareUrl"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="share-btn linkedin"
+                  aria-label="Compartir en LinkedIn"
+                  title="Compartir en LinkedIn"
+                >
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                  </svg>
+                </a>
               </div>
             </div>
           </div>
@@ -109,6 +147,7 @@ import { useSEO } from '../composables/useSEO'
 import { generateStructuredData, addStructuredData } from '../utils/seo'
 import { getBlogPost } from '../utils/api'
 import { blogPostsData } from '../data/blogPosts'
+import { config } from '../config'
 
 const route = useRoute()
 
@@ -141,6 +180,23 @@ const facebookShareUrl = computed(() => {
 const twitterShareUrl = computed(() => {
   if (!post.value || !currentUrl.value) return '#'
   return `https://twitter.com/intent/tweet?url=${encodeURIComponent(currentUrl.value)}&text=${encodeURIComponent(post.value.title)}`
+})
+
+const instagramShareUrl = computed(() => {
+  if (!currentUrl.value) return '#'
+  // Instagram не поддерживает прямые share ссылки, используем базовый URL
+  return config.socialMedia.instagram
+})
+
+const threadsShareUrl = computed(() => {
+  if (!post.value || !currentUrl.value) return '#'
+  const text = `${post.value.title} - ${currentUrl.value}`
+  return `https://www.threads.net/intent/post?text=${encodeURIComponent(text)}`
+})
+
+const linkedinShareUrl = computed(() => {
+  if (!currentUrl.value) return '#'
+  return `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(currentUrl.value)}`
 })
 
 // Загрузить пост из API
@@ -469,6 +525,35 @@ const formatDate = (dateString) => {
   background-color: #1A91DA;
   transform: translateY(-3px);
   box-shadow: 0 8px 16px rgba(29, 161, 242, 0.3);
+}
+
+.share-btn.instagram {
+  background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+}
+
+.share-btn.instagram:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 16px rgba(228, 64, 95, 0.3);
+}
+
+.share-btn.threads {
+  background-color: #000000;
+}
+
+.share-btn.threads:hover {
+  background-color: #1a1a1a;
+  transform: translateY(-3px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+}
+
+.share-btn.linkedin {
+  background-color: #0077B5;
+}
+
+.share-btn.linkedin:hover {
+  background-color: #006399;
+  transform: translateY(-3px);
+  box-shadow: 0 8px 16px rgba(0, 119, 181, 0.3);
 }
 
 .loading-post {

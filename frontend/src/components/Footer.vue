@@ -33,7 +33,7 @@
           <h4>Síguenos</h4>
           <div class="social-links">
             <a 
-              href="https://www.facebook.com/andrmaestro" 
+              :href="config.socialMedia.facebook" 
               target="_blank" 
               rel="noopener noreferrer"
               class="social-link"
@@ -47,7 +47,7 @@
               </div>
             </a>
             <a 
-              href="https://www.instagram.com/andrmaestro" 
+              :href="config.socialMedia.instagram" 
               target="_blank" 
               rel="noopener noreferrer"
               class="social-link"
@@ -63,7 +63,7 @@
               </div>
             </a>
             <a 
-              href="https://www.youtube.com/@andrmaestro" 
+              :href="config.socialMedia.youtube" 
               target="_blank" 
               rel="noopener noreferrer"
               class="social-link"
@@ -77,7 +77,21 @@
               </div>
             </a>
             <a 
-              href="https://wa.me/34633343468" 
+              :href="config.socialMedia.threads" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              class="social-link"
+              aria-label="Threads"
+              title="Threads"
+            >
+              <div class="social-icon threads">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M12.186 8.672L18.74 19H13.6l-1.414-2.5L8.4 19H3.26l6.554-10.328L12.186 0l2.372 8.672zm-1.414 2.5L8.4 16h7.2l-2.372-4.828z"/>
+                </svg>
+              </div>
+            </a>
+            <a 
+              :href="config.socialMedia.whatsapp" 
               target="_blank" 
               rel="noopener noreferrer"
               class="social-link"
@@ -103,6 +117,7 @@
 
 <script setup>
 import { computed } from 'vue'
+import { config } from '../config'
 
 const currentYear = computed(() => new Date().getFullYear())
 </script>
@@ -253,6 +268,17 @@ const currentYear = computed(() => new Date().getFullYear())
   border-color: #FF0000 !important;
   color: white !important;
   box-shadow: 0 4px 16px rgba(255, 0, 0, 0.4);
+}
+
+.social-icon.threads {
+  color: #000000;
+}
+
+.social-link:hover .social-icon.threads {
+  background: #000000 !important;
+  border-color: #000000 !important;
+  color: white !important;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
 }
 
 .social-icon.whatsapp {
