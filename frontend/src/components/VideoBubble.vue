@@ -180,19 +180,15 @@ onMounted(() => {
   position: fixed;
   left: 20px;
   bottom: 20px;
-  width: 140px;
-  max-width: calc(100vw - 40px);
-  z-index: 9999;
+  z-index: 2999;
   pointer-events: auto;
 }
 
 .video-bubble.mini {
-  background: rgba(0, 0, 0, 0.8);
-  border-radius: 12px;
+  background: transparent;
+  border-radius: 20px;
   overflow: visible;
-  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.35);
-  backdrop-filter: blur(6px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.3);
   position: relative;
 }
 
@@ -237,12 +233,19 @@ onMounted(() => {
 
 .mini-thumb {
   position: relative;
-  width: 100%;
-  padding-bottom: 140%; /* portrait */
+  width: 125px;
+  aspect-ratio: 9 / 16;
+  max-width: 125px;
   overflow: hidden;
-  border-radius: 12px;
+  border-radius: 20px;
   background: #0b0b0b;
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  border: none;
+  cursor: pointer;
+  transition: transform ease 0.3s;
+}
+
+.mini-thumb:hover {
+  transform: scale(1.05);
 }
 
 .mini-thumb iframe,
@@ -253,15 +256,16 @@ onMounted(() => {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  border-radius: 12px;
+  border-radius: 20px;
 }
 
 .mini-thumb iframe {
   pointer-events: none;
-  width: 125%;
-  height: 125%;
-  left: -12.5%;
-  top: -12.5%;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  border-radius: 20px;
 }
 
 .thumb-placeholder {
