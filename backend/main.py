@@ -9,6 +9,7 @@ from slowapi import Limiter, _rate_limit_exceeded_handler
 from slowapi.util import get_remote_address
 from slowapi.errors import RateLimitExceeded
 from slowapi.middleware import SlowAPIMiddleware
+from utils.recaptcha import RECAPTCHA_REQUIRED
 
 # Load environment variables
 load_dotenv()
@@ -86,7 +87,12 @@ async def submit_contact(request: Request, contact_data: ContactRequest):
     Envía notificación al administrador y confirmación al usuario.
     """
     try:
-        # Verify reCAPTCHA if token is provided
+        # Verify reCAPTCHA (required in prod when RECAPTCHA_REQUIRED=true)
+        if RECAPTCHA_REQUIRED and not contact_data.recaptcha_token:
+            raise HTTPException(
+                status_code=400,
+                detail="reCAPTCHA token is required"
+            )
         if contact_data.recaptcha_token:
             from utils.recaptcha import verify_recaptcha
             remote_ip = request.client.host if request.client else None

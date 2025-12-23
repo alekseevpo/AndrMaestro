@@ -8,6 +8,8 @@ from typing import Optional
 RECAPTCHA_SECRET_KEY = os.getenv("RECAPTCHA_SECRET_KEY", "")
 RECAPTCHA_VERIFY_URL = "https://www.google.com/recaptcha/api/siteverify"
 RECAPTCHA_MIN_SCORE = float(os.getenv("RECAPTCHA_MIN_SCORE", "0.5"))
+# Require captcha in production (set RECAPTCHA_REQUIRED=true). Default false to not break local dev.
+RECAPTCHA_REQUIRED = os.getenv("RECAPTCHA_REQUIRED", "false").lower() == "true"
 
 
 async def verify_recaptcha(token: str, remote_ip: Optional[str] = None) -> tuple[bool, Optional[str]]:
@@ -24,6 +26,10 @@ async def verify_recaptcha(token: str, remote_ip: Optional[str] = None) -> tuple
         error_message: Error message if verification failed, None if successful
     """
     if not RECAPTCHA_SECRET_KEY:
+        if RECAPTCHA_REQUIRED:
+            error_message = "reCAPTCHA is required but secret key is not configured"
+            print(f"[reCAPTCHA] {error_message}")
+            return False, error_message
         # In development, allow requests without reCAPTCHA
         print("[reCAPTCHA] Secret key not configured, skipping verification")
         return True, None

@@ -172,6 +172,23 @@
                 ></textarea>
                 <span v-if="errors.message" id="message-error" class="error-message-field">{{ errors.message }}</span>
               </div>
+
+              <div class="form-group checkbox-group">
+                <label class="checkbox-label">
+                  <input
+                    type="checkbox"
+                    v-model="form.acceptPolicy"
+                    :class="{ 'error': errors.acceptPolicy }"
+                    aria-describedby="policy-error"
+                    required
+                  />
+                  <span>
+                    Acepto la <button type="button" class="link-button" @click="openPrivacy">Política de Privacidad</button> y confirmo la protección con reCAPTCHA.
+                  </span>
+                </label>
+                <span v-if="errors.acceptPolicy" id="policy-error" class="error-message-field">{{ errors.acceptPolicy }}</span>
+                <p class="recaptcha-note">Este sitio está protegido por reCAPTCHA; aplican la Política de Privacidad y los Términos de Servicio de Google.</p>
+              </div>
               
               <button type="submit" class="btn btn-primary btn-large" :disabled="submitting">
                 {{ submitting ? 'Enviando...' : 'Enviar Mensaje' }}
@@ -212,7 +229,8 @@ const form = ref({
   email: '',
   phone: '',
   subject: '',
-  message: ''
+  message: '',
+  acceptPolicy: false
 })
 
 const errors = reactive({})
@@ -307,7 +325,8 @@ const submitForm = async () => {
         email: '',
         phone: '',
         subject: '',
-        message: ''
+        message: '',
+        acceptPolicy: false
       }
       
       // Clear errors on success
@@ -330,6 +349,10 @@ const submitForm = async () => {
   } finally {
     submitting.value = false
   }
+}
+
+const openPrivacy = () => {
+  window.dispatchEvent(new CustomEvent('openPrivacyModal'))
 }
 </script>
 
@@ -532,6 +555,43 @@ const submitForm = async () => {
 .dark .contact-form h2 {
   color: #ffffff;
   font-weight: 700;
+}
+
+.checkbox-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.checkbox-label {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--text-secondary);
+}
+
+.checkbox-label input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  margin-top: 2px;
+}
+
+.link-button {
+  background: none;
+  border: none;
+  color: var(--accent-color);
+  cursor: pointer;
+  padding: 0;
+  font: inherit;
+  text-decoration: underline;
+}
+
+.recaptcha-note {
+  font-size: 13px;
+  color: var(--text-secondary);
+  margin: 0;
 }
 
 .form-group {

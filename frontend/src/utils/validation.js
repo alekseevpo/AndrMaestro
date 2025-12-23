@@ -61,6 +61,10 @@ export const validateContactForm = (form) => {
     errors.phone = getFieldError('Teléfono', form.phone, { phone: true })
   }
 
+  if (!form.acceptPolicy) {
+    errors.acceptPolicy = 'Debes aceptar la política de privacidad y reCAPTCHA'
+  }
+
   // Remove null values
   return Object.fromEntries(Object.entries(errors).filter(([_, v]) => v !== null))
 }
