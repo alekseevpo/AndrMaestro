@@ -45,6 +45,7 @@
                 decoding="async"
                 width="350"
                 height="250"
+                @error="handleImageError(post)"
               />
               <div v-else class="blog-placeholder">
                 <span class="placeholder-icon">📸</span>
@@ -171,6 +172,11 @@ const formatDate = (dateString) => {
 const goToPost = (slug) => {
   router.push(`/blog/${slug}`)
 }
+
+const handleImageError = (post) => {
+  // fallback to placeholder if image fails
+  post.image = ''
+}
 </script>
 
 <style scoped>
@@ -248,7 +254,7 @@ const goToPost = (slug) => {
   width: 100%;
   height: 250px;
   overflow: hidden;
-  background: var(--hover-bg);
+  background: linear-gradient(135deg, #f5f5f7 0%, #e6e6eb 100%);
 }
 
 .dark .blog-image {
