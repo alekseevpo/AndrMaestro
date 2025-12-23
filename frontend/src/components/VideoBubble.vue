@@ -8,6 +8,17 @@
         role="complementary"
         aria-label="Video reel"
       >
+        <button 
+          class="bubble-close" 
+          @click="closeBubble" 
+          aria-label="Cerrar video"
+          title="Cerrar"
+        >
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
         <div class="mini-thumb" @click="openExpanded" role="button" aria-label="Reproducir video">
           <iframe
             v-if="videoId"
@@ -98,6 +109,12 @@ const closeExpanded = () => {
   lockScroll(false)
 }
 
+const closeBubble = () => {
+  visible.value = false
+  expanded.value = false
+  lockScroll(false)
+}
+
 const lockScroll = (lock) => {
   if (typeof document === 'undefined') return
   if (lock) {
@@ -132,10 +149,47 @@ onMounted(() => {
 .video-bubble.mini {
   background: rgba(0, 0, 0, 0.8);
   border-radius: 12px;
-  overflow: hidden;
+  overflow: visible;
   box-shadow: 0 12px 32px rgba(0, 0, 0, 0.35);
   backdrop-filter: blur(6px);
   border: 1px solid rgba(255, 255, 255, 0.08);
+  position: relative;
+}
+
+.bubble-close {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.85);
+  border: 1.5px solid rgba(255, 255, 255, 0.15);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 10;
+  transition: all 0.2s ease;
+  backdrop-filter: blur(8px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.bubble-close:hover {
+  background: rgba(0, 0, 0, 0.95);
+  border-color: rgba(255, 255, 255, 0.25);
+  transform: scale(1.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+.bubble-close:active {
+  transform: scale(0.95);
+}
+
+.bubble-close svg {
+  width: 12px;
+  height: 12px;
 }
 
 .mini-thumb {
