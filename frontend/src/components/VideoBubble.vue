@@ -1,13 +1,12 @@
 <template>
-  <Teleport to="body">
-    <!-- Mini bubble -->
-    <transition name="fade">
-      <div
-        v-if="visible"
-        class="video-bubble mini"
-        role="complementary"
-        aria-label="Video reel"
-      >
+  <!-- Mini bubble -->
+  <transition name="fade">
+    <div
+      v-if="visible"
+      class="video-bubble mini"
+      role="complementary"
+      aria-label="Video reel"
+    >
         <button 
           class="bubble-close" 
           @click="closeBubble" 
@@ -55,9 +54,8 @@
             </div>
           </div>
         </div>
-      </div>
-    </transition>
-  </Teleport>
+    </div>
+  </transition>
 </template>
 
 <script setup>
@@ -163,12 +161,15 @@ onMounted(() => {
 
 <style scoped>
 .video-bubble {
-  position: fixed;
-  left: 14px;
+  position: sticky;
   bottom: 14px;
+  left: 14px;
   width: 140px;
   max-width: calc(100vw - 28px);
   z-index: 20000;
+  float: left;
+  margin: 20px 0 20px 14px;
+  align-self: flex-start;
 }
 
 .video-bubble.mini {
