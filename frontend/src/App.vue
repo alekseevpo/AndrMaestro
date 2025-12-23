@@ -6,12 +6,12 @@
     <Breadcrumbs />
     <main id="main-content" tabindex="-1">
       <router-view />
+      <VideoBubble />
     </main>
     <Footer />
     <WhatsAppButton />
     <BackToTop />
     <Toast />
-    <VideoBubble />
     <PageLoader />
     <CookieConsent />
     <PrivacyModal />
@@ -55,6 +55,7 @@ onMounted(() => {
   display: flex;
   flex-direction: column;
   background-color: var(--bg-color);
+  position: relative;
 }
 </style>
 
