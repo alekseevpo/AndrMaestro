@@ -167,40 +167,34 @@ onMounted(() => {
 
 .bubble-close {
   position: absolute;
-  top: -8px;
-  right: -8px;
-  width: 28px;
-  height: 28px;
-  border-radius: 50%;
-  background: rgba(0, 0, 0, 0.85);
-  border: 1.5px solid rgba(255, 255, 255, 0.15);
+  top: 4px;
+  right: 4px;
+  width: 24px;
+  height: 24px;
+  background: none;
+  border: none;
   color: #ffffff;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
   z-index: 10;
-  transition: all 0.2s ease;
-  backdrop-filter: blur(8px);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  transition: opacity 0.2s ease;
   padding: 0;
   margin: 0;
 }
 
 .bubble-close:hover {
-  background: rgba(0, 0, 0, 0.95);
-  border-color: rgba(255, 255, 255, 0.25);
-  transform: scale(1.1);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+  opacity: 0.7;
 }
 
 .bubble-close:active {
-  transform: scale(0.95);
+  opacity: 0.5;
 }
 
 .bubble-close svg {
-  width: 14px;
-  height: 14px;
+  width: 18px;
+  height: 18px;
   display: block;
   flex-shrink: 0;
 }
