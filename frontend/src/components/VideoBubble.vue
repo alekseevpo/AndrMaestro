@@ -164,11 +164,11 @@ onMounted(() => {
 <style scoped>
 .video-bubble {
   position: fixed;
-  left: 14px;
-  bottom: 14px;
+  left: 20px;
+  bottom: 20px;
   width: 140px;
-  max-width: calc(100vw - 28px);
-  z-index: 9998;
+  max-width: calc(100vw - 40px);
+  z-index: 9999;
   pointer-events: auto;
 }
 
