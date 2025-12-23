@@ -168,7 +168,8 @@ onMounted(() => {
   bottom: 14px;
   width: 140px;
   max-width: calc(100vw - 28px);
-  z-index: 20000;
+  z-index: 9998;
+  pointer-events: auto;
 }
 
 .video-bubble.mini {
