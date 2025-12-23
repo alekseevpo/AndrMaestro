@@ -43,8 +43,8 @@ onUnmounted(() => {
 <style scoped>
 .back-to-top {
   position: fixed;
-  bottom: 90px;
-  left: 20px;
+  bottom: 160px;
+  right: 20px;
   width: 50px;
   height: 50px;
   background-color: var(--accent-color);
@@ -56,7 +56,7 @@ onUnmounted(() => {
   align-items: center;
   justify-content: center;
   box-shadow: 0 4px 12px rgba(0, 122, 255, 0.4);
-  z-index: 998;
+  z-index: 1200;
   transition: all 0.3s ease;
 }
 
@@ -89,8 +89,8 @@ onUnmounted(() => {
   .back-to-top {
     width: 48px;
     height: 48px;
-    bottom: 80px;
-    left: 16px;
+    bottom: 140px;
+    right: 16px;
   }
 
   .back-to-top svg {
@@ -107,8 +107,8 @@ onUnmounted(() => {
   .back-to-top {
     width: 44px;
     height: 44px;
-    bottom: 75px;
-    left: 12px;
+    bottom: 130px;
+    right: 12px;
   }
 
   .back-to-top svg {
