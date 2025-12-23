@@ -27,6 +27,14 @@
             Teléfono: 
             <a href="tel:+34633343468" class="contact-link">+34 633 34 34 68</a>
           </p>
+          <button 
+            v-if="!isVideoVisible" 
+            @click="showVideo" 
+            class="show-video-btn"
+            type="button"
+          >
+            Ver video
+          </button>
         </div>
         
         <div class="footer-section">
@@ -117,10 +125,32 @@
 </template>
 
 <script setup>
-import { computed } from 'vue'
+import { computed, ref, onMounted, onUnmounted } from 'vue'
 import { config } from '../config'
 
 const currentYear = computed(() => new Date().getFullYear())
+const isVideoVisible = ref(true)
+
+const checkVideoVisibility = () => {
+  if (typeof localStorage !== 'undefined') {
+    const dismissed = localStorage.getItem('video-bubble-dismissed')
+    isVideoVisible.value = dismissed !== 'true'
+  }
+}
+
+const showVideo = () => {
+  if (typeof window !== 'undefined' && window.showVideoBubble) {
+    window.showVideoBubble()
+    isVideoVisible.value = true
+  }
+}
+
+onMounted(() => {
+  checkVideoVisibility()
+  // Check periodically if video was closed
+  const interval = setInterval(checkVideoVisibility, 1000)
+  onUnmounted(() => clearInterval(interval))
+})
 </script>
 
 <style scoped>
@@ -190,6 +220,29 @@ const currentYear = computed(() => new Date().getFullYear())
 
 .dark .contact-link:hover {
   color: #6bb0ff;
+}
+
+.show-video-btn {
+  margin-top: 12px;
+  padding: 8px 16px;
+  background: var(--accent-color);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.show-video-btn:hover {
+  background: #0051d5;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(0, 122, 255, 0.3);
+}
+
+.show-video-btn:active {
+  transform: translateY(0);
 }
 
 .social-links {

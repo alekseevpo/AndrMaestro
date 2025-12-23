@@ -120,6 +120,16 @@ const closeBubble = () => {
   }
 }
 
+const showBubble = () => {
+  // Clear dismissal state
+  if (typeof localStorage !== 'undefined') {
+    localStorage.removeItem(DISMISS_KEY)
+  }
+  // Show bubble
+  visible.value = true
+  expanded.value = false
+}
+
 const lockScroll = (lock) => {
   if (typeof document === 'undefined') return
   if (lock) {
@@ -142,6 +152,11 @@ onMounted(() => {
   setTimeout(() => {
     visible.value = true
   }, 600)
+  
+  // Expose showBubble function globally
+  if (typeof window !== 'undefined') {
+    window.showVideoBubble = showBubble
+  }
 })
 </script>
 
