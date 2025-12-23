@@ -190,7 +190,7 @@
                 <p class="recaptcha-note">Este sitio está protegido por reCAPTCHA; aplican la Política de Privacidad y los Términos de Servicio de Google.</p>
               </div>
               
-              <button type="submit" class="btn btn-primary btn-large" :disabled="submitting">
+              <button type="submit" class="btn btn-primary" :disabled="submitting">
                 {{ submitting ? 'Enviando...' : 'Enviar Mensaje' }}
               </button>
               
@@ -661,7 +661,7 @@ const openPrivacy = () => {
   min-height: 120px;
 }
 
-.btn {
+.contact-form .btn {
   width: 100%;
   margin-top: 10px;
 }
