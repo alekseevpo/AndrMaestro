@@ -44,12 +44,19 @@ const fetchWithRetry = async (url, options = {}, retries = config.retryAttempts)
 
 /**
  * Submit contact form
+ * @param {Object} formData - Form data
+ * @param {string} recaptchaToken - reCAPTCHA v3 token (optional)
  */
-export const submitContactForm = async (formData) => {
+export const submitContactForm = async (formData, recaptchaToken = null) => {
   try {
+    const payload = {
+      ...formData,
+      ...(recaptchaToken && { recaptcha_token: recaptchaToken })
+    }
+
     const response = await fetchWithRetry(`${config.apiUrl}/api/contact`, {
       method: 'POST',
-      body: JSON.stringify(formData)
+      body: JSON.stringify(payload)
     })
 
     const data = await response.json()
@@ -103,22 +110,39 @@ export const getProject = async (projectId) => {
 export const getBlogPosts = async (category = null) => {
   // В продакшене без явного API URL сразу возвращаем ошибку (будет использован fallback)
   if (!config.useApi) {
-    return {
+    // Возвращаем сразу, без задержки
+    return Promise.resolve({
       success: false,
       error: 'API no disponible en producción',
       data: []
-    }
+    })
   }
 
   try {
     const url = category 
       ? `${config.apiUrl}/api/blog/posts?category=${encodeURIComponent(category)}`
       : `${config.apiUrl}/api/blog/posts`
-    const response = await fetchWithRetry(url)
-    const data = await response.json()
-    return { success: true, data: data.posts || [] }
+    
+    // Добавляем таймаут для запроса
+    const controller = new AbortController()
+    const timeoutId = setTimeout(() => controller.abort(), 3000) // 3 секунды таймаут
+    
+    try {
+      const response = await fetchWithRetry(url, {
+        signal: controller.signal
+      })
+      clearTimeout(timeoutId)
+      const data = await response.json()
+      return { success: true, data: data.posts || [] }
+    } catch (fetchError) {
+      clearTimeout(timeoutId)
+      if (fetchError.name === 'AbortError') {
+        throw new Error('Request timeout')
+      }
+      throw fetchError
+    }
   } catch (error) {
-    console.error('Error fetching blog posts:', error)
+    // Не логируем ошибки в консоль, чтобы не засорять её
     return {
       success: false,
       error: 'Error al cargar los artículos del blog.',

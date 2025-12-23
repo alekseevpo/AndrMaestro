@@ -46,8 +46,8 @@
                   height="250" 
                   decoding="async"
                   @error="project.imageAfterError = true"
+                  @load="project.imageAfterLoaded = true"
                 />
-                <span class="image-label label-after">Después</span>
               </div>
               <div v-else-if="project.image && !project.imageError" class="project-image-single">
                 <img 
@@ -58,6 +58,7 @@
                   height="250" 
                   decoding="async"
                   @error="project.imageError = true"
+                  @load="project.imageLoaded = true"
                 />
               </div>
               <div v-else class="placeholder-image">
@@ -243,8 +244,8 @@ const projects = ref([
     ],
     duration: '2 semanas',
     type: 'Renovación'
-  },
-  {
+  })),
+  initializeProjectErrors({
     id: 3,
     title: 'Baño de Lujo',
     category: 'Revestimientos',
@@ -262,8 +263,8 @@ const projects = ref([
     ],
     duration: '4 semanas',
     type: 'Reforma Integral'
-  },
-  {
+  })),
+  initializeProjectErrors({
     id: 4,
     title: 'Dormitorio Principal',
     category: 'Carpintería',
@@ -281,8 +282,8 @@ const projects = ref([
     ],
     duration: '2 semanas',
     type: 'Carpintería'
-  },
-  {
+  })),
+  initializeProjectErrors({
     id: 5,
     title: 'Oficina en Casa',
     category: 'Reformas',
@@ -300,8 +301,8 @@ const projects = ref([
     ],
     duration: '3 semanas',
     type: 'Reforma Integral'
-  },
-  {
+  })),
+  initializeProjectErrors({
     id: 6,
     title: 'Revestimiento de Piedra Natural',
     category: 'Revestimientos',
@@ -319,8 +320,8 @@ const projects = ref([
     ],
     duration: '1 semana',
     type: 'Revestimientos'
-  },
-  {
+  })),
+  initializeProjectErrors({
     id: 7,
     title: 'Renovación de Fachada',
     category: 'Pintura',
@@ -338,8 +339,8 @@ const projects = ref([
     ],
     duration: '2 semanas',
     type: 'Pintura Exterior'
-  },
-  {
+  })),
+  initializeProjectErrors({
     id: 8,
     title: 'Estantería Biblioteca',
     category: 'Carpintería',
@@ -357,7 +358,7 @@ const projects = ref([
     ],
     duration: '1 semana',
     type: 'Carpintería'
-  }
+  }))
 ])
 
 const filteredProjects = computed(() => {
@@ -490,12 +491,21 @@ useFocusTrap(modalRef)
   background: linear-gradient(135deg, #2a2a2c 0%, #1d1d1f 100%);
 }
 
+.project-image-after,
+.project-image-single {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
 .project-image img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
+
 
 .project-card:hover .project-image img {
   transform: scale(1.1);

@@ -37,3 +37,9 @@ Thumbs.db
 .env.local
 
 .vercel
+
+# Cost estimates and sensitive documents
+PROJECT_COST_ESTIMATE.md
+*_COST*.md
+*_PRICE*.md
+*_ESTIMATE*.md

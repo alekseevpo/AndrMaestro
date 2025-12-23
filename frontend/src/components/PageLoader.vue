@@ -8,13 +8,31 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, onBeforeUnmount } from 'vue'
 import { useRouter } from 'vue-router'
 
 const isLoading = ref(false)
 const router = useRouter()
+let timeoutId = null
 
 onMounted(() => {
+  // Скрыть loader после полной загрузки страницы
+  const hideLoader = () => {
+    if (timeoutId) {
+      clearTimeout(timeoutId)
+    }
+    timeoutId = setTimeout(() => {
+      isLoading.value = false
+    }, 100)
+  }
+
+  // Скрыть loader когда страница полностью загружена
+  if (document.readyState === 'complete') {
+    hideLoader()
+  } else {
+    window.addEventListener('load', hideLoader)
+  }
+
   router.beforeEach((to, from, next) => {
     if (from.name !== null) {
       isLoading.value = true
@@ -23,10 +41,19 @@ onMounted(() => {
   })
 
   router.afterEach(() => {
-    setTimeout(() => {
+    if (timeoutId) {
+      clearTimeout(timeoutId)
+    }
+    timeoutId = setTimeout(() => {
       isLoading.value = false
     }, 300)
   })
+})
+
+onBeforeUnmount(() => {
+  if (timeoutId) {
+    clearTimeout(timeoutId)
+  }
 })
 </script>
 

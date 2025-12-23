@@ -233,40 +233,11 @@ const titleChars = computed(() => titleText.split(''))
   margin-bottom: 40px;
   line-height: 1.5;
   color: var(--text-secondary);
-  text-shadow: 0 0 20px rgba(192, 192, 192, 0.5);
-  animation: gentleGlow 3s ease-in-out infinite;
   font-weight: 500;
 }
 
 .dark .hero-subtitle {
   color: #d1d1d6;
-  text-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
-}
-
-@keyframes gentleGlow {
-  0%, 100% {
-    text-shadow: 0 0 20px rgba(192, 192, 192, 0.5);
-    opacity: 1;
-  }
-  50% {
-    text-shadow: 0 0 30px rgba(192, 192, 192, 0.8), 0 0 40px rgba(192, 192, 192, 0.6);
-    opacity: 1;
-  }
-}
-
-.dark .hero-subtitle {
-  animation: gentleGlowDark 3s ease-in-out infinite;
-}
-
-@keyframes gentleGlowDark {
-  0%, 100% {
-    text-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
-    opacity: 1;
-  }
-  50% {
-    text-shadow: 0 0 30px rgba(255, 255, 255, 0.7), 0 0 40px rgba(255, 255, 255, 0.5);
-    opacity: 1;
-  }
 }
 
 

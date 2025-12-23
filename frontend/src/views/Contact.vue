@@ -197,6 +197,7 @@ import { ref, reactive } from 'vue'
 import { useSEO } from '../composables/useSEO'
 import { validateContactForm } from '../utils/validation'
 import { submitContactForm } from '../utils/api'
+import { useRecaptcha } from '../composables/useRecaptcha'
 
 // SEO
 useSEO(
@@ -218,6 +219,10 @@ const errors = reactive({})
 const submitting = ref(false)
 const submitSuccess = ref(false)
 const submitError = ref(false)
+const recaptchaError = ref(false)
+
+// reCAPTCHA
+const { executeRecaptcha, isRecaptchaAvailable } = useRecaptcha()
 
 const validateForm = () => {
   // Clear previous errors
@@ -239,8 +244,33 @@ const submitForm = async () => {
   submitting.value = true
   submitSuccess.value = false
   submitError.value = false
+  recaptchaError.value = false
 
-  const result = await submitContactForm(form.value)
+  // Execute reCAPTCHA if available
+  let recaptchaToken = null
+  if (isRecaptchaAvailable()) {
+    try {
+      recaptchaToken = await executeRecaptcha('contact_form')
+      if (!recaptchaToken) {
+        recaptchaError.value = true
+        submitting.value = false
+        if (window.showToast) {
+          window.showToast('Error de verificación. Por favor, recarga la página e inténtalo de nuevo.', 'error')
+        }
+        return
+      }
+    } catch (error) {
+      console.error('reCAPTCHA error:', error)
+      recaptchaError.value = true
+      submitting.value = false
+      if (window.showToast) {
+        window.showToast('Error de verificación. Por favor, recarga la página e inténtalo de nuevo.', 'error')
+      }
+      return
+    }
+  }
+
+  const result = await submitContactForm(form.value, recaptchaToken)
 
   if (result.success) {
     submitSuccess.value = true

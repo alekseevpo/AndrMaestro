@@ -100,9 +100,33 @@ const loading = ref(false)
 
 // Загрузить посты из API
 onMounted(async () => {
+  // Если API недоступен, сразу используем mock данные
+  const isProduction = import.meta.env.PROD
+  const isLocalhost = typeof window !== 'undefined' && 
+    (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')
+  const useApi = !isProduction || isLocalhost || !!import.meta.env.VITE_API_URL
+  
+  if (!useApi) {
+    // API недоступен, сразу используем mock данные без показа loading
+    posts.value = mockPosts
+    loading.value = false
+    return
+  }
+  
   loading.value = true
+  
+  // Таймаут для гарантии, что loading всегда скроется
+  const timeoutId = setTimeout(() => {
+    if (loading.value) {
+      loading.value = false
+      posts.value = mockPosts
+    }
+  }, 3000) // 3 секунды максимум
+  
   try {
     const result = await getBlogPosts()
+    clearTimeout(timeoutId)
+    
     if (result.success && result.data && result.data.length > 0) {
       posts.value = result.data
       console.log('Artículos cargados desde API:', result.data.length)
@@ -111,7 +135,8 @@ onMounted(async () => {
       posts.value = mockPosts
     }
   } catch (error) {
-    // En caso de error, usar mockPosts (тихо, без логирования CORS ошибок)
+    clearTimeout(timeoutId)
+    // En caso de error, usar mockPosts (тихо, без логирования CORS errores)
     posts.value = mockPosts
   } finally {
     loading.value = false
