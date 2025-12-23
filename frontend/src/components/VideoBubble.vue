@@ -8,6 +8,17 @@
         role="complementary"
         aria-label="Video reel"
       >
+        <button 
+          class="bubble-close" 
+          @click="closeBubble" 
+          aria-label="Cerrar video"
+          title="Cerrar"
+        >
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
         <div class="mini-thumb" @click="openExpanded" role="button" aria-label="Reproducir video">
           <iframe
             v-if="videoId"
@@ -94,6 +105,12 @@ const openExpanded = () => {
 }
 
 const closeExpanded = () => {
+  expanded.value = false
+  lockScroll(false)
+}
+
+const closeBubble = () => {
+  visible.value = false
   expanded.value = false
   lockScroll(false)
 }
