@@ -169,8 +169,8 @@ onMounted(() => {
   position: absolute;
   top: 4px;
   right: 4px;
-  width: 24px;
-  height: 24px;
+  width: 20px;
+  height: 20px;
   background: none;
   border: none;
   color: #ffffff;
@@ -193,8 +193,8 @@ onMounted(() => {
 }
 
 .bubble-close svg {
-  width: 18px;
-  height: 18px;
+  width: 14px;
+  height: 14px;
   display: block;
   flex-shrink: 0;
 }
