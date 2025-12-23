@@ -48,21 +48,45 @@ const fetchWithRetry = async (url, options = {}, retries = config.retryAttempts)
  * @param {string} recaptchaToken - reCAPTCHA v3 token (optional)
  */
 export const submitContactForm = async (formData, recaptchaToken = null) => {
+  // В production без API URL не делаем запрос
+  if (!config.useApi) {
+    // В production форма не отправляется на backend
+    // Можно добавить интеграцию с сервисом типа Formspree, EmailJS и т.д.
+    return Promise.resolve({
+      success: false,
+      error: 'El formulario no está disponible en este momento. Por favor, contacta directamente por email o WhatsApp.'
+    })
+  }
+
   try {
     const payload = {
       ...formData,
       ...(recaptchaToken && { recaptcha_token: recaptchaToken })
     }
 
-    const response = await fetchWithRetry(`${config.apiUrl}/api/contact`, {
-      method: 'POST',
-      body: JSON.stringify(payload)
-    })
-
-    const data = await response.json()
-    return { success: true, data }
+    // Добавляем таймаут для запроса (8 секунд)
+    const controller = new AbortController()
+    const timeoutId = setTimeout(() => controller.abort(), 8000)
+    
+    try {
+      const response = await fetchWithRetry(`${config.apiUrl}/api/contact`, {
+        method: 'POST',
+        body: JSON.stringify(payload),
+        signal: controller.signal
+      })
+      clearTimeout(timeoutId)
+      
+      const data = await response.json()
+      return { success: true, data }
+    } catch (fetchError) {
+      clearTimeout(timeoutId)
+      if (fetchError.name === 'AbortError') {
+        throw new Error('Request timeout')
+      }
+      throw fetchError
+    }
   } catch (error) {
-    console.error('Error submitting contact form:', error)
+    // Не логируем ошибки в консоль, чтобы не засорять её
     return {
       success: false,
       error: 'Error al enviar el mensaje. Por favor, inténtalo de nuevo más tarde.'

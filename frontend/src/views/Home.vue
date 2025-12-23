@@ -370,24 +370,22 @@ const titleChars = computed(() => titleText.split(''))
   font-size: 21px;
   margin-bottom: 40px;
   color: rgba(255, 255, 255, 0.9);
-  text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
-  animation: gentleGlowWhite 3s ease-in-out infinite;
+  text-shadow: 0 0 8px rgba(255, 255, 255, 0.2);
+  animation: gentleGlowWhite 10s ease-in-out infinite;
   font-weight: 500;
 }
 
 .dark .cta-content p {
   color: rgba(255, 255, 255, 0.9);
-  text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+  text-shadow: 0 0 8px rgba(255, 255, 255, 0.2);
 }
 
 @keyframes gentleGlowWhite {
   0%, 100% {
-    text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
-    opacity: 1;
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.2);
   }
   50% {
-    text-shadow: 0 0 30px rgba(255, 255, 255, 0.8), 0 0 40px rgba(255, 255, 255, 0.6);
-    opacity: 1;
+    text-shadow: 0 0 12px rgba(255, 255, 255, 0.35), 0 0 18px rgba(255, 255, 255, 0.25);
   }
 }
 

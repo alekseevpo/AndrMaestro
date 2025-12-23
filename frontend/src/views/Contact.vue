@@ -246,60 +246,90 @@ const submitForm = async () => {
   submitError.value = false
   recaptchaError.value = false
 
-  // Execute reCAPTCHA if available
-  let recaptchaToken = null
-  if (isRecaptchaAvailable()) {
-    try {
-      recaptchaToken = await executeRecaptcha('contact_form')
-      if (!recaptchaToken) {
+  // Таймаут для гарантии, что submitting всегда сбросится
+  const timeoutId = setTimeout(() => {
+    if (submitting.value) {
+      submitting.value = false
+      submitError.value = true
+      if (window.showToast) {
+        window.showToast('El tiempo de espera se agotó. Por favor, inténtalo de nuevo.', 'error')
+      }
+    }
+  }, 10000) // 10 секунд максимум
+
+  try {
+    // Execute reCAPTCHA if available
+    let recaptchaToken = null
+    if (isRecaptchaAvailable()) {
+      try {
+        // Таймаут для reCAPTCHA (5 секунд)
+        const recaptchaPromise = executeRecaptcha('contact_form')
+        const timeoutPromise = new Promise((_, reject) => 
+          setTimeout(() => reject(new Error('reCAPTCHA timeout')), 5000)
+        )
+        
+        recaptchaToken = await Promise.race([recaptchaPromise, timeoutPromise])
+        
+        if (!recaptchaToken) {
+          recaptchaError.value = true
+          clearTimeout(timeoutId)
+          submitting.value = false
+          if (window.showToast) {
+            window.showToast('Error de verificación. Por favor, recarga la página e inténtalo de nuevo.', 'error')
+          }
+          return
+        }
+      } catch (error) {
+        console.error('reCAPTCHA error:', error)
         recaptchaError.value = true
+        clearTimeout(timeoutId)
         submitting.value = false
         if (window.showToast) {
           window.showToast('Error de verificación. Por favor, recarga la página e inténtalo de nuevo.', 'error')
         }
         return
       }
-    } catch (error) {
-      console.error('reCAPTCHA error:', error)
-      recaptchaError.value = true
-      submitting.value = false
+    }
+
+    const result = await submitContactForm(form.value, recaptchaToken)
+    clearTimeout(timeoutId)
+
+    if (result.success) {
+      submitSuccess.value = true
+      
+      // Show success toast
       if (window.showToast) {
-        window.showToast('Error de verificación. Por favor, recarga la página e inténtalo de nuevo.', 'error')
+        window.showToast('Mensaje enviado correctamente. Te contactaremos pronto.', 'success')
       }
-      return
+      
+      form.value = {
+        name: '',
+        email: '',
+        phone: '',
+        subject: '',
+        message: ''
+      }
+      
+      // Clear errors on success
+      Object.keys(errors).forEach(key => delete errors[key])
+    } else {
+      submitError.value = true
+      
+      // Show error toast
+      if (window.showToast) {
+        window.showToast(result.error || 'Error al enviar el mensaje. Por favor, inténtalo de nuevo.', 'error')
+      }
     }
-  }
-
-  const result = await submitContactForm(form.value, recaptchaToken)
-
-  if (result.success) {
-    submitSuccess.value = true
-    
-    // Show success toast
-    if (window.showToast) {
-      window.showToast('Mensaje enviado correctamente. Te contactaremos pronto.', 'success')
-    }
-    
-    form.value = {
-      name: '',
-      email: '',
-      phone: '',
-      subject: '',
-      message: ''
-    }
-    
-    // Clear errors on success
-    Object.keys(errors).forEach(key => delete errors[key])
-  } else {
+  } catch (error) {
+    clearTimeout(timeoutId)
     submitError.value = true
-    
-    // Show error toast
+    console.error('Form submission error:', error)
     if (window.showToast) {
-      window.showToast(result.error || 'Error al enviar el mensaje. Por favor, inténtalo de nuevo.', 'error')
+      window.showToast('Error al enviar el mensaje. Por favor, inténtalo de nuevo.', 'error')
     }
+  } finally {
+    submitting.value = false
   }
-  
-  submitting.value = false
 }
 </script>
 
@@ -380,11 +410,19 @@ const submitForm = async () => {
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-  background: linear-gradient(135deg, var(--accent-color) 0%, var(--primary-color) 100%);
+  background: var(--hover-bg);
   border-radius: 12px;
-  color: white;
+  color: var(--accent-color);
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow: 0 2px 8px rgba(0, 122, 255, 0.15);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  border: 1px solid var(--border-color);
+}
+
+.dark .contact-icon {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.1);
+  color: #4a9eff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 }
 
 .contact-icon svg {
@@ -396,11 +434,20 @@ const submitForm = async () => {
 
 .contact-item:hover .contact-icon {
   transform: scale(1.1) rotate(5deg);
-  box-shadow: 0 6px 20px rgba(0, 122, 255, 0.4);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+  background: var(--accent-color);
+  color: white;
+  border-color: var(--accent-color);
+}
+
+.dark .contact-item:hover .contact-icon {
+  background: #4a9eff;
+  color: white;
+  box-shadow: 0 6px 20px rgba(74, 158, 255, 0.4);
 }
 
 .contact-item:hover .contact-icon svg {
-  stroke: white;
+  stroke: currentColor;
   transform: scale(1.1);
 }
 
