@@ -31,6 +31,54 @@
   --hover-bg: #2a2a2c;
 }
 
+/* New Year theme variables */
+.new-year {
+  --accent-color: #dc2626;
+  --new-year-gold: #fbbf24;
+  --new-year-red: #dc2626;
+  --new-year-green: #16a34a;
+}
+
+.new-year .navbar {
+  background: linear-gradient(135deg, rgba(220, 38, 38, 0.95) 0%, rgba(234, 88, 12, 0.95) 100%);
+  border-bottom: 2px solid var(--new-year-gold);
+}
+
+.new-year .logo-text {
+  background: linear-gradient(135deg, #ffffff 0%, var(--new-year-gold) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.new-year .nav-links a:hover {
+  color: var(--new-year-gold);
+}
+
+.new-year .btn-primary {
+  background: linear-gradient(135deg, var(--new-year-red) 0%, #ea580c 100%);
+  box-shadow: 0 4px 15px rgba(220, 38, 38, 0.4);
+}
+
+.new-year .btn-primary:hover {
+  background: linear-gradient(135deg, #b91c1c 0%, #c2410c 100%);
+  box-shadow: 0 6px 20px rgba(220, 38, 38, 0.6);
+}
+
+.new-year .section-title {
+  background: linear-gradient(135deg, var(--new-year-red) 0%, var(--new-year-gold) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.dark.new-year .section-title {
+  background: linear-gradient(135deg, #fca5a5 0%, var(--new-year-gold) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
 /* Улучшение контрастности для темной темы */
 .dark .section-title {
   color: #ffffff;

@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <NewYearEffects />
     <SkipToContent />
     <NavBar />
     <Breadcrumbs />
@@ -22,7 +23,9 @@ import NavBar from './components/NavBar.vue'
 import Footer from './components/Footer.vue'
 import CookieConsent from './components/CookieConsent.vue'
 import PrivacyModal from './components/PrivacyModal.vue'
+import NewYearEffects from './components/NewYearEffects.vue'
 import { useTheme } from './composables/useTheme'
+import { useNewYearTheme } from './composables/useNewYearTheme'
 
 // Lazy load non-critical components
 const WhatsAppButton = defineAsyncComponent(() => import('./components/WhatsAppButton.vue'))
@@ -32,8 +35,9 @@ const SkipToContent = defineAsyncComponent(() => import('./components/SkipToCont
 const Breadcrumbs = defineAsyncComponent(() => import('./components/Breadcrumbs.vue'))
 const PageLoader = defineAsyncComponent(() => import('./components/PageLoader.vue'))
 
-// Initialize theme
+// Initialize themes
 useTheme()
+useNewYearTheme()
 
 // Smooth scroll behavior
 onMounted(() => {

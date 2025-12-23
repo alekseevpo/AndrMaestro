@@ -17,7 +17,9 @@
         </nav>
         
         <div class="nav-actions">
+          <NewYearToggle class="desktop-new-year-toggle" />
           <ThemeToggle class="desktop-theme-toggle" />
+          <NewYearToggle class="mobile-new-year-toggle" />
           <ThemeToggle class="mobile-theme-toggle" />
           <button 
             class="menu-toggle" 
@@ -104,6 +106,7 @@
                   </router-link>
                 </div>
                 <div class="popup-menu-footer">
+                  <NewYearToggle />
                   <ThemeToggle />
                 </div>
               </div>
@@ -116,6 +119,7 @@
 <script setup>
 import { ref, watch, onMounted, onUnmounted } from 'vue'
 import ThemeToggle from './ThemeToggle.vue'
+import NewYearToggle from './NewYearToggle.vue'
 
 const menuOpen = ref(false)
 
@@ -223,11 +227,13 @@ onUnmounted(() => {
   gap: 15px;
 }
 
-.desktop-theme-toggle {
+.desktop-theme-toggle,
+.desktop-new-year-toggle {
   display: flex;
 }
 
-.mobile-theme-toggle {
+.mobile-theme-toggle,
+.mobile-new-year-toggle {
   display: none;
 }
 
@@ -561,6 +567,7 @@ onUnmounted(() => {
   border-top: 1px solid rgba(0, 0, 0, 0.1);
   display: flex;
   justify-content: center;
+  gap: 15px;
   flex-shrink: 0;
   background-color: transparent;
 }
@@ -580,11 +587,13 @@ onUnmounted(() => {
     position: relative;
   }
   
-  .desktop-theme-toggle {
+  .desktop-theme-toggle,
+  .desktop-new-year-toggle {
     display: none !important;
   }
   
-  .mobile-theme-toggle {
+  .mobile-theme-toggle,
+  .mobile-new-year-toggle {
     display: flex !important;
   }
   
