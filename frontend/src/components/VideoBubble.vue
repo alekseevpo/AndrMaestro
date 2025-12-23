@@ -14,7 +14,7 @@
           aria-label="Cerrar video"
           title="Cerrar"
         >
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
             <line x1="18" y1="6" x2="6" y2="18"></line>
             <line x1="6" y1="6" x2="18" y2="18"></line>
           </svg>
@@ -165,7 +165,7 @@ onMounted(() => {
   border-radius: 50%;
   background: rgba(0, 0, 0, 0.85);
   border: 1.5px solid rgba(255, 255, 255, 0.15);
-  color: #fff;
+  color: #ffffff;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -174,6 +174,8 @@ onMounted(() => {
   transition: all 0.2s ease;
   backdrop-filter: blur(8px);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  padding: 0;
+  margin: 0;
 }
 
 .bubble-close:hover {
@@ -188,8 +190,15 @@ onMounted(() => {
 }
 
 .bubble-close svg {
-  width: 12px;
-  height: 12px;
+  width: 14px;
+  height: 14px;
+  display: block;
+  flex-shrink: 0;
+}
+
+.bubble-close svg line {
+  stroke: #ffffff;
+  stroke-width: 2.5;
 }
 
 .mini-thumb {
