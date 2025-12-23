@@ -560,14 +560,18 @@ const openPrivacy = () => {
 .checkbox-group {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 6px;
+  padding: 12px 14px;
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  background: var(--hover-bg);
 }
 
 .checkbox-label {
   display: flex;
   align-items: flex-start;
   gap: 10px;
-  font-size: 15px;
+  font-size: 14px;
   line-height: 1.5;
   color: var(--text-secondary);
 }
@@ -586,12 +590,14 @@ const openPrivacy = () => {
   padding: 0;
   font: inherit;
   text-decoration: underline;
+  font-weight: 600;
 }
 
 .recaptcha-note {
-  font-size: 13px;
+  font-size: 12px;
   color: var(--text-secondary);
   margin: 0;
+  line-height: 1.4;
 }
 
 .form-group {
