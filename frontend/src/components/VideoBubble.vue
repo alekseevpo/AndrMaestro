@@ -145,18 +145,19 @@ const shouldShow = () => {
   return dismissed !== 'true'
 }
 
+// Expose showBubble function globally
 onMounted(() => {
+  // Always expose the function, even if video is dismissed
+  if (typeof window !== 'undefined') {
+    window.showVideoBubble = showBubble
+  }
+  
   if (!videoId) return
   if (!shouldShow()) return
   // slight delay to avoid layout shift
   setTimeout(() => {
     visible.value = true
   }, 600)
-  
-  // Expose showBubble function globally
-  if (typeof window !== 'undefined') {
-    window.showVideoBubble = showBubble
-  }
 })
 </script>
 
