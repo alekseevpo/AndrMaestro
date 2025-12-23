@@ -19,8 +19,14 @@
         
         <div class="footer-section">
           <h4>Contacto</h4>
-          <p>Email: info@andrmaestro.com</p>
-          <p>Teléfono: +34 633 34 34 68</p>
+          <p>
+            Email: 
+            <a href="mailto:info@andrmaestro.com" class="contact-link">info@andrmaestro.com</a>
+          </p>
+          <p>
+            Teléfono: 
+            <a href="tel:+34633343468" class="contact-link">+34 633 34 34 68</a>
+          </p>
         </div>
         
         <div class="footer-section">
@@ -147,6 +153,27 @@ const currentYear = computed(() => new Date().getFullYear())
 
 .footer-section a:hover {
   color: var(--accent-color);
+}
+
+.contact-link {
+  color: var(--accent-color);
+  text-decoration: none;
+  transition: color 0.3s ease, opacity 0.3s ease;
+  font-weight: 500;
+}
+
+.contact-link:hover {
+  color: var(--primary-color);
+  opacity: 0.8;
+  text-decoration: underline;
+}
+
+.dark .contact-link {
+  color: #4a9eff;
+}
+
+.dark .contact-link:hover {
+  color: #6bb0ff;
 }
 
 .social-links {
