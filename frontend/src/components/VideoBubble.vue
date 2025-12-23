@@ -55,9 +55,8 @@
             </div>
           </div>
         </div>
-      </div>
-    </transition>
-  </Teleport>
+    </div>
+  </transition>
 </template>
 
 <script setup>

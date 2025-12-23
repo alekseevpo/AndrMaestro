@@ -6,12 +6,12 @@
     <Breadcrumbs />
     <main id="main-content" tabindex="-1">
       <router-view />
+      <VideoBubble />
     </main>
     <Footer />
     <WhatsAppButton />
     <BackToTop />
     <Toast />
-    <VideoBubble />
     <PageLoader />
     <CookieConsent />
     <PrivacyModal />
