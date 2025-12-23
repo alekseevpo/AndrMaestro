@@ -55,8 +55,9 @@
             </div>
           </div>
         </div>
-    </div>
-  </transition>
+      </div>
+    </transition>
+  </Teleport>
 </template>
 
 <script setup>
@@ -194,8 +195,8 @@ onMounted(() => {
 <style scoped>
 .video-bubble {
   position: fixed;
-  left: 20px;
-  bottom: 20px;
+  right: 20px;
+  top: 80px;
   z-index: 2999;
   pointer-events: auto;
 }
@@ -313,8 +314,8 @@ onMounted(() => {
 @media (max-width: 480px) {
   .video-bubble {
     width: 120px;
-    left: 12px;
-    bottom: 12px;
+    right: 12px;
+    top: 70px;
   }
 }
 
