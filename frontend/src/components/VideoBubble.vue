@@ -65,6 +65,7 @@ import { computed, onMounted, ref } from 'vue'
 
 const DEFAULT_VIDEO_ID = import.meta.env.VITE_VIDEO_REEL_ID || 'oj6S8WFVQjo'
 const DEFAULT_POSTER = import.meta.env.VITE_VIDEO_REEL_POSTER || ''
+const DISMISS_KEY = 'video-bubble-dismissed'
 const videoId = DEFAULT_VIDEO_ID
 const poster = DEFAULT_POSTER
 const visible = ref(false)
@@ -113,6 +114,10 @@ const closeBubble = () => {
   visible.value = false
   expanded.value = false
   lockScroll(false)
+  // Save dismissal state
+  if (typeof localStorage !== 'undefined') {
+    localStorage.setItem(DISMISS_KEY, 'true')
+  }
 }
 
 const lockScroll = (lock) => {
@@ -124,7 +129,11 @@ const lockScroll = (lock) => {
   }
 }
 
-const shouldShow = () => true
+const shouldShow = () => {
+  if (typeof localStorage === 'undefined') return true
+  const dismissed = localStorage.getItem(DISMISS_KEY)
+  return dismissed !== 'true'
+}
 
 onMounted(() => {
   if (!videoId) return
