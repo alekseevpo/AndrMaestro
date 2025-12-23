@@ -163,10 +163,10 @@ onMounted(() => {
 <style scoped>
 .video-bubble {
   position: fixed;
-  right: 20px;
-  top: 80px;
+  left: 14px;
+  bottom: 14px;
   width: 140px;
-  max-width: calc(100vw - 40px);
+  max-width: calc(100vw - 28px);
   z-index: 20000;
 }
 
@@ -277,8 +277,8 @@ onMounted(() => {
 @media (max-width: 480px) {
   .video-bubble {
     width: 120px;
-    right: 12px;
-    top: 70px;
+    left: 12px;
+    bottom: 12px;
   }
 }
 
