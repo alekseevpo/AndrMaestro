@@ -198,7 +198,6 @@ const titleChars = computed(() => titleText.split(''))
   margin-bottom: 20px;
   letter-spacing: -1px;
   line-height: 1.1;
-  color: var(--text-color);
   display: inline-block;
   overflow: visible;
   white-space: nowrap;
@@ -206,13 +205,66 @@ const titleChars = computed(() => titleText.split(''))
   z-index: 0;
 }
 
-.dark .hero-title {
-  color: #ffffff;
-  font-weight: 700;
-}
-
 .hero-title.glitch-title {
   overflow: visible;
+  background: linear-gradient(
+    135deg,
+    #ffffff 0%,
+    #e8e8e8 15%,
+    #ffffff 30%,
+    #f0f0f0 45%,
+    #ffffff 60%,
+    #e8e8e8 75%,
+    #ffffff 90%,
+    #f5f5f5 100%
+  );
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: metallic-shine 4s ease-in-out infinite;
+  text-shadow: 
+    0 0 10px rgba(255, 255, 255, 0.3),
+    0 0 20px rgba(255, 255, 255, 0.2),
+    0 2px 4px rgba(0, 0, 0, 0.3),
+    0 4px 8px rgba(0, 0, 0, 0.2);
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+}
+
+.dark .hero-title.glitch-title {
+  background: linear-gradient(
+    135deg,
+    #ffffff 0%,
+    #d0d0d0 15%,
+    #ffffff 30%,
+    #e0e0e0 45%,
+    #ffffff 60%,
+    #d0d0d0 75%,
+    #ffffff 90%,
+    #e8e8e8 100%
+  );
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-shadow: 
+    0 0 15px rgba(255, 255, 255, 0.4),
+    0 0 30px rgba(255, 255, 255, 0.3),
+    0 2px 6px rgba(0, 0, 0, 0.5),
+    0 4px 12px rgba(0, 0, 0, 0.4);
+  filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.5));
+}
+
+@keyframes metallic-shine {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
 
 /* Плавная анимация появления букв */
