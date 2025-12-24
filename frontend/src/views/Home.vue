@@ -31,8 +31,8 @@
 
     <section class="features section">
       <div class="container">
-        <h2 class="section-title glitch-subtle">¿Por qué elegirnos?</h2>
-        <p class="section-subtitle">
+        <h2 class="section-title" :class="{ 'shake-snow': isShaking }">¿Por qué elegirnos?</h2>
+        <p class="section-subtitle" :class="{ 'shake-snow': isShaking }">
           Comprometidos con la excelencia en cada proyecto
         </p>
         
@@ -99,13 +99,16 @@
         </div>
       </div>
     </section>
+
+    <BrandsAndTools />
   </div>
 </template>
 
 <script setup>
-import { ref, computed } from 'vue'
+import { ref, computed, onMounted, onUnmounted } from 'vue'
 import { useSEO } from '../composables/useSEO'
 import { useScrollReveal } from '../composables/useScrollReveal'
+import BrandsAndTools from '../components/BrandsAndTools.vue'
 
 // SEO
 useSEO(
@@ -121,6 +124,35 @@ const { elementRef: homeRef, isVisible } = useScrollReveal({ threshold: 0.05 })
 // Разбиваем заголовок на символы для анимации
 const titleText = 'Transformamos tus Espacios'
 const titleChars = computed(() => titleText.split(''))
+
+// Анимация отряхивания от снега
+const isShaking = ref(false)
+let shakeInterval = null
+
+const startShake = () => {
+  isShaking.value = true
+  setTimeout(() => {
+    isShaking.value = false
+  }, 1000) // 1 секунда анимации
+}
+
+onMounted(() => {
+  // Запускаем анимацию каждые 20 секунд
+  shakeInterval = setInterval(() => {
+    startShake()
+  }, 20000)
+  
+  // Первая анимация через 20 секунд после загрузки
+  setTimeout(() => {
+    startShake()
+  }, 20000)
+})
+
+onUnmounted(() => {
+  if (shakeInterval) {
+    clearInterval(shakeInterval)
+  }
+})
 </script>
 
 <style scoped>
@@ -137,48 +169,15 @@ const titleChars = computed(() => titleText.split(''))
 }
 
 .hero-background {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: 0;
-  overflow: hidden;
+  display: none;
 }
 
 .hero-image {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-image: url('https://images.unsplash.com/photo-1581578731548-adfd7bd6a2d0?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&ixid=M3w1NzU5NTJ8MHwxfHNlYXJjaHwxfHxjb25zdHJ1Y3Rpb24lMjB3b3JrfGVufDB8fHx8MTcxMDc2NTY2NHww&ixlib=rb-4.0.3&q=80&w=1920');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  filter: blur(8px);
-  transform: scale(1.1);
-  opacity: 0.4;
-  transition: opacity 0.3s ease;
-}
-
-.dark .hero-image {
-  opacity: 0.3;
-  filter: blur(10px);
+  display: none;
 }
 
 .hero-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: linear-gradient(135deg, rgba(0, 122, 255, 0.15) 0%, rgba(0, 122, 255, 0.05) 100%);
-  z-index: 1;
-}
-
-.dark .hero-overlay {
-  background: linear-gradient(135deg, rgba(0, 0, 0, 0.6) 0%, rgba(0, 122, 255, 0.2) 100%);
+  display: none;
 }
 
 .dark .hero {
@@ -188,7 +187,7 @@ const titleChars = computed(() => titleText.split(''))
 .hero-content {
   max-width: 800px;
   position: relative;
-  z-index: 1;
+  z-index: 2;
 }
 
 .hero-title {
@@ -250,6 +249,52 @@ const titleChars = computed(() => titleText.split(''))
 
 /* Button styles are now in styles/buttons.css */
 
+.features {
+  position: relative;
+  background-image: url('https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1920&h=1080&fit=crop&auto=format');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  overflow: hidden;
+  min-height: 400px;
+}
+
+.features::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url('https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1920&h=1080&fit=crop&auto=format');
+  background-size: cover;
+  background-position: center;
+  filter: blur(15px);
+  transform: scale(1.1);
+  z-index: 0;
+  animation: slowZoom 20s ease-in-out infinite;
+}
+
+.features::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.75);
+  z-index: 1;
+}
+
+.dark .features::after {
+  background: rgba(0, 0, 0, 0.65);
+}
+
+.features .container {
+  position: relative;
+  z-index: 2;
+}
+
 .features-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -263,6 +308,140 @@ const titleChars = computed(() => titleText.split(''))
   border-radius: 20px;
   background-color: var(--bg-color);
   border: 1px solid var(--border-color);
+  position: relative;
+  overflow: hidden;
+}
+
+.feature-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url('https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=1920&h=1080&fit=crop&auto=format');
+  background-size: cover;
+  background-position: center;
+  filter: blur(15px);
+  transform: scale(1.1);
+  z-index: 0;
+  opacity: 0.3;
+}
+
+.feature-card::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.85);
+  z-index: 1;
+}
+
+.dark .feature-card::after {
+  background: rgba(0, 0, 0, 0.7);
+}
+
+.feature-card > * {
+  position: relative;
+  z-index: 2;
+}
+
+/* Анимация отряхивания от снега */
+.shake-snow {
+  animation: shakeSnow 1s ease-in-out !important;
+}
+
+/* Тени для надписей в секции features */
+.features .section-title {
+  text-shadow: 0 3px 10px rgba(0, 0, 0, 0.4), 0 6px 20px rgba(0, 0, 0, 0.3);
+  animation: none !important;
+}
+
+.dark .features .section-title {
+  text-shadow: 0 3px 12px rgba(0, 0, 0, 0.7), 0 6px 24px rgba(0, 0, 0, 0.5);
+}
+
+.features .section-subtitle {
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.3), 0 4px 12px rgba(0, 0, 0, 0.2);
+  animation: none !important;
+}
+
+.dark .features .section-subtitle {
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6), 0 4px 16px rgba(0, 0, 0, 0.4);
+}
+
+@keyframes slowZoom {
+  0%, 100% {
+    transform: scale(1.1);
+  }
+  50% {
+    transform: scale(1.15);
+  }
+}
+
+@keyframes shakeSnow {
+  0%, 100% {
+    transform: translate(0, 0) rotate(0deg) !important;
+  }
+  5% {
+    transform: translate(-3px, -4px) rotate(-2deg) !important;
+  }
+  10% {
+    transform: translate(4px, 3px) rotate(2deg) !important;
+  }
+  15% {
+    transform: translate(-4px, 3px) rotate(-2deg) !important;
+  }
+  20% {
+    transform: translate(3px, -3px) rotate(2deg) !important;
+  }
+  25% {
+    transform: translate(-3px, 4px) rotate(-2deg) !important;
+  }
+  30% {
+    transform: translate(4px, -3px) rotate(2deg) !important;
+  }
+  35% {
+    transform: translate(-4px, -4px) rotate(-2deg) !important;
+  }
+  40% {
+    transform: translate(3px, 3px) rotate(2deg) !important;
+  }
+  45% {
+    transform: translate(-3px, -3px) rotate(-2deg) !important;
+  }
+  50% {
+    transform: translate(4px, 4px) rotate(2deg) !important;
+  }
+  55% {
+    transform: translate(-4px, 3px) rotate(-2deg) !important;
+  }
+  60% {
+    transform: translate(3px, -4px) rotate(2deg) !important;
+  }
+  65% {
+    transform: translate(-3px, 3px) rotate(-2deg) !important;
+  }
+  70% {
+    transform: translate(4px, -3px) rotate(2deg) !important;
+  }
+  75% {
+    transform: translate(-4px, -3px) rotate(-2deg) !important;
+  }
+  80% {
+    transform: translate(3px, 4px) rotate(2deg) !important;
+  }
+  85% {
+    transform: translate(-3px, -4px) rotate(-2deg) !important;
+  }
+  90% {
+    transform: translate(4px, 3px) rotate(2deg) !important;
+  }
+  95% {
+    transform: translate(-3px, 3px) rotate(-2deg) !important;
+  }
 }
 
 .feature-icon {

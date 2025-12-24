@@ -2,9 +2,6 @@
   <div class="services fade-in">
     <section class="services-hero section">
       <div class="container">
-        <div class="hero-image-wrapper">
-          <PlaceholderImage icon="🔨" size="large" />
-        </div>
         <h1 class="section-title">Nuestros Servicios</h1>
         <p class="section-subtitle">
           Soluciones completas para la transformación de tus espacios interiores
@@ -16,7 +13,15 @@
       <div class="container">
         <div class="service-item" v-for="service in services" :key="service.id">
           <div class="service-content">
-            <div class="service-icon" v-html="service.iconSvg"></div>
+            <div class="service-icon">
+              <img 
+                v-if="service.image"
+                :src="service.image" 
+                :alt="service.title"
+                class="service-image"
+              />
+              <div v-else class="service-icon-fallback" v-html="service.iconSvg"></div>
+            </div>
             <h2>{{ service.title }}</h2>
             <p>{{ service.description }}</p>
             <ul class="service-features">
@@ -45,13 +50,15 @@
         </div>
       </div>
     </section>
+
+    <BrandsAndTools />
   </div>
 </template>
 
 <script setup>
 import { ref } from 'vue'
 import { useSEO } from '../composables/useSEO'
-import PlaceholderImage from '../components/PlaceholderImage.vue'
+import BrandsAndTools from '../components/BrandsAndTools.vue'
 
 // SEO
 useSEO(
@@ -66,6 +73,7 @@ const services = ref([
     id: 1,
     icon: '🪚',
     iconSvg: '<svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>',
+    image: 'https://images.unsplash.com/photo-1504148455328-c376907d081c?w=400&h=400&fit=crop&auto=format',
     title: 'Carpintería y Ebanistería',
     description: 'Fabricación e instalación de muebles a medida, estanterías, armarios y elementos de carpintería personalizados.',
     features: [
@@ -80,6 +88,7 @@ const services = ref([
     id: 2,
     icon: '🎨',
     iconSvg: '<svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/><circle cx="12" cy="12" r="2"/></svg>',
+    image: 'https://images.unsplash.com/photo-1589939705384-5185137a7f0f?w=400&h=400&fit=crop&auto=format',
     title: 'Pintura y Acabados',
     description: 'Aplicación de pintura de alta calidad, técnicas especiales y acabados decorativos para dar vida a tus paredes.',
     features: [
@@ -94,6 +103,7 @@ const services = ref([
     id: 3,
     icon: '🧱',
     iconSvg: '<svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>',
+    image: 'https://images.unsplash.com/photo-1628177142898-93e36e4e3a50?w=400&h=400&fit=crop&auto=format',
     title: 'Revestimientos',
     description: 'Instalación de azulejos, cerámica, piedra natural y otros materiales para crear espacios únicos.',
     features: [
@@ -108,6 +118,7 @@ const services = ref([
     id: 4,
     icon: '🔧',
     iconSvg: '<svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>',
+    image: 'https://images.unsplash.com/photo-1484154218962-a197022b5858?w=400&h=400&fit=crop&auto=format',
     title: 'Reformas Integrales',
     description: 'Gestión completa de proyectos de reforma desde el diseño hasta la ejecución final.',
     features: [
@@ -122,6 +133,7 @@ const services = ref([
     id: 5,
     icon: '💡',
     iconSvg: '<svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="9" y1="18" x2="15" y2="18"/><line x1="10" y1="22" x2="14" y2="22"/><path d="M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 18 8 6 6 0 0 0 6 8c0 1 .23 2.23 1.5 3.5A4.61 4.61 0 0 1 8.91 14"/></svg>',
+    image: 'https://images.unsplash.com/photo-1513694203232-719a280e022f?w=400&h=400&fit=crop&auto=format',
     title: 'Iluminación',
     description: 'Instalación y diseño de sistemas de iluminación para crear ambientes acogedores y funcionales.',
     features: [
@@ -136,6 +148,7 @@ const services = ref([
     id: 6,
     icon: '🏠',
     iconSvg: '<svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>',
+    image: 'https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=400&h=400&fit=crop&auto=format',
     title: 'Rehabilitación',
     description: 'Restauración y rehabilitación de espacios manteniendo el carácter original con mejoras modernas.',
     features: [
@@ -175,22 +188,51 @@ const processSteps = ref([
 <style scoped>
 .services-hero {
   text-align: center;
-  padding-top: 120px;
+  padding: 120px 0 80px;
   position: relative;
-}
-
-.hero-image-wrapper {
-  max-width: 600px;
-  height: 300px;
-  margin: 0 auto 40px;
-  border-radius: 20px;
+  background-image: url('https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=1920&h=1080&fit=crop&auto=format');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   overflow: hidden;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
 }
 
-.dark .hero-image-wrapper {
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+.services-hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url('https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=1920&h=1080&fit=crop&auto=format');
+  background-size: cover;
+  background-position: center;
+  filter: blur(15px);
+  transform: scale(1.1);
+  z-index: 0;
+  animation: slowZoom 20s ease-in-out infinite;
 }
+
+.services-hero::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.75);
+  z-index: 1;
+}
+
+.dark .services-hero::after {
+  background: rgba(0, 0, 0, 0.65);
+}
+
+.services-hero .container {
+  position: relative;
+  z-index: 2;
+}
+
 
 .services-list {
   background-color: var(--hover-bg);
@@ -200,13 +242,36 @@ const processSteps = ref([
   background-color: var(--bg-color);
 }
 
+.services-list .container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+}
+
 .service-item {
   background-color: var(--bg-color);
   border-radius: 20px;
-  padding: 50px;
-  margin-bottom: 40px;
+  padding: 0;
+  margin-bottom: 0;
   border: 1px solid var(--border-color);
   animation: fadeInUp 0.6s ease-out backwards;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+}
+
+.dark .service-item {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.service-item:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+}
+
+.dark .service-item:hover {
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
 }
 
 .service-item:nth-child(1) { animation-delay: 0.1s; }
@@ -233,31 +298,129 @@ const processSteps = ref([
 }
 
 .service-content {
-  max-width: 900px;
+  max-width: 100%;
   margin: 0 auto;
+  padding: 30px;
+}
+
+.service-item {
+  padding: 0;
+}
+
+.service-item h2 {
+  font-size: 36px;
+  font-weight: 700;
+  margin-bottom: 20px;
+  background: linear-gradient(135deg, var(--text-color) 0%, var(--accent-color) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  letter-spacing: -0.5px;
+}
+
+.dark .service-item h2 {
+  background: linear-gradient(135deg, #ffffff 0%, var(--accent-color) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.service-item > .service-content > p {
+  font-size: 18px;
+  line-height: 1.7;
+  color: var(--text-secondary);
+  margin-bottom: 30px;
+}
+
+.service-features {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+  margin-top: 30px;
+  padding: 0;
+  list-style: none;
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.service-features li {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  margin: 0;
+  background: var(--hover-bg);
+  border-radius: 12px;
+  transition: all 0.3s ease;
+  border: 1px solid transparent;
+  list-style: none;
+}
+
+.service-features li:hover {
+  background: var(--accent-color);
+  color: white;
+  transform: translateX(4px);
+  border-color: var(--accent-color);
+}
+
+.service-features li::before {
+  content: '✓';
+  color: var(--accent-color);
+  font-weight: bold;
+  font-size: 18px;
+  transition: color 0.3s ease;
+}
+
+.service-features li:hover::before {
+  color: white;
 }
 
 .service-icon {
-  width: 80px;
-  height: 80px;
+  position: relative;
+  width: 100%;
+  height: 250px;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 20px;
+  margin: 0;
   color: var(--accent-color);
-  transition: transform 0.3s ease, color 0.3s ease;
+  transition: transform 0.3s ease;
+  border-radius: 0;
+  overflow: hidden;
+  background: linear-gradient(135deg, #f5f5f7 0%, #e6e6eb 100%);
 }
 
-.service-icon svg {
+.dark .service-icon {
+  background: linear-gradient(135deg, #2a2a2c 0%, #1d1d1f 100%);
+}
+
+.service-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transition: transform 0.3s ease;
+  display: block;
+}
+
+.service-item:hover .service-image {
+  transform: scale(1.05);
+}
+
+.service-icon-fallback {
+  width: 64px;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.service-icon-fallback svg {
   width: 64px;
   height: 64px;
   stroke: currentColor;
 }
 
-.service-item:hover .service-icon {
-  transform: scale(1.1);
-  color: var(--primary-color);
-}
 
 .service-item h2 {
   font-size: 36px;
@@ -279,27 +442,6 @@ const processSteps = ref([
   line-height: 1.6;
 }
 
-.service-features {
-  list-style: none;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 15px;
-}
-
-.service-features li {
-  padding-left: 25px;
-  position: relative;
-  color: var(--text-color);
-  line-height: 1.8;
-}
-
-.service-features li::before {
-  content: '✓';
-  position: absolute;
-  left: 0;
-  color: var(--accent-color);
-  font-weight: 600;
-}
 
 .process-steps {
   display: grid;
@@ -335,16 +477,17 @@ const processSteps = ref([
 }
 
 .step-dark {
-  background-color: #1d1d1f;
-  color: #ffffff;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background-color: var(--hover-bg);
+  color: var(--text-color);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  border: 1px solid var(--border-color);
 }
 
 .dark .step-dark {
   background-color: #3a3a3c;
   color: #ffffff;
   border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
 
 .step:hover {
@@ -353,7 +496,11 @@ const processSteps = ref([
 }
 
 .step-dark:hover {
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+}
+
+.dark .step-dark:hover {
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
 }
 
 .step-number {
@@ -398,7 +545,7 @@ const processSteps = ref([
 }
 
 .step-dark h3 {
-  color: #ffffff;
+  color: var(--text-color);
 }
 
 .dark .step-dark h3 {
@@ -420,7 +567,7 @@ const processSteps = ref([
 }
 
 .step-dark p {
-  color: rgba(255, 255, 255, 0.9);
+  color: var(--text-secondary);
 }
 
 .dark .step-dark p {
@@ -449,6 +596,15 @@ const processSteps = ref([
   animation: fadeInUp 0.6s ease-out;
 }
 
+@keyframes slowZoom {
+  0%, 100% {
+    transform: scale(1.1);
+  }
+  50% {
+    transform: scale(1.15);
+  }
+}
+
 @keyframes fadeInUp {
   from {
     opacity: 0;
@@ -465,23 +621,33 @@ const processSteps = ref([
     padding-top: 80px;
   }
 
-  .hero-image-wrapper {
-    height: 200px;
-    margin-bottom: 32px;
-  }
 
   .service-item {
-    padding: 32px 24px;
     margin-bottom: 24px;
   }
 
-  .service-icon {
-    width: 64px;
-    height: 64px;
-    margin-bottom: 16px;
+  .service-content {
+    padding: 32px 24px;
   }
 
-  .service-icon svg {
+  .service-icon {
+    width: 100%;
+    height: 200px;
+    margin: 0 0 30px 0;
+    border-radius: 20px;
+  }
+
+  .service-image {
+    width: 100%;
+    height: 100%;
+  }
+
+  .service-icon-fallback {
+    width: 48px;
+    height: 48px;
+  }
+
+  .service-icon-fallback svg {
     width: 48px;
     height: 48px;
   }
@@ -492,13 +658,18 @@ const processSteps = ref([
   }
 
   .service-item > .service-content > p {
-    font-size: 18px;
+    font-size: 16px;
     margin-bottom: 24px;
   }
 
   .service-features {
     grid-template-columns: 1fr;
     gap: 12px;
+  }
+
+  .service-features li {
+    padding: 10px 14px;
+    font-size: 15px;
   }
 
   .process-steps {
@@ -522,16 +693,38 @@ const processSteps = ref([
 }
 
 @media (max-width: 480px) {
-  .hero-image-wrapper {
-    height: 150px;
-  }
 
   .service-item {
+    margin-bottom: 20px;
+  }
+
+  .services-list .container {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .service-content {
     padding: 24px 20px;
+  }
+
+  .service-icon {
+    width: 100%;
+    height: 180px;
+    margin: 0 0 24px 0;
+    border-radius: 20px;
   }
 
   .service-item h2 {
     font-size: 24px;
+  }
+
+  .service-item > .service-content > p {
+    font-size: 15px;
+  }
+
+  .service-features li {
+    padding: 8px 12px;
+    font-size: 14px;
   }
 }
 </style>

@@ -183,6 +183,57 @@ const handleImageError = (post) => {
 .blog-hero {
   text-align: center;
   padding-top: 120px;
+  position: relative;
+  background-image: url('https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=1920&h=1080&fit=crop&auto=format');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  overflow: hidden;
+}
+
+.blog-hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url('https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=1920&h=1080&fit=crop&auto=format');
+  background-size: cover;
+  background-position: center;
+  filter: blur(15px);
+  transform: scale(1.1);
+  z-index: 0;
+  animation: slowZoom 20s ease-in-out infinite;
+}
+
+@keyframes slowZoom {
+  0%, 100% {
+    transform: scale(1.1);
+  }
+  50% {
+    transform: scale(1.15);
+  }
+}
+
+.blog-hero::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.75);
+  z-index: 1;
+}
+
+.dark .blog-hero::after {
+  background: rgba(0, 0, 0, 0.65);
+}
+
+.blog-hero .container {
+  position: relative;
+  z-index: 2;
 }
 
 .blog-filters {
