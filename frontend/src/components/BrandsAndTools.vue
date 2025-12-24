@@ -251,6 +251,7 @@ const handleImageError = (event) => {
     black 90%,
     transparent 100%
   );
+  will-change: transform;
 }
 
 .tools-wrapper {
@@ -276,6 +277,7 @@ const handleImageError = (event) => {
   gap: 40px;
   animation: scroll-horizontal linear infinite;
   width: fit-content;
+  will-change: transform;
 }
 
 .tools-track {
@@ -284,6 +286,7 @@ const handleImageError = (event) => {
   gap: 40px;
   animation: scroll-horizontal-reverse linear infinite;
   width: fit-content;
+  will-change: transform;
 }
 
 @keyframes scroll-horizontal {
@@ -403,19 +406,28 @@ const handleImageError = (event) => {
     margin-bottom: 30px;
   }
 
+  .brands-wrapper,
+  .tools-wrapper {
+    margin: 0 -20px;
+    padding: 0 20px;
+  }
+
   .brands-track,
   .tools-track {
     gap: 30px;
+    animation-duration: 50s !important;
   }
 
   .brand-item,
   .tool-item {
-    padding: 15px 20px;
+    padding: 12px 16px;
+    min-width: auto;
   }
 
   .brand-logo,
   .tool-logo {
     height: 45px;
+    padding: 0 15px;
   }
 
   .brand-logo img,
@@ -423,12 +435,23 @@ const handleImageError = (event) => {
     max-height: 45px;
     max-width: 120px;
   }
+
+  .brand-logo-text,
+  .tool-logo-text {
+    font-size: 14px;
+  }
 }
 
 @media (max-width: 480px) {
+  .brands-tools-section {
+    padding: 30px 0;
+  }
+
   .section-title {
     font-size: 18px;
     margin-bottom: 30px;
+    padding: 0 16px;
+    line-height: 1.3;
   }
 
   .brands-row,
@@ -436,20 +459,55 @@ const handleImageError = (event) => {
     margin-bottom: 24px;
   }
 
+  .brands-wrapper,
+  .tools-wrapper {
+    margin: 0 -16px;
+    padding: 0 16px;
+  }
+
   .brands-track,
   .tools-track {
     gap: 24px;
+    animation-duration: 60s !important;
+  }
+
+  .brand-item,
+  .tool-item {
+    padding: 10px 12px;
+    min-width: auto;
   }
 
   .brand-logo,
   .tool-logo {
     height: 40px;
+    padding: 0 12px;
   }
 
   .brand-logo img,
   .tool-logo img {
     max-height: 40px;
     max-width: 100px;
+  }
+
+  .brand-logo-text,
+  .tool-logo-text {
+    font-size: 12px;
+    letter-spacing: 1px;
+  }
+}
+
+/* Оптимизация для мобильных устройств */
+@media (max-width: 768px) and (prefers-reduced-motion: no-preference) {
+  .brands-track,
+  .tools-track {
+    animation-play-state: running;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .brands-track,
+  .tools-track {
+    animation: none;
   }
 }
 </style>
